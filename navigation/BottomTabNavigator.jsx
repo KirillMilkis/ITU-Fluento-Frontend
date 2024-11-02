@@ -2,7 +2,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Home, Decks, Stats } from '../screens'
-import { Ionicons } from '@expo/vector-icons'
+import Icon from 'react-native-ionicons';
 import { COLORS } from '../constants/theme'
 
 const Tab = createBottomTabNavigator();
@@ -18,6 +18,7 @@ const screenOptions = {
         right: 0,
         elevation: 0,
         height: 80,
+        backgroundColor: COLORS.tabPrimary,
     }
 }
 
@@ -28,21 +29,21 @@ const BottomTabNavigator = () => {
         component={Home} 
         options= {{
             tabBarIcon : ({focused}) => {
-                return <Ionicons name={focused ? "home" : "home-outline" } size={24} color={focused ? COLORS.tabPrimary : COLORS.tabSecondary}/>
+                return <Icon name={"home"} size={24} color={focused ? COLORS.tabSecondary : COLORS.white }/>
         }}}
         />
         <Tab.Screen name="Decks" 
         component={Decks} 
         options= {{
             tabBarIcon : ({focused}) => {
-                return <Ionicons name={focused ? "bookmark" : "bookmark-outline" } size={24} color={focused ? COLORS.tabPrimary : COLORS.tabSecondary}/>
+                return <Icon name={"bookmark"} size={24} color={focused ?  COLORS.tabSecondary : COLORS.white }/>
         }}}
         />
         <Tab.Screen name="Stats" 
         component={Stats} 
         options= {{
             tabBarIcon : ({focused}) => {
-                return <Ionicons name={focused ? "stats-chart" : "stats-chart-outline" } size={24} color={focused ? COLORS.tabPrimary : COLORS.tabSecondary}/>
+                return <Icon name={"stats-chart"} size={24} color={focused ? COLORS.tabSecondary : COLORS.white }/>
         }}}
         />
         
