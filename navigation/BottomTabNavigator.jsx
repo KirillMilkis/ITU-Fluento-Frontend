@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Home, Decks, Stats } from '../screens'
 import Icon from 'react-native-ionicons';
 import { COLORS } from '../constants/theme'
+import Collections from '../screens/Collections';
 
 const Tab = createBottomTabNavigator();
 
@@ -32,8 +33,8 @@ const BottomTabNavigator = () => {
                 return <Icon name={"home"} size={24} color={focused ? COLORS.tabSecondary : COLORS.white }/>
         }}}
         />
-        <Tab.Screen name="Decks" 
-        component={Decks} 
+        <Tab.Screen name="Collections" 
+        component={Collections} 
         options= {{
             tabBarIcon : ({focused}) => {
                 return <Icon name={"bookmark"} size={24} color={focused ?  COLORS.tabSecondary : COLORS.white }/>

@@ -6,6 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import { Ionicons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,14 +29,16 @@ export default function App() {
 
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Bottom Navigation" 
-        component={BottomTabNavigator} 
-        options={{headerShown: false}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Bottom Navigation" 
+          component={BottomTabNavigator} 
+          options={{headerShown: false}}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }
 

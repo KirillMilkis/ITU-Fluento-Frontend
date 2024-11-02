@@ -6,7 +6,7 @@ export const COLORS = {
     secondary: "#8ECAE6",
     tertiary: "#FB8500",
 
-    gray1 : "#F0F0F0",
+    gray1 : "#DEDEDE",
     gray2 : "#CDCDCD",
 
     green: "#39C01E",
@@ -20,7 +20,7 @@ export const COLORS = {
 }
 
 
-const SIZES = {
+export const SIZES = {
     base: 8,
     font: 14,
     radius: 12,
