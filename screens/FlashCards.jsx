@@ -17,7 +17,7 @@ const FlashCards = ({navigation}) => {
             <Text style={styles.textStyle}>Flash Cards</Text>
 
             <TouchableOpacity onPress={()=>{}}>
-            <Icon name="heart-inline" size={38} color="black" />
+            <Icon name="heart-outline" size={38} color="black" />
             </TouchableOpacity>
         </View>
         <ScrollView>

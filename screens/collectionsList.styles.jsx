@@ -2,19 +2,13 @@ import { StyleSheet } from "react-native";
 import { COLORS, SIZES } from '../constants/theme'
 
 const styles = StyleSheet.create({
-
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
-    },
-
+    
     topBarContainer: {
         marginHorizontal: 20,
         flexDirection: 'row',
-        alignItems: 'center',
         justifyContent: 'space-between',
+        // gap: '100%',
+        alignItems: 'center',
         width: SIZES.width - 48,
         // width: '100%',
         paddingHorizonral: 0,
@@ -25,20 +19,28 @@ const styles = StyleSheet.create({
         color: COLORS.black,
         fontSize: SIZES.h2,
         fontFamily: "Bold",
+        
     },
 
-    flashCardContainer: {
+    collectionsListContainer: {
+        gap: 16,        
+        flexDirection: 'column',
+        spaceBetween: 50,
         flex: 1,
-        flexDirection: 'row',
-        width: '100%',
-        alignItems: 'flex-start',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'start',
         padding: 33,
-        gap: 14,
+        maxHeight: 10000,
+        paddingTop: 10,
+
     },
-});
 
-
+    spacingTitles: {
+        marginVertical: 5, // Adds vertical space between text elements
+    },
+    spacing: {
+        marginVertical: 7, // Adds horizontal space between text and icon
+    },
+})
 
 export default styles;
