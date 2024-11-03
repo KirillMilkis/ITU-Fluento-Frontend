@@ -9,6 +9,13 @@ const styles = StyleSheet.create({
 
     textStyle2: {
         color: COLORS.black,
+        fontSize: SIZES.h1 - 3,
+        textAlign: 'left',
+        paddingHorizontal: 0,
+    },
+
+    textStyle3: {
+        color: COLORS.black,
         fontSize: SIZES.h2,
     },
 
@@ -19,7 +26,7 @@ const styles = StyleSheet.create({
         padding: 33,
     },
 
-    tileWrapper: {
+    tileNavContainer: {
         flexDirection: 'row',
         justifyContent: 'start',
         alignItems: 'start',
@@ -29,23 +36,26 @@ const styles = StyleSheet.create({
 
     tileNavigator: {
         padding: 10,
-        width: 154,
-        height: 189,
+        width: SIZES.baseWidth * 35,
+        height: SIZES.baseHeight * 21,
         borderRadius: 20,
         marginRight: 25,
         backgroundColor: COLORS.secondary,
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: 'start',
+        alignItems: 'start',
     },
 
-    savedCollectionsWrapper: {
-        justifyContent: 'start',
+    savedCollectionsContainer: {
+        justifyContent: 'center',
         alignItems: 'start',
         padding: 33,
         maxHeight: 10000,
         paddingTop: 10,
 
-    }
+    },
+    spacing: {
+    marginVertical: 7, // Adds vertical space between text elements
+    },
 })
 
 export default styles;

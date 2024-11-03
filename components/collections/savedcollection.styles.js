@@ -5,22 +5,21 @@ const styles = StyleSheet.create({
     tileWrapper: {
         flexDirection: 'column',
         justifyContent: 'start',
-        alignItems: 'start',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 'fit-content',
         padding: 0,
         paddingTop: 10,
     },
 
-
     tileForm: {
         padding: 15,
-        width: 370,
-
+        width: SIZES.baseWidth * 85, // Set width to 100%
         flexDirection: 'row',
-        height: 91,
+        height: 'auto',
         borderRadius: 20,
         backgroundColor: COLORS.gray1,
-        justifyContent: '',
-
+        justifyContent: 'space-between',
         alignItems: 'center',
     },
 
@@ -31,7 +30,8 @@ const styles = StyleSheet.create({
 
     textStyle2: {
         color: COLORS.black,
-        fontSize: SIZES.small,
+        fontSize: SIZES.medium,
+        marginHorizontal: 10,
     },
 
     textWrapperColumn: {
@@ -40,15 +40,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexGrow: 2,
     },
+    likesWrapperColumn: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexGrow: 1,
+    },
 
     TextWrapperRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+
     },
-
-
-
 });
 
 export default styles;

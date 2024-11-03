@@ -14,11 +14,11 @@ const SavedCollectionTile = () => {
                 <Text style={styles.textStyle}>Vegetables</Text>
                 <View style={styles.TextWrapperRow}>
                     <Text style={styles.textStyle2}>5 items</Text>
-                    <Text style={styles.textStyle2}>3 days ago</Text>
+                    <Text style={styles.textStyle2}>by Anna</Text>
                 </View>
             </View>
-            <View style={styles.textWrapperColumn}>
-                <Icon name="ellipsis-vertical" size={30} color="black" />
+            <View style={styles.likesWrapperColumn}>
+                <Icon name="heart-outline" size={30} color="black" />
                 <Text style={styles.textStyle2}>50</Text>
             </View>
 

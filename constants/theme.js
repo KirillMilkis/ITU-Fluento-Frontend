@@ -19,6 +19,9 @@ export const COLORS = {
 
 }
 
+const baseWidth = width / 100;
+const baseHeight = height / 100;
+
 
 export const SIZES = {
     base: 8,
@@ -32,9 +35,11 @@ export const SIZES = {
     h4: 14,
     h5: 12,
 
-    small: 16,
-    medium: 22,
-    large: 30,
+    small: 12,
+    medium: 16,
+    large: 20,
+    xLarge: 32,
+    xxLarge: 40,
 
     body1: 30,
     body2: 22,
@@ -43,6 +48,9 @@ export const SIZES = {
     body5: 12,
     height,
     width,
+
+    baseWidth,
+    baseHeight,
 }
 
 
