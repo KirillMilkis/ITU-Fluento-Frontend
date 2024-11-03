@@ -6,9 +6,10 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'start',
         alignItems: 'start',
-        padding: 33,
+        padding: 0,
         paddingTop: 10,
     },
+
 
     tileForm: {
         padding: 15,
@@ -18,7 +19,8 @@ const styles = StyleSheet.create({
         height: 91,
         borderRadius: 20,
         backgroundColor: COLORS.gray1,
-        justifyContent: 'space-between',
+        justifyContent: '',
+
         alignItems: 'center',
     },
 
@@ -26,6 +28,26 @@ const styles = StyleSheet.create({
         color: COLORS.black,
         fontSize: SIZES.h1,
     },
+
+    textStyle2: {
+        color: COLORS.black,
+        fontSize: SIZES.small,
+    },
+
+    textWrapperColumn: {
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexGrow: 2,
+    },
+
+    TextWrapperRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+
+
 
 });
 
