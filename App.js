@@ -4,8 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
-import { Ionicons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
+
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const Stack = createNativeStackNavigator();

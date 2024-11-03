@@ -2,7 +2,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Home, Decks, Stats } from '../screens'
-import Icon from 'react-native-ionicons';
+import Icon from 'react-native-vector-icons/Ionicons'
 import { COLORS } from '../constants/theme'
 import Collections from '../screens/Collections';
 
