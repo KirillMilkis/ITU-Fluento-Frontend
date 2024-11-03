@@ -37,6 +37,8 @@ const styles = StyleSheet.create({
         padding: 33,
         gap: 14,
     },
+
+
 });
 
 
