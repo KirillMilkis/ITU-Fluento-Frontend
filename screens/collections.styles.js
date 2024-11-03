@@ -11,12 +11,12 @@ const styles = StyleSheet.create({
         color: COLORS.black,
         fontSize: SIZES.h1 - 3,
         textAlign: 'left',
-        paddingHorizontal: 0,
     },
 
     textStyle3: {
         color: COLORS.black,
-        fontSize: SIZES.h2,
+        fontSize: SIZES.h2 + 4,
+        paddingBottom: 10,
     },
 
     topBarWrapper: {
@@ -46,6 +46,10 @@ const styles = StyleSheet.create({
     },
 
     savedCollectionsContainer: {
+        gap: 16,        
+        flexDirection: 'column',
+        spaceBetween: 50,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'start',
         padding: 33,
@@ -53,8 +57,13 @@ const styles = StyleSheet.create({
         paddingTop: 10,
 
     },
+
+
+    spacingTitles: {
+        marginVertical: 5, // Adds vertical space between text elements
+    },
     spacing: {
-    marginVertical: 7, // Adds vertical space between text elements
+        marginVertical: 7, // Adds horizontal space between text and icon
     },
 })
 

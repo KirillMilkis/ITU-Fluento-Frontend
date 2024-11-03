@@ -23,12 +23,12 @@ const Collections = () => {
                 <Icon name="add-outline" size={38} color="black" style={styles.spacing} />
                 <Text style={styles.textStyle2}>Create own collection</Text>
                 </View>
-            </View>    
+            </View>   
             <View style={styles.savedCollectionsContainer}>
-                <Text style={styles.textStyle3}>Saved Collections</Text>
-                  <SavedCollectionTile/>
-                  <SavedCollectionTile/>
-                  <SavedCollectionTile/>
+                <Text style={[styles.textStyle3, styles.spacingTitles]}>Saved Collections</Text> 
+                <SavedCollectionTile/>
+                <SavedCollectionTile/>
+                <SavedCollectionTile/>
             </View>   
         </ScrollView>  
     </SafeAreaView>

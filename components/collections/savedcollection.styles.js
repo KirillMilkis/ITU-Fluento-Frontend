@@ -2,17 +2,8 @@ import { StyleSheet } from "react-native";
 import { COLORS, SIZES } from '../../constants/theme'
 
 const styles = StyleSheet.create({
-    tileWrapper: {
-        flexDirection: 'column',
-        justifyContent: 'start',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 'fit-content',
-        padding: 0,
-        paddingTop: 10,
-    },
 
-    tileForm: {
+    tileContainer: {
         padding: 15,
         width: SIZES.baseWidth * 85, // Set width to 100%
         flexDirection: 'row',
@@ -34,20 +25,21 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
 
-    textWrapperColumn: {
+    textContainerColumn: {
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
         flexGrow: 2,
     },
-    likesWrapperColumn: {
+
+    likesContainerColumn: {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         flexGrow: 1,
     },
 
-    TextWrapperRow: {
+    TextContainerRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
