@@ -5,9 +5,9 @@ import styles from './communityCollections.styles'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native'
-import { CollectionTile } from '../../components'
+import { CollectionList } from '../../components'
 
-const CollectionsList = () => {
+const CommunityCollections = () => {
 
     const navigation = useNavigation();
 
@@ -24,19 +24,12 @@ const CollectionsList = () => {
         </View>
 
 
-        <ScrollView>
-            <View style={[styles.collectionsListContainer, styles.spacing]}>
-                <CollectionTile/>
-                <CollectionTile/>
-                <CollectionTile/>
-            </View>
-
-
-        </ScrollView>
+        
+        <CollectionList/>
           
 
     </SafeAreaView>
   )
 }
 
-export default CollectionsList
+export default CommunityCollections

@@ -19,7 +19,7 @@ const CollectionsMain = () => {
         </View>
         <ScrollView>
             <View style ={styles.tileNavContainer}>
-              <TouchableOpacity onPress={()=>navigation.navigate("CollectionsList")}>
+              <TouchableOpacity onPress={()=>navigation.navigate("CommunityCollections")}>
                 <View style ={styles.tileNavigator}>
                   <Icon name="earth-outline" size={38} color="black" style={styles.spacing} />
                   <Text style={styles.textStyle2}>Explore new Collections</Text>

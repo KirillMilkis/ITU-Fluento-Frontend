@@ -7,7 +7,7 @@ import BottomTabNavigator from './navigation/BottomTabNavigator';
 import * as Font from 'expo-font';
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { FlashCardsList, CollectionsList, FlashCardDetails, NewCollectionForm } from './screens';
+import { FlashCardsList, FlashCardDetails, NewCollectionForm, CommunityCollections } from './screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,8 +43,8 @@ export default function App() {
           options={{headerShown: false}}
           />
 
-          <Stack.Screen name="CollectionsList"
-          component={CollectionsList}
+          <Stack.Screen name="CommunityCollections"
+          component={CommunityCollections}
           options={{headerShown: false}}
           />
 

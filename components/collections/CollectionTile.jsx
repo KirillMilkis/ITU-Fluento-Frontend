@@ -2,7 +2,7 @@ import { TouchableOpacity, View, Text } from 'react-native'
 import { Image } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
-import styles from './collection.styles'
+import styles from './collectionTile.styles'
 import Icon from 'react-native-vector-icons/Ionicons'
 import FlashCardsList from '../../screens'
 
