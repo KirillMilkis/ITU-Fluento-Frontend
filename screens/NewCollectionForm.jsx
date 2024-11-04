@@ -49,7 +49,7 @@ const NewCollectionForm = () => {
         
         
         <View style={[styles.formContainer, styles.spacing]}>
-          <Text style={styles.titleStyle2}>Collection's name</Text>
+          <Text style={[styles.titleStyle2, styles.titleSpacing]}>Collection's name</Text>
 
             <TextInput 
               placeholder='Enter collection name' 
@@ -57,11 +57,9 @@ const NewCollectionForm = () => {
               onChangeText={onChangeField('collectionName')}
               />
 
-            <Button
-              title="Submit" 
-              onPress={handleSubmit(onSubmit)} 
-              styles={styles.submitButton}
-            />
+            <TouchableOpacity style={styles.submitButton} onPress={handleSubmit(onSubmit)}>
+              <Text style={styles.buttonText}>Save</Text>
+            </TouchableOpacity>
 
         </View>
 

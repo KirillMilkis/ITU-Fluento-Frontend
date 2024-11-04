@@ -52,9 +52,26 @@ const styles = StyleSheet.create({
         elevation: 3,
     },
 
+    submitButton: {
+        backgroundColor: COLORS.green,
+        paddingVertical: 15,
+        paddingHorizontal: 30,
+        borderRadius: 8,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 3,
+    },
+
+
     spacing: {
         marginVertical: 50, // Adds horizontal space between text and icon
     },
+    titleSpacing: {
+        marginVertical: 14, // Adds horizontal space between text and icon
+    }
 
 
 });
