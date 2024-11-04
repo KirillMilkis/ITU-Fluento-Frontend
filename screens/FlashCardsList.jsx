@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { FlashCardListTile } from '../components'
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const FlashCards = ({navigation}) => {
+const FlashCardsList = ({navigation}) => {
   return (
     <SafeAreaView>
         <View style ={styles.topBarContainer}>
@@ -31,4 +31,4 @@ const FlashCards = ({navigation}) => {
   )
 }
 
-export default FlashCards
+export default FlashCardsList

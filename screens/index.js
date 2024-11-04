@@ -4,5 +4,6 @@ import Stats from "./Stats";
 import FlashCardsList from "./FlashCardsList";
 import CollectionsList from "./CollectionsList";
 import FlashCardDetails from "./FlashCardDetails";
+import NewCollectionForm from "./NewCollectionForm";
 
-export { Home, Decks, Stats, FlashCardsList, CollectionsList, FlashCardDetails};
+export { Home, Decks, Stats, FlashCardsList, CollectionsList, FlashCardDetails, NewCollectionForm};

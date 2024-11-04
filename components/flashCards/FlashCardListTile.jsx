@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './flashCardList.styles'
 import { useNavigation } from '@react-navigation/native'
 
-const FlashCardTile = () => {
+const FlashCardListTile = () => {
     const navigation = useNavigation()
 
   return (

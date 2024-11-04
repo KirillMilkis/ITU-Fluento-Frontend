@@ -25,10 +25,12 @@ const Collections = () => {
                   <Text style={styles.textStyle2}>Explore new Collections</Text>
                 </View>
               </TouchableOpacity>
+              <TouchableOpacity onPress={()=>navigation.navigate("NewCollectionForm")}>
                 <View style ={styles.tileNavigator}>
                   <Icon name="add-outline" size={38} color="black" style={styles.spacing} />
                   <Text style={styles.textStyle2}>Create own collection</Text>
                 </View>
+              </TouchableOpacity>
             </View>   
             <View style={styles.savedCollectionsContainer}>
                 <Text style={[styles.textStyle3, styles.spacingTitles]}>Saved Collections</Text> 
