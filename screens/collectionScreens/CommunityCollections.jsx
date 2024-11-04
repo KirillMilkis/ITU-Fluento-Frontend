@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import styles from './collectionsList.styles'
+import styles from './communityCollections.styles'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native'
