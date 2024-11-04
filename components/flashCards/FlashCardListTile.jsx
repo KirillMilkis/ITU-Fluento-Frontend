@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
-import styles from './flashCard.styles'
+import styles from './flashCardList.styles'
 import { useNavigation } from '@react-navigation/native'
 
 const FlashCardTile = () => {
@@ -20,4 +20,4 @@ const FlashCardTile = () => {
   )
 }
 
-export default FlashCardTile
+export default FlashCardListTile

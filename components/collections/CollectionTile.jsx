@@ -4,12 +4,12 @@ import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import styles from './collection.styles'
 import Icon from 'react-native-vector-icons/Ionicons'
-import FlashCards from '../../screens'
+import FlashCardsList from '../../screens'
 
 const SavedCollectionTile = () => {
     const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={()=>navigation.navigate("FlashCards")}>
+    <TouchableOpacity onPress={()=>navigation.navigate("FlashCardsList")}>
         <View style ={styles.tileContainer}>
             <Image source={require('../../assets/favicon.png')} style={styles.imageStyle}/>
             <View style={styles.textContainerColumn}>

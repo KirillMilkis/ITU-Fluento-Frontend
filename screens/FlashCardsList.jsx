@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
-import styles from './flashCards.styles'
+import styles from './flashCardsList.styles'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { FlashCardTile } from '../components'
+import { FlashCardListTile } from '../components'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 const FlashCards = ({navigation}) => {
@@ -22,9 +22,9 @@ const FlashCards = ({navigation}) => {
         </View>
         <ScrollView>
             <View style={styles.flashCardContainer}>
-                <FlashCardTile/>
-                <FlashCardTile/>
-                <FlashCardTile/>
+                <FlashCardListTile/>
+                <FlashCardListTile/>
+                <FlashCardListTile/>
             </View>
         </ScrollView>
     </SafeAreaView>

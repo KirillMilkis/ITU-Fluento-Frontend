@@ -1,4 +1,4 @@
 import CollectionTile from "./collections/CollectionTile";
-import FlashCardTile from "./flashCards/FlashCardTile";
+import FlashCardListTile from "./flashCards/FlashCardListTile";
 
-export { CollectionTile, FlashCardTile };
+export { CollectionTile, FlashCardListTile };
