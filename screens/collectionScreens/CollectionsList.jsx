@@ -5,7 +5,7 @@ import styles from './collectionsList.styles'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native'
-import { CollectionTile } from '../components'
+import { CollectionTile } from '../../components'
 
 const CollectionsList = () => {
 

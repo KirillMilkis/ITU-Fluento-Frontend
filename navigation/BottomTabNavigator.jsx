@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Home, Decks, Stats } from '../screens'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { COLORS } from '../constants/theme'
-import Collections from '../screens/Collections';
+import CollectionsMain from '../screens/collectionScreens/CollectionsMain';
 
 const Tab = createBottomTabNavigator();
 
@@ -34,7 +34,7 @@ const BottomTabNavigator = () => {
         }}}
         />
         <Tab.Screen name="Collections" 
-        component={Collections} 
+        component={CollectionsMain} 
         options= {{
             tabBarIcon : ({focused}) => {
                 return <Icon name={"bookmark"} size={24} color={focused ?  COLORS.tabSecondary : COLORS.white }/>

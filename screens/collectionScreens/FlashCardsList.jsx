@@ -3,7 +3,7 @@ import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import styles from './flashCardsList.styles'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { FlashCardListTile } from '../components'
+import { FlashCardListTile } from '../../components'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 const FlashCardsList = ({navigation}) => {
