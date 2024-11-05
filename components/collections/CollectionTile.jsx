@@ -6,23 +6,23 @@ import styles from './collectionTile.styles'
 import Icon from 'react-native-vector-icons/Ionicons'
 import FlashCardsList from '../../screens'
 
-const CollectionTile = ({item}) => {
+const CollectionTile = ({deckItem}) => {
     const navigation = useNavigation();
 
-    if (!item) {
+    if (!deckItem) {
         return null; // Render nothing if item is undefined or null
       }
     
 
   return (
-    <TouchableOpacity onPress={()=>navigation.navigate("FlashCardsList", {idDeck: item.id})}>
+    <TouchableOpacity onPress={()=>navigation.navigate("FlashCardsListScreen", {deckItem: deckItem})}>
         <View style ={styles.tileContainer}>
             <Image source={require('../../assets/favicon.png')} style={styles.imageStyle}/>
             <View style={styles.textContainerColumn}>
-                <Text style={styles.textStyle} numberOfLines={1}>{item["name"]}</Text>
+                <Text style={styles.textStyle} numberOfLines={1}>{deckItem.name}</Text>
                 <View style={styles.TextContainerRow}>
                     <Text style={styles.textStyle2}>5 items</Text>
-                    <Text style={styles.textStyle2} numberOfLines={1}>by {item.creator}</Text>
+                    <Text style={styles.textStyle2} numberOfLines={1}>by {deckItem.creator}</Text>
                 </View>
             </View>
             <View style={styles.likesContainerColumn}>

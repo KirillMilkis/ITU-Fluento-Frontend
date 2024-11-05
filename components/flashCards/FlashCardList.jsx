@@ -4,7 +4,9 @@ import FlashCardListTile from './FlashCardListTile';
 
 const FlashCardList = ({deckId}) => {
 
-  let url = `https://itu-projekt-psi.vercel.app/api/decks/{deckId}`;
+  let url = `https://itu-projekt-psi.vercel.app/api/decks/${deckId}`;
+
+  const {data, isLoading, error} = useFetch(url);
 
   return (
     <ScrollView>
@@ -16,8 +18,8 @@ const FlashCardList = ({deckId}) => {
                 ) : (
                 <FlatList
                     data = {data}
-                    renderItem = {({item}) => <FlashCardListTile item = {item}/>}
-                    keyExtractor = {(item) => item.ID}
+                    renderItem = {({cardItem}) => <FlashCardListTile cardItem = {cardItem}/>}
+                    keyExtractor = {(cardItem) => cardItem.ID}
                     vertical = {true}
                     contentContainerStyle = {{gap: 14}}
                 />
@@ -31,7 +33,6 @@ const FlashCardList = ({deckId}) => {
   
   
 
-  const {data, isLoading, error} = useFetch(url);
 }
 
 

@@ -3,17 +3,17 @@ import React from 'react'
 import styles from './flashCardListTile.styles'
 import { useNavigation } from '@react-navigation/native'
 
-const FlashCardListTile = () => {
+const FlashCardListTile = ({cardItem}) => {
     const navigation = useNavigation()
 
   return (
     <TouchableOpacity onPress={()=>navigation.navigate('FlashCardDetails')}>
         <View style={styles.flashCard}>
             <View style={styles.flashCardTop}>
-                <Text style={styles.flashCardText}>Question</Text>
+                <Text style={styles.flashCardText}>{cardItem.question}</Text>
             </View>
             <View style={styles.flashCardBottom}>
-                <Text style={styles.flashCardText}>Answer</Text>
+                <Text style={styles.flashCardText}>{cardItem.answer}</Text>
             </View>
         </View>
     </TouchableOpacity>
