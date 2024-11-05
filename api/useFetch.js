@@ -13,7 +13,13 @@ const useFetch = (endpoint, options = {}) => {
         setIsLoading(true);
 
         try {
-            const response = await axios.get(`${config.API_URL}${endpoint}`);
+            const response = await axios.get(`${config.API_URL}${endpoint}` , {
+                ...options,
+                headers: {
+                  'Content-Type': 'application/json',
+                  ...options.headers,
+                },
+              });
             setData(response.data);
             console.log(response.data);
             setIsLoading(false);
