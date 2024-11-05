@@ -3,22 +3,22 @@ import React from 'react'
 import { CollectionTile } from '../'
 import styles from './collectionList.styles'
 import { ScrollView } from 'react-native-gesture-handler'
-import useFetch  from '../../hook/useFetch'
+import useFetch  from '../../api/useFetch'
 import { COLORS } from '../../constants/theme'
 
 
 const CollectionList = ({type}) => {
 
-    let url = "";
+    let endpoint = "";
 
     if (type === "created") {
-        url = "https://itu-projekt-psi.vercel.app/api/decks/getDecks/Alice";
+        endpoint = "decks/getDecks/Alice";
     } else if (type === "all") {   
-        url = "https://itu-projekt-psi.vercel.app/api/decks/getDecks";
+        endpoint = "decks/getDecks";
     }
     
 
-    const {data, isLoading, error} = useFetch(url);
+    const {data, isLoading, error} = useFetch(endpoint);
 
   return (
     
