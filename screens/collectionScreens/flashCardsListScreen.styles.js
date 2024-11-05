@@ -27,18 +27,6 @@ const styles = StyleSheet.create({
         fontFamily: "Bold",
     },
 
-    flashCardContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        width: '100%',
-        alignItems: 'flex-start',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-        padding: 33,
-        gap: 14,
-    },
-
-
 });
 
 

@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
-import styles from './flashCardList.styles'
+import styles from './flashCardListTile.styles'
 import { useNavigation } from '@react-navigation/native'
 
 const FlashCardListTile = () => {

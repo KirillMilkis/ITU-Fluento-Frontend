@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
-import styles from './flashCardsList.styles'
+import styles from './flashCardsListScreen.styles'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { FlashCardListTile } from '../../components'
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const FlashCardsList = ({navigation}) => {
+const FlashCardsListScreen = ({navigation}) => {
   return (
     <SafeAreaView>
         <View style ={styles.topBarContainer}>
@@ -20,15 +20,8 @@ const FlashCardsList = ({navigation}) => {
             <Icon name="heart-outline" size={38} color="black" />
             </TouchableOpacity>
         </View>
-        <ScrollView>
-            <View style={styles.flashCardContainer}>
-                <FlashCardListTile/>
-                <FlashCardListTile/>
-                <FlashCardListTile/>
-            </View>
-        </ScrollView>
     </SafeAreaView>
   )
 }
 
-export default FlashCardsList
+export default FlashCardsListScreen
