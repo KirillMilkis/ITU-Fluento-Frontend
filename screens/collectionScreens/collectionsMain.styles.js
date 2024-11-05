@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         padding: 33,
     },
 
-    tileNavContainer: {
+    tileNavList: {
         flexDirection: 'row',
         justifyContent: 'start',
         alignItems: 'start',
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         alignItems: 'start',
     },
 
-    savedCollectionsContainer: {
+    savedCollectionsList: {
         gap: 16,        
         flexDirection: 'column',
         spaceBetween: 50,
@@ -56,6 +56,17 @@ const styles = StyleSheet.create({
         maxHeight: 10000,
         paddingTop: 10,
 
+    },
+
+    yourCollectionsTile: {
+        padding: 15,
+        width: SIZES.baseWidth * 85, // Set width to 100%
+        flexDirection: 'row',
+        height: SIZES.baseHeight * 10,
+        borderRadius: 20,
+        backgroundColor: COLORS.gray1,
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
 
 

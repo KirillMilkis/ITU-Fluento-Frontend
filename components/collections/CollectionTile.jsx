@@ -6,17 +6,23 @@ import styles from './collectionTile.styles'
 import Icon from 'react-native-vector-icons/Ionicons'
 import FlashCardsList from '../../screens'
 
-const SavedCollectionTile = () => {
+const CollectionTile = ({item}) => {
     const navigation = useNavigation();
+
+    if (!item) {
+        return null; // Render nothing if item is undefined or null
+      }
+    
+
   return (
     <TouchableOpacity onPress={()=>navigation.navigate("FlashCardsList")}>
         <View style ={styles.tileContainer}>
             <Image source={require('../../assets/favicon.png')} style={styles.imageStyle}/>
             <View style={styles.textContainerColumn}>
-                <Text style={styles.textStyle}>Vegetables</Text>
+                <Text style={styles.textStyle} numberOfLines={1}>{item["name"]}</Text>
                 <View style={styles.TextContainerRow}>
                     <Text style={styles.textStyle2}>5 items</Text>
-                    <Text style={styles.textStyle2} numberOfLines={1}>by Anna</Text>
+                    <Text style={styles.textStyle2} numberOfLines={1}>by {item.creator}</Text>
                 </View>
             </View>
             <View style={styles.likesContainerColumn}>
@@ -29,4 +35,4 @@ const SavedCollectionTile = () => {
   )
 };
 
-export default SavedCollectionTile
+export default CollectionTile

@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         padding: 15,
         width: SIZES.baseWidth * 85, // Set width to 100%
         flexDirection: 'row',
-        height: 'auto',
+        height: SIZES.baseHeight * 10,
         borderRadius: 20,
         backgroundColor: COLORS.gray1,
         justifyContent: 'space-between',
@@ -17,6 +17,8 @@ const styles = StyleSheet.create({
     textStyle: {
         color: COLORS.black,
         fontSize: SIZES.h1,
+        overflow: 'hidden',
+        flexGrow: 2,
     },
 
     textStyle2: {
@@ -29,6 +31,9 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
+        overflow: 'hidden',
+        width: '50%',
+        paddingHorizontal: 15,
         flexGrow: 2,
     },
 

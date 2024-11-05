@@ -21,8 +21,8 @@ const CollectionList = () => {
             ) : (
             <FlatList
                 data = {data}
-                renderItem = {(item) => <CollectionTile item = {item}/>}
-                keyExtractor = {(item) => item._id}
+                renderItem = {({item}) => <CollectionTile item = {item}/>}
+                keyExtractor = {(item) => item.ID}
                 vertical = {true}
                 contentContainerStyle = {{gap: 14}}
             />

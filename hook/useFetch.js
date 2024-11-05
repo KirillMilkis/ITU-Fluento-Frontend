@@ -5,7 +5,7 @@ import { set } from 'react-hook-form';
 
 const useFetch = (url) => {
     const [data, setData] = useState([]);
-    const [isLoading, setLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
 
@@ -14,8 +14,8 @@ const useFetch = (url) => {
 
         try {
             const response = await axios.get(url);
-            const data = await response.json();
-            setData(data);
+            setData(response.data);
+            console.log(response.data);
             setIsLoading(false);
         } catch (error) {
             setError(error);
@@ -27,7 +27,7 @@ const useFetch = (url) => {
 
 
     useEffect(() => {
-        fetchData();
+        fetchData(url);
     }, []);
 
     const refetch = () => {
