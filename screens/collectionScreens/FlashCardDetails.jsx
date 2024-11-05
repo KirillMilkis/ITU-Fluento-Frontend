@@ -6,7 +6,7 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { useState, useRef } from 'react'
 
-const flashCardDetails = () => {
+const FlashCardDetails = () => {
 
     const [flipped, setFlipped] = useState(false);
     const flipAnim = useRef(new Animated.Value(0)).current;
@@ -91,4 +91,4 @@ const flashCardDetails = () => {
   )
 }
 
-export default flashCardDetails
+export default FlashCardDetails

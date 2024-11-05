@@ -6,6 +6,10 @@ import { useNavigation } from '@react-navigation/native'
 const FlashCardListTile = ({cardItem}) => {
     const navigation = useNavigation()
 
+    if (!cardItem){
+        return null;
+    }
+
   return (
     <TouchableOpacity onPress={()=>navigation.navigate('FlashCardDetails')}>
         <View style={styles.flashCard}>

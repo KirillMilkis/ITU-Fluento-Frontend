@@ -1,18 +1,25 @@
-import { View, Text } from 'react-native'
+import config from '../config/config';
 import {useState, useEffect} from 'react'
 import axios from 'axios';
 
-
-const useFetch = (url) => {
+const useFetch = (endpoint, options = {}) => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const fetchData = async (url) => {
+
+    const fetchData = async (endpoint, options) => {
+        console.log(`${config.API_URL}${endpoint}`);
         setIsLoading(true);
 
         try {
-            const response = await axios.get(url);
+            const response = await axios.get(`${config.API_URL}${endpoint}` , {
+                ...options,
+                headers: {
+                  'Content-Type': 'application/json',
+                  ...options.headers,
+                },
+              });
             setData(response.data);
             console.log(response.data);
             setIsLoading(false);
@@ -26,12 +33,12 @@ const useFetch = (url) => {
 
 
     useEffect(() => {
-        fetchData(url);
+        fetchData(endpoint, options);
     }, []);
 
     const refetch = () => {
         setIsLoading(true);
-        fetchData();
+        fetchData(endpoint, options);
     }
 
 

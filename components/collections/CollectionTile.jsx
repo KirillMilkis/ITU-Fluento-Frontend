@@ -5,6 +5,7 @@ import React from 'react'
 import styles from './collectionTile.styles'
 import { FlashCardsListScreen } from '../../screens'
 import Icon from 'react-native-vector-icons/Ionicons'
+import App from '../../App.js'
 
 const CollectionTile = ({deckItem}) => {
     const navigation = useNavigation();
