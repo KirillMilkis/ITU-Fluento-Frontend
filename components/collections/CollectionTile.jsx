@@ -15,7 +15,7 @@ const CollectionTile = ({item}) => {
     
 
   return (
-    <TouchableOpacity onPress={()=>navigation.navigate("FlashCardsList")}>
+    <TouchableOpacity onPress={()=>navigation.navigate("FlashCardsList", {idDeck: item.id})}>
         <View style ={styles.tileContainer}>
             <Image source={require('../../assets/favicon.png')} style={styles.imageStyle}/>
             <View style={styles.textContainerColumn}>

@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import React from 'react'
 import styles from './collectionsMain.styles'
 import { ScrollView } from 'react-native-gesture-handler'
-import { CollectionTile } from '../../components'
+import { CollectionList } from '../../components'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native'
 
@@ -18,7 +18,7 @@ const CollectionsMain = () => {
         </View>
         <ScrollView>
             <View style ={styles.tileNavList}>
-              <TouchableOpacity onPress={()=>navigation.navigate("CommunityCollections")}>
+              <TouchableOpacity onPress={()=>navigation.navigate("CollectionListScreen", { title: "Community collections", type: "all"})}>
                 <View style ={styles.tileNavigator}>
                   <Icon name="earth-outline" size={38} color="black" style={styles.spacing} />
                   <Text style={styles.textStyle2}>Explore new Collections</Text>
@@ -33,19 +33,13 @@ const CollectionsMain = () => {
             </View>   
             <View style={styles.savedCollectionsList}>
                 <Text style={[styles.textStyle3, styles.spacingTitles]}>Saved Collections</Text>
-                <TouchableOpacity onPress={()=>navigation.navigate("")}>
+                <TouchableOpacity onPress={()=>navigation.navigate("CollectionListScreen", { title: "Your collections", type: "created"})}>
                 <View style={styles.yourCollectionsTile}>
                   <Text style={styles.textStyle3}>Your Collections</Text>
                   <Icon name="chevron-forward-outline" size={38} color="black" style={styles.spacing} />
                 </View> 
                 </TouchableOpacity>
-                
-
-
-              
-                <CollectionTile/>
-                <CollectionTile/>
-                <CollectionTile/>
+                <CollectionList type = {"created"}/>
             </View>   
         </ScrollView>  
     </SafeAreaView>

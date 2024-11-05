@@ -7,8 +7,18 @@ import useFetch  from '../../hook/useFetch'
 import { COLORS } from '../../constants/theme'
 
 
-const CollectionList = () => {
-    const {data, isLoading, error} = useFetch("https://itu-projekt-psi.vercel.app/api/decks/getDecks");
+const CollectionList = ({type}) => {
+
+    let url = "";
+
+    if (type === "created") {
+        url = "https://itu-projekt-psi.vercel.app/api/decks/getDecks/Alice";
+    } else if (type === "all") {   
+        url = "https://itu-projekt-psi.vercel.app/api/decks/getDecks";
+    }
+    
+
+    const {data, isLoading, error} = useFetch(url);
 
   return (
     
