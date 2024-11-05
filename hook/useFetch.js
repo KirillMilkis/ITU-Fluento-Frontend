@@ -1,13 +1,12 @@
 import { View, Text } from 'react-native'
 import {useState, useEffect} from 'react'
 import axios from 'axios';
-import { set } from 'react-hook-form';
+
 
 const useFetch = (url) => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-
 
     const fetchData = async (url) => {
         setIsLoading(true);

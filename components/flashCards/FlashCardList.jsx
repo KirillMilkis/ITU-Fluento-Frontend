@@ -18,8 +18,8 @@ const FlashCardList = ({deckId}) => {
                 ) : (
                 <FlatList
                     data = {data}
-                    renderItem = {({cardItem}) => <FlashCardListTile cardItem = {cardItem}/>}
-                    keyExtractor = {(cardItem) => cardItem.ID}
+                    renderItem = {({item}) => <FlashCardListTile cardItem = {item}/>}
+                    keyExtractor = {(item) => item.ID}
                     vertical = {true}
                     contentContainerStyle = {{gap: 14}}
                 />

@@ -3,8 +3,8 @@ import { Image } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import styles from './collectionTile.styles'
+import { FlashCardsListScreen } from '../../screens'
 import Icon from 'react-native-vector-icons/Ionicons'
-import FlashCardsList from '../../screens'
 
 const CollectionTile = ({deckItem}) => {
     const navigation = useNavigation();
