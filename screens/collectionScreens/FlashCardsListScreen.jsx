@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 const FlashCardsListScreen = ({route}) => {
+
   const {deckItem} = route.params;
 
   const navigation = useNavigation();

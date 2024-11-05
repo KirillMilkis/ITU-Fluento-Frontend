@@ -1,12 +1,14 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView, ActivityIndicator, FlatList } from 'react-native'
 import React from 'react'
 import FlashCardListTile from './FlashCardListTile';
+import useFetch  from '../../api/useFetch'
+import styles from './flashCardList.styles';
 
 const FlashCardList = ({deckId}) => {
 
-  let url = `https://itu-projekt-psi.vercel.app/api/decks/${deckId}`;
+  let endpoint = `decks/${deckId}`;
 
-  const {data, isLoading, error} = useFetch(url);
+  const {data, isLoading, error} = useFetch(endpoint);
 
   return (
     <ScrollView>
@@ -27,10 +29,6 @@ const FlashCardList = ({deckId}) => {
             </View>
     </ScrollView>
   )
-
-
-
-  
   
 
 }
