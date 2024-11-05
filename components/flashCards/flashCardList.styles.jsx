@@ -11,7 +11,7 @@ container: {
     justifyContent: 'space-between',
     flexWrap: 'wrap',
     padding: 33,
-    gap: 14,
+    gap: 0,
 },
 
 
