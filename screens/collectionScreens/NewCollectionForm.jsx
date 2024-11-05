@@ -10,7 +10,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { FlashCardListTile } from '../../components'
 import { useNavigation } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { createCollection } from '../../Api'
+import { createCollection } from '../../api'
 
 const NewCollectionForm = () => {
 
