@@ -29,7 +29,7 @@ const LevelQuizzesScreen = () => {
 
     useEffect(() => {
         fetchQuizzesByLevel();
-    }, [firstWord]);
+    }, []);
 
     return (
         <View style={{ flex: 1 }}>
