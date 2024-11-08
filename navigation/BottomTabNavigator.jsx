@@ -5,6 +5,7 @@ import { Home, Decks, Stats } from '../screens'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { COLORS } from '../constants/theme'
 import CollectionsMain from '../screens/collectionScreens/CollectionsMain';
+import AllQuizzesScreen from '../screens/quizScreens/AllQuizzesScreen'
 
 const Tab = createBottomTabNavigator();
 
@@ -27,7 +28,7 @@ const BottomTabNavigator = () => {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
         <Tab.Screen name="Home" 
-        component={Home} 
+        component={AllQuizzesScreen} 
         options= {{
             tabBarIcon : ({focused}) => {
                 return <Icon name={"home"} size={24} color={focused ? COLORS.tabSecondary : COLORS.white }/>
