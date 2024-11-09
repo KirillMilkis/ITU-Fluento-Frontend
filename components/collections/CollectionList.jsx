@@ -1,6 +1,6 @@
 import { View, Text, FlatList, ActivityIndicator } from 'react-native'
 import React from 'react'
-import { CollectionTile } from './CollectionTile'
+import { CollectionTile } from '../'
 import styles from './collectionList.styles'
 import { ScrollView } from 'react-native-gesture-handler'
 import useFetch  from '../../api/useFetch'
