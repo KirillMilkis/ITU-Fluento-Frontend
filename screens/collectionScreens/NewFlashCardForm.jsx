@@ -1,7 +1,7 @@
 import { StyleSheet, Text, 
     TextInput, View, TouchableOpacity, 
     Alert,
-    Button} from 'react-native'
+    Button, ActivityIndicator, Animated} from 'react-native'
   import React, { useCallback } from 'react'
   import { set, useForm } from 'react-hook-form'
   import { ScrollView } from 'react-native-gesture-handler'
@@ -12,6 +12,7 @@ import { StyleSheet, Text,
   import { usePostRequest } from '../../api'
   import Icon from 'react-native-vector-icons/Ionicons'
   import { useState, useEffect } from 'react'
+
   
   const NewFlashCardForm = ({route}) => {
 
@@ -21,49 +22,112 @@ import { StyleSheet, Text,
   
       const navigation = useNavigation();
       const [postData, setPostData] = useState(null);
-  
-    //   const onSubmit = useCallback((formData) => {
-    //       setPostData({
-    //           username: 'Alice',
-    //           question: formData.question,
-    //           answer: formData.answer
-    //       });
-    //       setTriggerPost(true);
-    //   }, []);
+      const [triggerPost1, setTriggerPost1] = useState(false);
+      const [triggerPost2, setTriggerPost2] = useState(false);
+      const [endpoint, setEndpoint] = useState('');
+
+      const { result: result1, error: postError1 } = usePostRequest(endpoint, triggerPost1 ? postData : null);
+      const { result: result2, error: postError2 } = usePostRequest(endpoint, triggerPost2 ? postData : null);
+
   
       const onChangeField = useCallback((name) => (text) => {
           setPostData(name, text);
       });
-  
 
-      const handleSave = async (postData) => {
-        const endpoint1 = 'flashcards/create';
-        const endpoint2 = 'flashcards/update';
-        try {
-            setPostData({
-                username: 'Alice',
-                question: postData.question,
-                answer: postData.answer
-            });
-            const result1 = await usePostRequest(endpoint1, postData);
-            console.log(`RESULT IS ${result1}`);
-            if (result1.success) {
-                setPostData({ 
-                    deckId: deckId,
-                    flashcardId: result1.id 
+
+      const onSubmit = useCallback((formData) => {
+        setEndpoint('flashcards/create');
+        setPostData({
+            username: 'Alice',
+            question: formData.question,
+            answer: formData.answer
+        });
+        console.log(postData);
+        setTriggerPost1(true);
+        }, []);
+
+        useEffect(() => {
+            if (result1 && result1.success) {
+                setTriggerPost1(false);
+                setEndpoint(`flashcards/${result1.data.id}/addToDeck`);
+                setPostData({
+                    deckID: deckId,
                 });
-                const result2 = await usePostRequest(endpoint2, postData);
-                console.log(`RESULT2 IS ${result2}`);
-                if(result2.success){
-                    navigation.goBack();
-                }
-            } else {
-                showPopup(result1.message);
+
+                setTriggerPost2(true);
             }
-        } catch (error) {
-            showPopup(error.message || 'An unexpected error occurred');
-        }
-    }
+        }, [result1, result1.success]);
+
+
+        useEffect(() => {
+            if (result2 && result2.success) {
+                setTriggerPost2(false);
+                navigation.goBack();
+            }
+        }, [result2, result2.success]);
+
+        useEffect(() => {
+            if (postError1) {
+                console.error(postError1);
+                setTriggerPost1(false);
+            }
+        }, [postError1]);
+    
+        useEffect(() => {
+            if (postError2) {
+                console.error(postError2);
+                setTriggerPost2(false);
+            }
+        }, [postError2]);
+               
+
+    //   const handleSave = async () => {
+    //     const endpoint1 = 'flashcards/create';
+  
+    //     try {
+    //         setPostData({
+    //             username: 'Alice',
+    //             question: postData.question,
+    //             answer: postData.answer
+    //         });
+    //         const result1 = await usePostRequest(endpoint1, postData);
+    //         console.log(`RESULT IS ${result1}`);
+    //         if (result1.success) {
+    //             setPostData({ 
+    //                 deckId: deckId,
+    //             });
+    //             const endpoint2 = `flashcards/${result1.id}/addToDeck`;
+    //             const result2 = await usePostRequest(endpoint2, postData);
+    //             console.log(`RESULT2 IS ${result2}`);
+    //             if(result2.success){
+    //                 navigation.goBack();
+    //             }
+    //         } else {
+    //             console.log(result1.message);
+    //         }
+    //     } catch (error) {
+    //         console.log(error.message || 'An unexpected error occurred');
+    //     }
+    // }
+
+    // const showPopup = (message) => {
+    //     setPopupMessage(message);
+    //     fadeAnim.setValue(0);
+
+    //     Animated.timing(fadeAnim, {
+    //         toValue: 1,
+    //         duration: 300,
+    //         useNativeDriver: true,
+    //     }).start();
+
+    //     setTimeout(() => {
+    //         Animated.timing(fadeAnim, {
+    //             toValue: 0,
+    //             duration: 300,
+    //             useNativeDriver: true,
+    //         }).start();
+    //     }, 2000);
+    // };
       
   
   
@@ -104,7 +168,7 @@ import { StyleSheet, Text,
             </View>
         </View>
 
-            <TouchableOpacity style={[styles.submitButton, styles.spacing2]} onPress={handleSave}>
+            <TouchableOpacity style={[styles.submitButton, styles.spacing2]} onPress={handleSubmit(onSubmit)}>
                 <Text style={styles.buttonText}>Save</Text>
                 </TouchableOpacity>
 

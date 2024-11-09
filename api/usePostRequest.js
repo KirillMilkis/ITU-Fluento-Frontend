@@ -6,11 +6,12 @@ import axios from 'axios';
 
 const usePostRequest = (endpoint, data) => {
     const [error, setError] = useState(null);
-    const [result, setResult] = useState(null);
+    const [result, setResult] = useState(false);
 
     const postData = async (endpoint, data) => {
    
             try {
+                console.log(data);
                 console.log(`${config.API_URL}${endpoint}`);
                 const response = await axios.post(`${config.API_URL}${endpoint}`,data , {
                     headers: {
@@ -19,15 +20,16 @@ const usePostRequest = (endpoint, data) => {
                 });
                 
                 if(response.status !== 200){
-                    throw new Error('Failed request');
+                    console.log(response.message);
+                    throw new Error(response.message);
                 }
                 console.log(response.status);
     
     
                 setResult({success: true, data: response.data});
             } catch (error) {
-                setError(error);
-                setResult({success: false, data: error.message});
+                setError(response.message);
+                setResult({success: false, data: null});
             }
 
 
