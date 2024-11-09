@@ -8,6 +8,7 @@ import * as Font from 'expo-font';
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { FlashCardsListScreen, FlashCardDetails, NewCollectionForm, CollectionListScreen } from './screens';
+import { AllQuizzesScreen, LevelQuizzesScreen } from './screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -57,6 +58,18 @@ export default function App() {
           component={NewCollectionForm}
           options={{headerShown: false}}
           />
+
+          <Stack.Screen name="AllQuizzesScreen"
+          component={AllQuizzesScreen}
+          options={{headerShown: false}}
+          />
+
+
+          <Stack.Screen name="LevelQuizzesScreen"
+          component={LevelQuizzesScreen}
+          options={{headerShown: false}}
+          />
+
 
         </Stack.Navigator>
 
