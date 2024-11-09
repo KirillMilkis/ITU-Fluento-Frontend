@@ -16,7 +16,7 @@ const CollectionList = ({propertyType}) => {
     } else if (propertyType === "all") {   
         endpoint = "decks/getDecks";
     } else if (propertyType === "liked") {   
-        endpoint = "decks/getDecks";
+        endpoint = "decks/getLikedDecks/Alice";
     }
     
 

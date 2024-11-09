@@ -39,7 +39,7 @@ const CollectionsMain = () => {
                   <Icon name="chevron-forward-outline" size={38} color="black" style={styles.spacing} />
                 </View> 
                 </TouchableOpacity>
-                <CollectionList type = {"created"}/>
+                <CollectionList propertyType = {"liked"}/>
             </View>   
         </ScrollView>  
     </SafeAreaView>
