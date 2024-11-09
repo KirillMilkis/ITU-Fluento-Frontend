@@ -2,7 +2,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import axios from 'axios';
 
-const createCollection = async (endpoint, data) => {
+const usePostRequest = async (endpoint, data) => {
     const [error, setError] = useState(null);
 
     const postData = async (endpoint, data) => {
@@ -34,4 +34,4 @@ const createCollection = async (endpoint, data) => {
     
 }
 
-export default createCollection
+export default usePostRequest

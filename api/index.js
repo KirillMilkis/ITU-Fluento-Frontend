@@ -1,3 +1,3 @@
-import createCollection from "./createCollection";
+import usePostRequest from "./usePostRequest";
 
-export { createCollection };
+export { usePostRequest };
