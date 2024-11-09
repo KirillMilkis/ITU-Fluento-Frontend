@@ -6,8 +6,9 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { useState, useRef } from 'react'
 
-const FlashCardDetails = ({cardItem}) => {
+const FlashCardDetails = ({route}) => {
 
+  const {cardItem} = route.params;
   const navigation = useNavigation()
 
     if (!cardItem){
