@@ -7,7 +7,7 @@ import { getUserInfo } from '../../api';
 import styles from './updateProfileMain.styles';
 import config from '../../config/config';
 import { CollectionTile } from '../../components';
-import useFetch from '../../hook/useFetch';
+import useFetch from '../../api/useFetch';
 
 const UserProfileScreen = ({ route }) => {
     const navigation = useNavigation();
