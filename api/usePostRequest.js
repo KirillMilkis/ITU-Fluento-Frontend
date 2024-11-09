@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const usePostRequest = async (endpoint, data) => {
     const [error, setError] = useState(null);
+    const [result, setResult] = useState(null);
 
     const postData = async (endpoint, data) => {
         try {
@@ -16,7 +17,9 @@ const usePostRequest = async (endpoint, data) => {
             if(!response.status === 200){
                 throw new Error('Failed request');
             }
-            
+
+
+            setResult(response.data);
         } catch (error) {
             setError(error);
         }
@@ -25,11 +28,11 @@ const usePostRequest = async (endpoint, data) => {
 
     useEffect(() => {
         postData(endpoint, data);
-    }, []);
+    }, [endpoint, data]);
 
 
 
-    return { error }
+    return { result, error }
 
     
 }
