@@ -18,7 +18,7 @@ const CollectionsMain = () => {
         </View>
         <ScrollView>
             <View style ={styles.tileNavList}>
-              <TouchableOpacity onPress={()=>navigation.navigate("CollectionListScreen", { title: "Community collections", type: "all"})}>
+              <TouchableOpacity onPress={()=>navigation.navigate("CollectionListScreen", { title: "Community collections", propertyType: "all"})}>
                 <View style ={styles.tileNavigator}>
                   <Icon name="earth-outline" size={38} color="black" style={styles.spacing} />
                   <Text style={styles.textStyle2}>Explore new Collections</Text>
@@ -33,7 +33,7 @@ const CollectionsMain = () => {
             </View>   
             <View style={styles.savedCollectionsList}>
                 <Text style={[styles.textStyle3, styles.spacingTitles]}>Saved Collections</Text>
-                <TouchableOpacity onPress={()=>navigation.navigate("CollectionListScreen", { title: "Your collections", type: "created"})}>
+                <TouchableOpacity onPress={()=>navigation.navigate("CollectionListScreen", { title: "Your collections", propertyType: "created"})}>
                 <View style={styles.yourCollectionsTile}>
                   <Text style={styles.textStyle3}>Your Collections</Text>
                   <Icon name="chevron-forward-outline" size={38} color="black" style={styles.spacing} />

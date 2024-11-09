@@ -9,7 +9,7 @@ import { CollectionList } from '../../components'
 
 const CollectionListScreen = ({route}) => {
 
-    const {title, type} = route.params;
+    const {title, propertyType} = route.params;
     const navigation = useNavigation();
 
   return (
@@ -25,7 +25,7 @@ const CollectionListScreen = ({route}) => {
         </View>
 
         
-        <CollectionList type = {type}/>
+        <CollectionList propertyType = {propertyType}/>
           
 
     </SafeAreaView>

@@ -7,16 +7,23 @@ import { FlashCardsListScreen } from '../../screens'
 import Icon from 'react-native-vector-icons/Ionicons'
 import App from '../../App.js'
 
-const CollectionTile = ({deckItem}) => {
+const CollectionTile = ({deckItem, isCreator}) => {
     const navigation = useNavigation();
 
     if (!deckItem) {
         return null; // Render nothing if item is undefined or null
       }
+
+    if (deckItem.creator == "Alice"){
+        isCreator = true;
+    } else {   
+        isCreator = false;
+    }
+    
     
 
   return (
-    <TouchableOpacity onPress={()=>navigation.navigate("FlashCardsListScreen", {deckItem: deckItem})}>
+    <TouchableOpacity onPress={()=>navigation.navigate("FlashCardsListScreen", {deckItem: deckItem, isCreator: isCreator })}>
         <View style ={styles.tileContainer}>
             <Image source={require('../../assets/favicon.png')} style={styles.imageStyle}/>
             <View style={styles.textContainerColumn}>

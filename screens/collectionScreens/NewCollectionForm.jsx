@@ -15,52 +15,6 @@ import { useState, useEffect } from 'react'
 
 const NewCollectionForm = () => {
 
-    // type FormData = {
-    //     collectionName: string
-    // }
-    //   // collectionDescription: string,
-    //     // collectionTags: string
-
-    // const { handleSubmit, register, setValue, error} = useForm();
-
-    // const [postData, setPostData] = useState(null);
-    // const [collectionName, setCollectionName] = useState('');
-
-    // const endpoint = 'decks/create';
-    
-
-
-
-    // const onSubmit = async(formData) => {
-     
-    //   setPostData({
-    //     username: 'Alice',
-    //     deckname: formData.collectionName,
-    //   })
-
-    //   const { result, error: postError } =  await usePostRequest(endpoint, postData);
-
-    //   if (result) {
-    //     navigation.navigate("CollectionListScreen", { title: "Your collections", type: "created" });
-    // }
-    // };
-
-    // useEffect(() => {
-    //   if (result) {
-    //       navigation.navigate("CollectionListScreen", { title: "Your collections", type: "created" });
-    //   }
-    // }, [result, navigation]);
-
-    // useEffect(() => {
-    //   if (postError) {
-    //       console.error(postError);
-    //   }
-    // }, [postError]);
-
-    // const onChangeField = useCallback((name) => (text) => {
-    //   setValue(name, text);
-    // })
-
     const { handleSubmit, register, setValue, error } = useForm();
 
     const navigation = useNavigation();
