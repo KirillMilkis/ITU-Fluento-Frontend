@@ -11,7 +11,7 @@ const FlashCardListTile = ({cardItem}) => {
     }
 
   return (
-    <TouchableOpacity onPress={()=>navigation.navigate('FlashCardDetails')}>
+    <TouchableOpacity onPress={() => navigation.navigate('FlashCardDetails', { cardItem: cardItem })}>
         <View style={styles.flashCard}>
             <View style={styles.flashCardTop}>
                 <Text style={styles.flashCardText}>{cardItem.question}</Text>

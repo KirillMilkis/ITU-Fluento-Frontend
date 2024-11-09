@@ -6,7 +6,13 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { useState, useRef } from 'react'
 
-const FlashCardDetails = () => {
+const FlashCardDetails = ({cardItem}) => {
+
+  const navigation = useNavigation()
+
+    if (!cardItem){
+        navigation.goBack();
+    }
 
     const [flipped, setFlipped] = useState(false);
     const flipAnim = useRef(new Animated.Value(0)).current;
@@ -56,7 +62,6 @@ const FlashCardDetails = () => {
       transform: [{ rotateY: backInterpolate }],
     };
 
-    const navigation = useNavigation()
   return (
     <SafeAreaView>
         <View style ={styles.topBarContainer}>
@@ -76,10 +81,10 @@ const FlashCardDetails = () => {
             <TouchableWithoutFeedback onPress={handlePress}>
                 <View>
                 <Animated.View style={[styles.flashCard, styles.frontCard, frontAnimatedStyle]}>
-                    <Text style={styles.textStyle2}>Front Card</Text>
+                    <Text style={styles.textStyle2}>{cardItem.question}</Text>
                 </Animated.View>
                 <Animated.View style={[styles.flashCard, styles.backCard, backAnimatedStyle]}>
-                    <Text style={styles.textStyle2}>Back Card</Text>
+                    <Text style={styles.textStyle2}>{cardItem.answer}</Text>
                 </Animated.View>
                 </View>
             </TouchableWithoutFeedback>
