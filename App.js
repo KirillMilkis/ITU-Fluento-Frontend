@@ -10,6 +10,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { FlashCardsListScreen, FlashCardDetails, NewCollectionForm, CollectionListScreen } from './screens';
 import { AllQuizzesScreen, LevelQuizzesScreen } from './screens';
 import { UserProfileScreen, UserSettingsScreen, AvatarChangeScreen } from './screens';
+import { StatisticScreen, LeaderboardScreen } from './screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -83,6 +84,16 @@ export default function App() {
 
           <Stack.Screen name="AvatarChangeScreen"
           component={AvatarChangeScreen}
+          options={{headerShown: false}}
+          />
+
+          <Stack.Screen name="StatisticScreen"
+          component={StatisticScreen}
+          options={{headerShown: false}}
+          />
+
+          <Stack.Screen name="LeaderboardScreen"
+          component={LeaderboardScreen}
           options={{headerShown: false}}
           />
 

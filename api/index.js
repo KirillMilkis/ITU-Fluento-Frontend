@@ -6,5 +6,6 @@ import getQuizLevels from "./getQuizLevels";
 import getQuizzesByLevel from "./getQuizzesByLevel";
 import getUserCreatedDecks from "./userProfile/getUserCreatedDecks";
 import updateUserProfile from "./userProfile/updateUserProfile";
+import getUserProgress from "./userProfile/getUserProgress";
 
-export { createCollection, getAllQuizzes, greetUser, getUserInfo, getQuizLevels, getQuizzesByLevel, getUserCreatedDecks, updateUserProfile};
+export { createCollection, getAllQuizzes, greetUser, getUserInfo, getQuizLevels, getQuizzesByLevel, getUserCreatedDecks, updateUserProfile, getUserProgress};
