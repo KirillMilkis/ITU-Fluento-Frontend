@@ -15,7 +15,7 @@ const CollectionListScreen = ({route}) => {
   return (
     <SafeAreaView>
         <View style ={styles.topBarContainer}>
-            <TouchableOpacity onPress={()=>navigation.goBack()}>
+            <TouchableOpacity onPress={()=>navigation.popToTop()}>
             <Icon name="arrow-back-outline" size={38} color="black" />
             </TouchableOpacity>
 
@@ -23,7 +23,6 @@ const CollectionListScreen = ({route}) => {
 
             <Icon name="arrow-back-outline" size={38} color="transparent" />
         </View>
-
 
         
         <CollectionList type = {type}/>

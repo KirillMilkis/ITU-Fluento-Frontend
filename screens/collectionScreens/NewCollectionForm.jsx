@@ -3,14 +3,15 @@ import { StyleSheet, Text,
   Alert,
   Button} from 'react-native'
 import React, { useCallback } from 'react'
-import { useForm } from 'react-hook-form'
+import { set, useForm } from 'react-hook-form'
 import { ScrollView } from 'react-native-gesture-handler'
 import styles from './newCollectionForm.styles'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { FlashCardListTile } from '../../components'
 import { useNavigation } from '@react-navigation/native'
+import { usePostRequest } from '../../api'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { createCollection } from '../../api'
+import { useState, useEffect } from 'react'
 
 const NewCollectionForm = () => {
 
@@ -20,32 +21,87 @@ const NewCollectionForm = () => {
     //   // collectionDescription: string,
     //     // collectionTags: string
 
-    const { handleSubmit, register, setValue, error} = useForm();
+    // const { handleSubmit, register, setValue, error} = useForm();
 
-    const onSubmit = useCallback((data) => {
-      Alert.alert('Form Data', JSON.stringify(data));
-      try {
-        const result = createCollection(data);
-      } catch (error) {
-        console.error(error);
-      } 
-      if (result) {
-        navigation.goBack();
-      }
-    });
+    // const [postData, setPostData] = useState(null);
+    // const [collectionName, setCollectionName] = useState('');
 
-    const onChangeField = useCallback((name) => (text) => {
-      setValue(name, text);
-    })
+    // const endpoint = 'decks/create';
+    
+
+
+
+    // const onSubmit = async(formData) => {
+     
+    //   setPostData({
+    //     username: 'Alice',
+    //     deckname: formData.collectionName,
+    //   })
+
+    //   const { result, error: postError } =  await usePostRequest(endpoint, postData);
+
+    //   if (result) {
+    //     navigation.navigate("CollectionListScreen", { title: "Your collections", type: "created" });
+    // }
+    // };
+
+    // useEffect(() => {
+    //   if (result) {
+    //       navigation.navigate("CollectionListScreen", { title: "Your collections", type: "created" });
+    //   }
+    // }, [result, navigation]);
+
+    // useEffect(() => {
+    //   if (postError) {
+    //       console.error(postError);
+    //   }
+    // }, [postError]);
+
+    // const onChangeField = useCallback((name) => (text) => {
+    //   setValue(name, text);
+    // })
+
+    const { handleSubmit, register, setValue, error } = useForm();
 
     const navigation = useNavigation();
+    const [postData, setPostData] = useState(null);
+    const [triggerPost, setTriggerPost] = useState(false);
+
+    const endpoint = 'decks/create';
+    const { result, error: postError } = usePostRequest(endpoint, triggerPost ? postData : null);
+
+    const onSubmit = useCallback((formData) => {
+        setPostData({
+            username: 'Alice',
+            deckname: formData.collectionName,
+        });
+        setTriggerPost(true);
+    }, []);
+
+    const onChangeField = useCallback((name) => (text) => {
+        setValue(name, text);
+    });
+
+    useEffect(() => {
+        if (result) {
+          navigation.navigate("CollectionListScreen", { title: "Your collections", type: "created" });
+          setTriggerPost(false);
+        }
+    }, [result, navigation]);
+
+    useEffect(() => {
+        if (postError) {
+            console.error(postError);
+            setTriggerPost(false);
+        }
+    }, [postError]);
     
 
 
   return (
     <SafeAreaView>
         <View style ={styles.topBarContainer}>
-            <TouchableOpacity onPress={()=>navigation.goBack()}>
+        <TouchableOpacity TouchableOpacity onPress={() => navigation.goBack()}>
             <Icon name="arrow-back-outline" size={38} color="black" />
             </TouchableOpacity>
 
