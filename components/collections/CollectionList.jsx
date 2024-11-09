@@ -15,6 +15,8 @@ const CollectionList = ({propertyType}) => {
         endpoint = "decks/getDecks/Alice";
     } else if (propertyType === "all") {   
         endpoint = "decks/getDecks";
+    } else if (propertyType === "liked") {   
+        endpoint = "decks/getDecks";
     }
     
 
@@ -31,7 +33,7 @@ const CollectionList = ({propertyType}) => {
             ) : (
             <FlatList
                 data = {data}
-                renderItem = {({item}) => <CollectionTile deckItem = {{...item, isCreator: item.creator === "Alice"}}/>}
+                renderItem = {({item}) => <CollectionTile deckItem = {{...item, isCreator: item.creator === "Alice", liked: propertyType === "liked"}}/>}
                 keyExtractor = {(item) => item.ID}
                 vertical = {true}
                 contentContainerStyle = {{gap: 14}}
