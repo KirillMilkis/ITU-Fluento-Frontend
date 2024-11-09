@@ -1,14 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import styles from './home.styles'
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, Text } from 'react-native';
 
 const Home = () => {
+
   return (
     <SafeAreaView>
       <Text>Home</Text>
+      <Text style={{fontSize: 20}}></Text>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
