@@ -38,7 +38,7 @@ const NewFlashCardForm = () => {
 
     useEffect(() => {
         if (result) {
-          navigation.navigate("CollectionListScreen", { title: "Your collections", type: "created" });
+          navigation.navigate("CollectionListScreen", { title: "Your collections", propertyType: "created" });
           setTriggerPost(false);
         }
     }, [result, navigation]);

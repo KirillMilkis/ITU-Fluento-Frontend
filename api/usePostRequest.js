@@ -18,17 +18,16 @@ const usePostRequest = (endpoint, data) => {
                         'Content-Type': 'application/json',
                     }
                 });
-                
-                if(response.status !== 200){
-                    console.log(response.message);
+                console.log(response.status);
+                if(response.status !== 200 && response.status !== 201){
+                    
                     throw new Error(response.message);
                 }
-                console.log(response.status);
     
     
                 setResult({success: true, data: response.data});
             } catch (error) {
-                setError(response.message);
+                setError(error);
                 setResult({success: false, data: null});
             }
 

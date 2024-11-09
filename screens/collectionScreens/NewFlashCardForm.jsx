@@ -31,7 +31,7 @@ import { StyleSheet, Text,
 
   
       const onChangeField = useCallback((name) => (text) => {
-          setPostData(name, text);
+            setValue(name, text);
       });
 
 
@@ -46,15 +46,21 @@ import { StyleSheet, Text,
         setTriggerPost1(true);
         }, []);
 
+        const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
         useEffect(() => {
-            if (result1 && result1.success) {
-                setTriggerPost1(false);
+            const handleSecondRequest = async () => {
+                await delay(1000); // Add a delay of 1 second
                 setEndpoint(`flashcards/${result1.data.id}/addToDeck`);
                 setPostData({
                     deckID: deckId,
                 });
-
                 setTriggerPost2(true);
+            };
+    
+            if (result1 && result1.success) {
+                setTriggerPost1(false);
+                handleSecondRequest();
             }
         }, [result1, result1.success]);
 
@@ -62,7 +68,7 @@ import { StyleSheet, Text,
         useEffect(() => {
             if (result2 && result2.success) {
                 setTriggerPost2(false);
-                navigation.goBack();
+                navigation.goBack("FlashCardListScreen", { refresh: true });
             }
         }, [result2, result2.success]);
 

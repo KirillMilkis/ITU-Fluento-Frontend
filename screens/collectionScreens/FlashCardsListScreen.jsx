@@ -11,6 +11,7 @@ const FlashCardsListScreen = ({route}) => {
 
   const {deckItem, isCreator} = route.params;
 
+
   const navigation = useNavigation();
   
   // let ownCards;
@@ -22,7 +23,6 @@ const FlashCardsListScreen = ({route}) => {
   //     ownCards = false;
   //   }
   // }, [propertyType]);
-  
   
 
   return (
@@ -45,7 +45,7 @@ const FlashCardsListScreen = ({route}) => {
               )}
             
         </View>
-          <FlashCardList deckId = {deckItem.ID}/>
+          <FlashCardList deckId = {[deckItem.ID]}/>
     </SafeAreaView>
   )
 }
