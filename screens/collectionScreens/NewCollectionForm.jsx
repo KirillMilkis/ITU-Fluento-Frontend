@@ -13,7 +13,7 @@ import { usePostRequest } from '../../api'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useState, useEffect } from 'react'
 
-const NewCollectionForm = () => {
+const NewFlashCardForm = () => {
 
     const { handleSubmit, register, setValue, error } = useForm();
 
@@ -88,4 +88,4 @@ const NewCollectionForm = () => {
   )
 }
 
-export default NewCollectionForm
+export default NewFlashCardForm

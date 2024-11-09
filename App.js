@@ -7,7 +7,7 @@ import BottomTabNavigator from './navigation/BottomTabNavigator';
 import * as Font from 'expo-font';
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { FlashCardsListScreen, FlashCardDetails, NewCollectionForm, CollectionListScreen } from './screens';
+import { FlashCardsListScreen, FlashCardDetails, NewCollectionForm, CollectionListScreen, NewFlashCardForm } from './screens';
 import { AllQuizzesScreen, LevelQuizzesScreen } from './screens';
 import { UserProfileScreen, UserSettingsScreen, AvatarChangeScreen } from './screens';
 import { StatisticScreen, LeaderboardScreen } from './screens';
@@ -58,6 +58,11 @@ export default function App() {
 
           <Stack.Screen name="NewCollectionForm"
           component={NewCollectionForm}
+          options={{headerShown: false}}
+          />
+
+          <Stack.Screen name="NewFlashCardForm"
+          component={NewFlashCardForm}
           options={{headerShown: false}}
           />
 

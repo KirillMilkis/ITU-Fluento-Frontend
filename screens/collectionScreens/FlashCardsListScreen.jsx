@@ -35,7 +35,7 @@ const FlashCardsListScreen = ({route}) => {
             <Text style={styles.textStyle}>Flash Cards</Text>
 
             {isCreator ? (
-              <TouchableOpacity onPress={()=>{}}>
+              <TouchableOpacity onPress={()=>navigation.navigate("NewFlashCardForm", { deckId: deckItem.ID })}>
               <Icon name="add-outline" size={38} color="black" />
               </TouchableOpacity>
             ) : (
