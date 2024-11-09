@@ -9,6 +9,7 @@ import * as Font from 'expo-font';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { FlashCardsListScreen, FlashCardDetails, NewCollectionForm, CollectionListScreen } from './screens';
 import { AllQuizzesScreen, LevelQuizzesScreen } from './screens';
+import { UserProfileScreen, UserSettingsScreen, AvatarChangeScreen } from './screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -70,6 +71,20 @@ export default function App() {
           options={{headerShown: false}}
           />
 
+          <Stack.Screen name="UserProfileScreen"
+          component={UserProfileScreen}
+          options={{headerShown: false}}
+          />
+
+          <Stack.Screen name="UserSettingsScreen"
+          component={UserSettingsScreen}
+          options={{headerShown: false}}
+          />
+
+          <Stack.Screen name="AvatarChangeScreen"
+          component={AvatarChangeScreen}
+          options={{headerShown: false}}
+          />
 
         </Stack.Navigator>
 
