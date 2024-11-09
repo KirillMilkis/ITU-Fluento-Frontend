@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { View, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { getAllQuizzes, greetUser, getUserInfo, getQuizLevels } from '../../api';
 import QuizTile from '../../components/quizzes/QuizTile';
 import styles from './quizMain.styles';
@@ -15,50 +15,55 @@ const AllQuizzesScreen = ({ route }) => {
     const [userInfo, setUserInfo] = useState(null);
     const [quizLevels, setQuizLevels] = useState([]);
 
+    const fetchQuizzes = async () => {
+        try {
+            const result = await getAllQuizzes('Alice');
+            setQuizzes(result);
+        } catch (error) {
+            console.error("Failed to fetch quizzes:", error);
+        }
+    };
+
+    const fetchGreeting = async () => {
+        try {
+            const response = await greetUser('Alice');
+            setGreeting(response.message);
+        } catch (error) {
+            console.error("Failed to fetch greeting:", error);
+        }
+    };
+
+    const fetchInfo = async () => {
+        try {
+            const result = await getUserInfo('Alice');
+            setUserInfo(result);
+        } catch (error) {
+            console.error("Failed to fetch user info:", error);
+        }
+    };
+
+    const fetchQuizLevels = async () => {
+        try {
+            const result = await getQuizLevels();
+            setQuizLevels(result);
+            console.log(result);
+        } catch (error) {
+            console.error("Failed to fetch user info:", error);
+        }
+    };
+
     useEffect(() => {
-        const fetchQuizzes = async () => {
-            try {
-                const result = await getAllQuizzes('Alice');
-                setQuizzes(result);
-            } catch (error) {
-                console.error("Failed to fetch quizzes:", error);
-            }
-        };
-
-        const fetchGreeting = async () => {
-            try {
-                const response = await greetUser('Alice');
-                setGreeting(response.message);
-            } catch (error) {
-                console.error("Failed to fetch greeting:", error);
-            }
-        };
-
-        const fetchInfo = async () => {
-            try {
-                const result = await getUserInfo('Alice');
-                setUserInfo(result);
-            } catch (error) {
-                console.error("Failed to fetch user info:", error);
-            }
-        };
-
-        const fetchQuizLevels = async () => {
-            try {
-                const result = await getQuizLevels();
-                setQuizLevels(result);
-                console.log(result);
-            } catch (error) {
-                console.error("Failed to fetch user info:", error);
-            }
-        };
-        
-
         fetchQuizzes();
         fetchGreeting();
         fetchInfo();
         fetchQuizLevels();
     }, []);
+
+    useFocusEffect(
+        useCallback(() => {
+            fetchInfo();
+        }, [userInfo])
+    );
 
     const handleQuizClick = (quizID) => {
         // TODO CONNECT
@@ -69,18 +74,24 @@ const AllQuizzesScreen = ({ route }) => {
         navigation.navigate('LevelQuizzesScreen', { level: level });
     };
 
+    const handleAvatarClick = () => {
+        navigation.navigate('UserProfileScreen', {username: 'Alice'});
+    };
+
     return (
         <SafeAreaView>
             <View style={styles.topBarContainer}>
                 <Text style={styles.greetingStyle}>{greeting}</Text>
-                {userInfo && (
-                    <Image
+                <TouchableOpacity onPress={() => handleAvatarClick()} style={[styles.spacing]}>
+                    {userInfo && (
+                        <Image
                         source={{
                             uri: `${config.IMAGE_URL}${userInfo.gender}/${userInfo.profileImage}`,
                         }}
                         style={styles.profileImage}
-                    />
-                )}
+                        />
+                    )}
+                </TouchableOpacity>
             </View>
 
             <ScrollView
