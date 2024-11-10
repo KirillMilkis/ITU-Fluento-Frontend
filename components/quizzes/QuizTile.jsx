@@ -5,7 +5,7 @@ import config from '../../config/config';
 
 const QuizTile = ({ quiz, onClick, index, style }) => {
   return (
-    <TouchableOpacity onPress={() => onClick(quiz.ID)} style={[styles.quizContainer, style]}>
+    <TouchableOpacity onPress={() => onClick(quiz.ID, `Lesson ${index + 1} - ${quiz.title}`)} style={[styles.quizContainer, style]}>
       <Image 
         source={{ uri: `${config.IMAGE_URL}${quiz.photo}` }}
         style={styles.quizImage} 

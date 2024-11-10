@@ -7,5 +7,6 @@ import getQuizzesByLevel from "./getQuizzesByLevel";
 import getUserCreatedDecks from "./userProfile/getUserCreatedDecks";
 import updateUserProfile from "./userProfile/updateUserProfile";
 import getUserProgress from "./userProfile/getUserProgress";
+import getGrammar from "./getGrammar";
 
-export {  getAllQuizzes, greetUser, getUserInfo, getQuizLevels, getQuizzesByLevel, getUserCreatedDecks, updateUserProfile, getUserProgress};
+export {  getAllQuizzes, greetUser, getUserInfo, getQuizLevels, getQuizzesByLevel, getUserCreatedDecks, updateUserProfile, getUserProgress, getGrammar};
