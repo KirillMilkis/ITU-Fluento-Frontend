@@ -14,12 +14,17 @@ const CollectionTile = ({deckItem, isCreator, liked}) => {
   
     const [postData, setPostData] = useState(null);
     const [likedNow, setLikedNow] = useState(liked);
+    // if (deckItem) {
+    //     setLikedNow(liked);
+    // }
+
     const [endpoint, setEndpoint] = useState(null);
     const [triggerPost1, setTriggerPost1] = useState(false);
 
 
     const { result: result, error: postError } = usePostRequest(endpoint, triggerPost1 ? postData : null);
 
+        
 
     const onChangeField = useCallback((name) => (text) => {
         setLiked(true);
@@ -85,19 +90,32 @@ const CollectionTile = ({deckItem, isCreator, liked}) => {
                     <Text style={styles.textStyle2} numberOfLines={1}>by {deckItem.creator}</Text>
                 </View>
             </View>
+
                 <View style={styles.likesContainerColumn}>
-                {likedNow ? (
-                <TouchableOpacity onPress={onSubmitUnLike}>
-                <Icon name="heart" size={38} color="black" />
-                </TouchableOpacity>
+                {isCreator ? (
+                    <>
+                    <Icon name="heart-half-outline" size={38} color="black" />
+                    <Text style={styles.textStyle2}>{deckItem.likeCount}</Text>
+                    </>
                 ) : (
-                <TouchableOpacity onPress={onSubmitLike}>
-                <Icon name="heart-outline" size={38} color="black" />
-                </TouchableOpacity>
+                    <>
+                    {likedNow ? (
+                    <TouchableOpacity onPress={onSubmitUnLike}>
+                    <Icon name="heart" size={38} color="black" />
+                    <Text style={styles.textStyle2}>{deckItem.likeCount}</Text>
+                    </TouchableOpacity>
+                    ) : (
+                    <TouchableOpacity onPress={onSubmitLike}>
+                    <Icon name="heart-outline" size={38} color="black" />
+                    <Text style={styles.textStyle2}>{deckItem.likeCount}</Text>
+                    </TouchableOpacity>
+                    )}
+                    </>
                 )}
                 </View>
+               
+                </View>
 
-        </View>
     </TouchableOpacity>
   )
 };
