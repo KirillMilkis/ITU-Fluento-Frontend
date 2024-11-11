@@ -1,3 +1,4 @@
+
 import getAllQuizzes from "./getAllQuizzes";
 import greetUser from "./greetUser";
 import getUserInfo from "./getUserInfo";
@@ -8,4 +9,4 @@ import updateUserProfile from "./userProfile/updateUserProfile";
 import getUserProgress from "./userProfile/getUserProgress";
 import usePostRequest from "./usePostRequest";
 
-export { usePostRequest, getAllQuizzes, greetUser, getUserInfo, getQuizLevels, getQuizzesByLevel, getUserCreatedDecks, updateUserProfile, getUserProgress};
+export { createCollection, getAllQuizzes, greetUser, getUserInfo, getQuizLevels, getQuizzesByLevel, getUserCreatedDecks, updateUserProfile, getUserProgress};
