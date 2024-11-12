@@ -12,6 +12,11 @@ import { AllQuizzesScreen, LevelQuizzesScreen } from './screens';
 import { UserProfileScreen, UserSettingsScreen, AvatarChangeScreen } from './screens';
 import { StatisticScreen, LeaderboardScreen } from './screens';
 
+// Temporary addition that removes logs appearing on the screen
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']);
+LogBox.ignoreAllLogs();
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
