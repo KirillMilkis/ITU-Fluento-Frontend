@@ -65,8 +65,8 @@ const AllQuizzesScreen = ({ route }) => {
         }, [userInfo])
     );
 
-    const handleQuizClick = (quizID) => {
-        // TODO CONNECT
+    const handleQuizClick = (quizID, quizTitle) => {
+        navigation.navigate('GrammarScreen', { quizID: quizID, quizTitle: quizTitle});
         console.log(`Quiz with ID ${quizID} clicked`);
     };
 

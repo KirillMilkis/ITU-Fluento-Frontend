@@ -31,6 +31,11 @@ const LevelQuizzesScreen = () => {
         fetchQuizzesByLevel();
     }, []);
 
+    const handleQuizClick = (quizID, quizTitle) => {
+        navigation.navigate('GrammarScreen', { quizID: quizID, quizTitle: quizTitle});
+        console.log(`Quiz with ID ${quizID} clicked`);
+    };
+
     return (
         <View style={{ flex: 1 }}>
 
@@ -53,6 +58,7 @@ const LevelQuizzesScreen = () => {
                             quiz={quiz}
                             index={index}
                             style={styles.quizContainerSmall}
+                            onClick={handleQuizClick}
                         />
                     ))
                 ) : (
