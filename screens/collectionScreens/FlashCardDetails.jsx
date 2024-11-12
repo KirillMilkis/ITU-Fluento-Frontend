@@ -5,8 +5,12 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { useState, useRef } from 'react'
+import { postRequest } from '../../api'
 
 const FlashCardDetails = ({route}) => {
+
+  const [popupMessage, setPopupMessage] = useState(''); // To hold popup message
+  const [fadeAnim] = useState(new Animated.Value(0)); // For fading the popup
 
   const {cardItem} = route.params;
   const navigation = useNavigation()
@@ -63,6 +67,47 @@ const FlashCardDetails = ({route}) => {
       transform: [{ rotateY: backInterpolate }],
     };
 
+
+      const handleDelete = async () => {
+        try {
+            const endpoint = `flashcards/${cardItem.ID}/delete`;
+            const postData = {};
+            const result = await postRequest(endpoint, postData);
+            console.log(`RESULT IS ${result}`);
+            if (result.success) {
+                navigation.goBack();
+            } else {
+                showPopup(result.message);
+            }
+        } catch (error) {
+            console.log(error.message);
+            showPopup(error.message || 'An unexpected error occurred');
+        }
+    };
+
+
+    const showPopup = (message) => {
+      setPopupMessage(message);
+      fadeAnim.setValue(0);
+
+      Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 300,
+          useNativeDriver: true,
+      }).start();
+
+      setTimeout(() => {
+          Animated.timing(fadeAnim, {
+              toValue: 0,
+              duration: 300,
+              useNativeDriver: true,
+          }).start();
+      }, 2000);
+    };
+
+
+
+
   return (
     <SafeAreaView>
         <View style ={styles.topBarContainer}>
@@ -72,8 +117,8 @@ const FlashCardDetails = ({route}) => {
 
             <Text style={styles.textStyle}>Flash Card</Text>
 
-            <TouchableOpacity onPress={()=>{}}>
-            <Icon name="heart-outline" size={38} color="transparent" />
+            <TouchableOpacity onPress={handleDelete}>
+            <Icon name="trash-outline" size={38} color="red" />
             </TouchableOpacity>
         </View>
 
@@ -90,6 +135,12 @@ const FlashCardDetails = ({route}) => {
                 </View>
             </TouchableWithoutFeedback>
         </View>
+
+        {popupMessage && (
+                            <Animated.View style={[styles.popupContainer, { opacity: fadeAnim }]}>
+                                <Text style={styles.popupText}>{popupMessage}</Text>
+                            </Animated.View>
+                        )}
 
 
         

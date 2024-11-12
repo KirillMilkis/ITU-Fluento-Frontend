@@ -6,13 +6,18 @@ import { ScrollView } from 'react-native-gesture-handler'
 import useFetch  from '../../api/useFetch'
 import { COLORS } from '../../constants/theme'
 import { set } from 'react-hook-form'
+import { useFocusEffect } from '@react-navigation/native'
+import { useCallback } from 'react'
+import { fetchRequest } from '../../api'
+import { isLoaded } from 'expo-font'
 
 
-const CollectionList = ({propertyType}) => {
+const CollectionList = ({propertyType, refresh}) => {
 
     const [endpoint, setEndpoint] = useState(null);
     const [trigger, setTrigger] = useState(false);
-    const [filteredData, setFilteredData] = useState([]);
+    const [filteredData, setFilteredData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     console.log(propertyType);
 
@@ -25,33 +30,50 @@ const CollectionList = ({propertyType}) => {
             setEndpoint("decks/getLikedDecks/Alice");
         }
     }, [propertyType]);
-    const { data, isLoading: isLoading1, error: error1 } = useFetch(endpoint);
-    const { data: likedData, isLoading: isLoading2, error: error2} = useFetch("decks/getLikedDecks/Alice");
 
-    useEffect(() => {
-        if (propertyType === "all" && data && likedData) {
-            let filtered = data.filter(item => item.creator !== "Alice");
-            const likedDataIds = likedData.map(item => item.ID);
-            filtered = filtered.filter(item => !likedDataIds.includes(item.ID));
-            setFilteredData(filtered);
-        } else {
-            setFilteredData(data);
+
+    // useEffect(() => {
+    //    fetchData();
+    // }, [endpoint]);
+
+    const fetchData = async () => {
+        setIsLoading(true);
+        try {
+            const result1 = await fetchRequest(endpoint);
+            if (result1.success) {
+                if (propertyType === "all") {
+                    let filtered = result1.message.filter(item => item.creator !== "Alice");
+                    const result2 = await fetchRequest("decks/getLikedDecks/Alice");
+                    const likedDataIds = result2.message.map(item => item.ID);
+                    filtered = filtered.filter(item => !likedDataIds.includes(item.ID));
+                    setFilteredData(filtered);
+                } else{
+                    setFilteredData(result1.message);
+                }
+                
+            }
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsLoading(false);
         }
-    }, [data, likedData, propertyType]);
+    }
 
-  
+
+    useFocusEffect(
+        useCallback(() => {
+            fetchData();
+        }, [endpoint])
+    );
+
 
   return (
     
     <ScrollView>
          <View style={[styles.container, styles.spacing]}>
-            {isLoading1 || isLoading2 ? (
+            {isLoading ? (
             <ActivityIndicator size="large" color="#bbbbb" alignSelf="" />
-            ): error1 ? (
-            <Text>Error: {error1.message}</Text>
-            ): error2 ? (
-            <Text>Error: {error2.message}</Text>
-            ): (
+            ):(
             <FlatList
                 data = {filteredData}
                 renderItem = {({item}) => <CollectionTile deckItem = {{...item}} isCreator = {item.creator === "Alice"} liked =  {propertyType === "liked"}/>}

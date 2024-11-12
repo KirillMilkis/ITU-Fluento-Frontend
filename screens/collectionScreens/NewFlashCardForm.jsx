@@ -85,55 +85,6 @@ import { StyleSheet, Text,
                 setTriggerPost2(false);
             }
         }, [postError2]);
-               
-
-    //   const handleSave = async () => {
-    //     const endpoint1 = 'flashcards/create';
-  
-    //     try {
-    //         setPostData({
-    //             username: 'Alice',
-    //             question: postData.question,
-    //             answer: postData.answer
-    //         });
-    //         const result1 = await usePostRequest(endpoint1, postData);
-    //         console.log(`RESULT IS ${result1}`);
-    //         if (result1.success) {
-    //             setPostData({ 
-    //                 deckId: deckId,
-    //             });
-    //             const endpoint2 = `flashcards/${result1.id}/addToDeck`;
-    //             const result2 = await usePostRequest(endpoint2, postData);
-    //             console.log(`RESULT2 IS ${result2}`);
-    //             if(result2.success){
-    //                 navigation.goBack();
-    //             }
-    //         } else {
-    //             console.log(result1.message);
-    //         }
-    //     } catch (error) {
-    //         console.log(error.message || 'An unexpected error occurred');
-    //     }
-    // }
-
-    // const showPopup = (message) => {
-    //     setPopupMessage(message);
-    //     fadeAnim.setValue(0);
-
-    //     Animated.timing(fadeAnim, {
-    //         toValue: 1,
-    //         duration: 300,
-    //         useNativeDriver: true,
-    //     }).start();
-
-    //     setTimeout(() => {
-    //         Animated.timing(fadeAnim, {
-    //             toValue: 0,
-    //             duration: 300,
-    //             useNativeDriver: true,
-    //         }).start();
-    //     }, 2000);
-    // };
       
   
   

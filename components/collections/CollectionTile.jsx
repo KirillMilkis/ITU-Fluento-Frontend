@@ -14,9 +14,6 @@ const CollectionTile = ({deckItem, isCreator, liked}) => {
   
     const [postData, setPostData] = useState(null);
     const [likedNow, setLikedNow] = useState(liked);
-    // if (deckItem) {
-    //     setLikedNow(liked);
-    // }
 
     const [endpoint, setEndpoint] = useState(null);
     const [triggerPost1, setTriggerPost1] = useState(false);
@@ -38,6 +35,7 @@ const CollectionTile = ({deckItem, isCreator, liked}) => {
         });
         console.log(postData);
         setTriggerPost1(true);
+        deckItem.likeCount++;
         }, []);
 
 
@@ -48,6 +46,7 @@ const CollectionTile = ({deckItem, isCreator, liked}) => {
         });
         console.log(postData);
         setTriggerPost1(true);
+        deckItem.likeCount--;
         }, []);
 
 

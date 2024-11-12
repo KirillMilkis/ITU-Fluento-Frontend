@@ -5,7 +5,7 @@ import styles from './collectionsMain.styles'
 import { ScrollView } from 'react-native-gesture-handler'
 import { CollectionList } from '../../components'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 
 const CollectionsMain = () => {
   const navigation = useNavigation()

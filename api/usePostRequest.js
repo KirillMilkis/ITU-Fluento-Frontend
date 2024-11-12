@@ -11,8 +11,6 @@ const usePostRequest = (endpoint, data) => {
     const postData = async (endpoint, data) => {
    
             try {
-                console.log(data);
-                console.log(`${config.API_URL}${endpoint}`);
                 const response = await axios.post(`${config.API_URL}${endpoint}`,data , {
                     headers: {
                         'Content-Type': 'application/json',
@@ -37,7 +35,7 @@ const usePostRequest = (endpoint, data) => {
        
 
     useEffect(() => {
-        if (data){
+        if (endpoint && data){
             postData(endpoint, data);
         }
     }, [endpoint, data]);

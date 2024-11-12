@@ -3,7 +3,7 @@ import { COLORS, SIZES } from '../../constants/theme'
 
 const styles = StyleSheet.create({
     flashCard: {
-        width: 175,
+        width: 170,
         height: 242,
         borderRadius: 20,
         backgroundColor: COLORS.secondary,
