@@ -21,19 +21,34 @@ const styles = StyleSheet.create({
         fontSize: SIZES.xxLarge,
     },
 
-    textStyle:{
-        paddingHorizontal: SIZES.padding,
-        fontSize: SIZES.font,
+    mainScore:{
+        fontSize: SIZES.xxLarge*2,
+        alignSelf: "center",
+        paddingTop: 50,
     },
 
-    titleStyle:{
-        padding: SIZES.padding,
-        fontSize: SIZES.h1,
-        fontWeight: 'bold',
+    secScore:{
+        fontSize: SIZES.xxLarge,
+        alignSelf: "center",
+        paddingBottom: 50,
     },
+
+    message:{
+        alignSelf: "center",
+        fontSize: SIZES.h2+6,
+        paddingBottom: 50,
+        paddingHorizontal: 15,
+    },
+
+    secText:{
+        alignSelf: "center",
+        fontSize: SIZES.h2+6,
+    },
+
     container:{
         flex: 1,
     },
+
     bottomBarContainer:{
         position: 'absolute',
         bottom: 0,
@@ -42,22 +57,14 @@ const styles = StyleSheet.create({
         height: 80,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around',
-        paddingVertical: 10,
+        justifyContent: 'space-evenly',
         backgroundColor: COLORS.tabPrimary,
     },
-    bottomBarIcon:{
+
+    bottomBarText:{
         color: "white",
-        fontSize: 30,
-    },
-
-    image: {
-        width: 120,
-        height: 120,
-        marginBottom: 30,
-        alignSelf: "center",
-    },
-
+        fontSize: 20,
+    }
 })
 
 export default styles;

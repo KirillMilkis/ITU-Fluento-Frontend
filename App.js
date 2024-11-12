@@ -7,8 +7,8 @@ import BottomTabNavigator from './navigation/BottomTabNavigator';
 import * as Font from 'expo-font';
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { FlashCardsListScreen, FlashCardDetails, NewCollectionForm, CollectionListScreen} from './screens';
-import { AllQuizzesScreen, LevelQuizzesScreen, GrammarScreen } from './screens';
+import { FlashCardsListScreen, FlashCardDetails, NewCollectionForm, CollectionListScreen, ResultsScreen} from './screens';
+import { AllQuizzesScreen, LevelQuizzesScreen, GrammarScreen, MultipleChoiceScreen, TrueFalseScreen} from './screens';
 import { UserProfileScreen, UserSettingsScreen, AvatarChangeScreen } from './screens';
 import { StatisticScreen, LeaderboardScreen } from './screens';
 
@@ -99,6 +99,21 @@ export default function App() {
 
           <Stack.Screen name="GrammarScreen"
           component={GrammarScreen}
+          options={{headerShown: false}}
+          />
+
+          <Stack.Screen name="MultipleChoiceScreen"
+          component={MultipleChoiceScreen}
+          options={{headerShown: false}}
+          />
+
+          <Stack.Screen name="TrueFalseScreen"
+          component={TrueFalseScreen}
+          options={{headerShown: false}}
+          />
+
+          <Stack.Screen name="ResultsScreen"
+          component={ResultsScreen}
           options={{headerShown: false}}
           />
 

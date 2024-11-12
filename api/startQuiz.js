@@ -2,10 +2,10 @@ import { View, Text } from 'react-native';
 import React from 'react';
 import config from '../config/config';
 
-const getGrammar = async (quizID) => {
+const startQuiz = async (quizID) => {
     try {
-        const response = await fetch(`${config.API_URL}grammar/${quizID}`, {
-            method: 'GET',
+        const response = await fetch(`${config.API_URL}quizzes/Alice/start/${quizID}`, {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -17,7 +17,6 @@ const getGrammar = async (quizID) => {
         }
 
         const data = await response.json();
-        console.log(data);
         return data;
     } catch (error) {
         console.error(error);
@@ -25,4 +24,4 @@ const getGrammar = async (quizID) => {
     }
 }
 
-export default getGrammar;
+export default startQuiz;
