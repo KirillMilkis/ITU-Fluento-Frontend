@@ -12,6 +12,8 @@ const FlashCardsListScreen = ({route}) => {
   const {deckItem, isCreator} = route.params;
 
 
+
+
   const navigation = useNavigation();
   
   // let ownCards;
@@ -23,7 +25,6 @@ const FlashCardsListScreen = ({route}) => {
   //     ownCards = false;
   //   }
   // }, [propertyType]);
-  
 
   return (
     <SafeAreaView>
@@ -35,7 +36,7 @@ const FlashCardsListScreen = ({route}) => {
             <Text style={styles.textStyle}>Flash Cards</Text>
 
             {isCreator ? (
-              <TouchableOpacity onPress={()=>navigation.navigate("NewFlashCardForm", { deckId: deckItem.ID })}>
+              <TouchableOpacity onPress={()=>navigation.navigate("NewFlashCardForm", { deckId: deckItem.ID, isCreator: isCreator })}>
               <Icon name="add-outline" size={38} color="black" />
               </TouchableOpacity>
             ) : (
@@ -45,7 +46,7 @@ const FlashCardsListScreen = ({route}) => {
               )}
             
         </View>
-          <FlashCardList deckId = {[deckItem.ID]}/>
+          <FlashCardList deckId = {[deckItem.ID]} isCreator={isCreator}/>
     </SafeAreaView>
   )
 }

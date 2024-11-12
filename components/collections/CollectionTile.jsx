@@ -1,4 +1,4 @@
-import { TouchableOpacity, View, Text } from 'react-native'
+import { TouchableOpacity, View, Text, Alert} from 'react-native'
 import { Image } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import React, { useState, useCallback, useEffect } from 'react'
@@ -7,6 +7,8 @@ import { FlashCardsListScreen } from '../../screens'
 import Icon from 'react-native-vector-icons/Ionicons'
 import App from '../../App.js'
 import usePostRequest from '../../api/usePostRequest'
+import { postRequest } from '../../api/index.js'
+import { useFocusEffect } from '@react-navigation/native'
 
 const CollectionTile = ({deckItem, isCreator, liked}) => {
     const navigation = useNavigation();
@@ -65,6 +67,39 @@ const CollectionTile = ({deckItem, isCreator, liked}) => {
         }
     }, [postError]);
 
+    const handleDelete = async () => {
+        try {
+            endpoint1 = `decks/${deckItem.ID}/delete`;
+            const result = await postRequest(endpoint1);
+          } catch (error) {
+            console.error(error);
+          } finally {
+            setModalVisible(false)
+          }
+    }
+
+    const handleLongPress = () => {
+        if (isCreator) {
+            Alert.alert(
+                "Delete Item",
+                "Are you sure you want to delete this item?",
+                [
+                  {
+                    text: "Cancel",
+                    style: "cancel"
+                  },
+                  {
+                    text: "Delete",
+                    onPress: () => handleDelete(),
+                    style: "destructive"
+                  }
+                ]
+              );
+        }
+        
+      };
+
+
     
 
     if (!deckItem) {
@@ -79,7 +114,7 @@ const CollectionTile = ({deckItem, isCreator, liked}) => {
 
 
   return (
-    <TouchableOpacity onPress={()=>navigation.navigate("FlashCardsListScreen", {deckItem: deckItem, isCreator: isCreator })}>
+    <TouchableOpacity onPress={()=>navigation.navigate("FlashCardsListScreen", {deckItem: deckItem, isCreator: isCreator })} onLongPress={handleLongPress}>
         <View style ={styles.tileContainer}>
             <Image source={require('../../assets/favicon.png')} style={styles.imageStyle}/>
             <View style={styles.textContainerColumn}>
@@ -114,6 +149,7 @@ const CollectionTile = ({deckItem, isCreator, liked}) => {
                 </View>
                
                 </View>
+
 
     </TouchableOpacity>
   )

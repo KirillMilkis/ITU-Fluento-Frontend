@@ -9,6 +9,7 @@ import updateUserProfile from "./userProfile/updateUserProfile";
 import getUserProgress from "./userProfile/getUserProgress";
 import usePostRequest from "./usePostRequest";
 import postRequest from "./postRequest";
+import useFetch from "./useFetch";
 import fetchRequest from "./fetchRequest";
 
-export {  getAllQuizzes, greetUser, getUserInfo, getQuizLevels, getQuizzesByLevel, getUserCreatedDecks, updateUserProfile, getUserProgress, usePostRequest, postRequest, fetchRequest};
+export {  getAllQuizzes, greetUser, getUserInfo, getQuizLevels, getQuizzesByLevel, getUserCreatedDecks, updateUserProfile, getUserProgress, usePostRequest, postRequest, fetchRequest, useFetch};

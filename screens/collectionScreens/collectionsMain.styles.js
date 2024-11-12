@@ -46,7 +46,14 @@ const styles = StyleSheet.create({
         alignItems: 'start',
     },
 
+    wrapperOuter: {
+        flexDirection: 'column',
+        justifyContent: 'start',
+        alignItems: 'start',
+    },
+
     savedCollectionsList: {
+        marginTop: 65,
         gap: 14,        
         flexDirection: 'column',
         justifyContent: 'center',

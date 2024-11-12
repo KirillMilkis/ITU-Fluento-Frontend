@@ -7,11 +7,11 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import { fetchRequest } from '../../api';
 
-const FlashCardList = ({deckId, refresh}) => {
+const FlashCardList = ({deckId, isCreator}) => {
 
   let endpoint = `decks/${deckId}`;
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
 
   // const {data, isLoading, error, refetch} = useFetch(endpoint);
 
@@ -44,24 +44,23 @@ const FlashCardList = ({deckId, refresh}) => {
         fetchData();
     }, [endpoint])
 );
+
  
 
   return (
+    <View>
     <ScrollView>
             <View style={styles.container}>
-            {isLoading ? (
-                <ActivityIndicator size="large" color="#bbbbb" alignSelf="" />
-                ) : (
-                <FlatList
-                    data = {data}
-                    renderItem = {({item}) => <FlashCardListTile cardItem = {item}/>}
-                    keyExtractor = {(item) => item.ID}
-                    vertical = {true}
-                    contentContainerStyle = {{gap: 14}}
-                />
-            )}
+            {data.map((cardItem) => (
+            <FlashCardListTile
+              key={cardItem.ID}
+              cardItem={cardItem}
+              isCreator={isCreator}
+            />
+          ))}
             </View>
     </ScrollView>
+    </View>
   )
   
 

@@ -16,7 +16,7 @@ const CollectionList = ({propertyType, refresh}) => {
 
     const [endpoint, setEndpoint] = useState(null);
     const [trigger, setTrigger] = useState(false);
-    const [filteredData, setFilteredData] = useState(null);
+    const [filteredData, setFilteredData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     console.log(propertyType);
@@ -68,23 +68,26 @@ const CollectionList = ({propertyType, refresh}) => {
 
 
   return (
-    
-    <ScrollView>
-         <View style={[styles.container, styles.spacing]}>
-            {isLoading ? (
-            <ActivityIndicator size="large" color="#bbbbb" alignSelf="" />
-            ):(
-            <FlatList
-                data = {filteredData}
-                renderItem = {({item}) => <CollectionTile deckItem = {{...item}} isCreator = {item.creator === "Alice"} liked =  {propertyType === "liked"}/>}
-                keyExtractor = {(item) => item.ID}
-                vertical = {true}
-                contentContainerStyle = {{gap: 14}}
-            />
-            )}
-        </View>
+    <View>
+        <ScrollView>
+            <View style={[styles.container, styles.spacing]}>
+                {isLoading ? (
+                <ActivityIndicator size="large" color="#bbbbb" alignSelf="" />
+                ):(
+                    filteredData.map((item) => (
+                    <CollectionTile
+                    key={item.ID}
+                    deckItem={{ ...item }}
+                    isCreator={item.creator === "Alice"}
+                    liked={propertyType === "liked"}
+                    />
+                ))
+                )}
+            </View>
 
-    </ScrollView>
+        </ScrollView>
+    </View>
+
    
 
   )

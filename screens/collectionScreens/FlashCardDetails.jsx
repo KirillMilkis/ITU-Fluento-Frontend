@@ -12,8 +12,12 @@ const FlashCardDetails = ({route}) => {
   const [popupMessage, setPopupMessage] = useState(''); // To hold popup message
   const [fadeAnim] = useState(new Animated.Value(0)); // For fading the popup
 
-  const {cardItem} = route.params;
+  
+  const {cardItem, isCreator} = route.params;
+  console.log(isCreator + "isCreator");
   const navigation = useNavigation()
+
+  console.log(isCreator);
 
     if (!cardItem){
         navigation.goBack();
@@ -116,10 +120,17 @@ const FlashCardDetails = ({route}) => {
             </TouchableOpacity>
 
             <Text style={styles.textStyle}>Flash Card</Text>
+            {isCreator ? (
 
             <TouchableOpacity onPress={handleDelete}>
             <Icon name="trash-outline" size={38} color="red" />
             </TouchableOpacity>
+
+            ) : (
+            <TouchableOpacity onPress={()=>{}}>
+            <Icon name="heart-outline" size={38} color="transparent" />
+            </TouchableOpacity>
+            )}
         </View>
 
 
