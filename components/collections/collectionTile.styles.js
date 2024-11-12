@@ -25,6 +25,8 @@ const styles = StyleSheet.create({
         color: COLORS.black,
         fontSize: SIZES.medium,
         marginHorizontal: 10,
+        textAlign: 'center',
+
     },
 
     textContainerColumn: {

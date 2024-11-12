@@ -3,17 +3,18 @@ import { COLORS, SIZES } from '../../constants/theme'
 
 const styles = StyleSheet.create({
     flashCard: {
-        width: 175,
-        height: 242,
-        borderRadius: 20,
-        backgroundColor: COLORS.secondary,
-        justifyContent: 'center',
-        alignItems: 'center',
+        width: 200,
+        height: 250,
+        backgroundColor: '#f0f0f0',
+        borderRadius: 8,
+        flex: 1/2,
+        padding: 10,
     },
 
     flashCardTop: {
         width: '100%',
         height: '50%',
+        padding: 10,
         borderTopLeftRadius: '20',
         borderTopRightRadius: '20',
         borderBottomLeftRadius: '0',
@@ -21,11 +22,14 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.gray1,
         justifyContent: 'center',
         alignItems: 'center',
+        overflow: 'hidden',
     },
+
 
     flashCardBottom: {
         height: '50%',
         width: '100%',
+        padding: 10,
         borderTopLeftRadius: '0',
         borderTopRightRadius: '0',
         borderBottomLeftRadius: '20',
@@ -33,6 +37,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.gray2,
         justifyContent: 'center',
         alignItems: 'center',
+        overflow: 'hidden',
     },
 
     flashCardText: {

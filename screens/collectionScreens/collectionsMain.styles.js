@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
         color: COLORS.black,
         fontSize: SIZES.h2 + 4,
         paddingBottom: 10,
+        paddingLeft: 33,
     },
 
     topBarWrapper: {
@@ -45,20 +46,25 @@ const styles = StyleSheet.create({
         alignItems: 'start',
     },
 
-    savedCollectionsList: {
-        gap: 16,        
+    wrapperOuter: {
         flexDirection: 'column',
-        spaceBetween: 50,
-        flex: 1,
+        justifyContent: 'start',
+        alignItems: 'start',
+    },
+
+    savedCollectionsList: {
+        marginTop: 65,
+        gap: 14,        
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'start',
-        padding: 33,
         maxHeight: 10000,
         paddingTop: 10,
 
     },
 
     yourCollectionsTile: {
+        marginLeft: 33,
         padding: 15,
         width: SIZES.baseWidth * 85, // Set width to 100%
         flexDirection: 'row',

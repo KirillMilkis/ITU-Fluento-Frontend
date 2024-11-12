@@ -33,8 +33,10 @@ const useFetch = (endpoint, options = {}) => {
 
 
     useEffect(() => {
-        fetchData(endpoint, options);
-    }, []);
+        if (endpoint){
+            fetchData(endpoint, options);
+        }
+    }, [endpoint]);
 
     const refetch = () => {
         setIsLoading(true);

@@ -6,28 +6,27 @@ import axios from 'axios';
 
 const usePostRequest = (endpoint, data) => {
     const [error, setError] = useState(null);
-    const [result, setResult] = useState(null);
+    const [result, setResult] = useState(false);
 
     const postData = async (endpoint, data) => {
    
             try {
-                console.log(`${config.API_URL}${endpoint}`);
                 const response = await axios.post(`${config.API_URL}${endpoint}`,data , {
                     headers: {
                         'Content-Type': 'application/json',
                     }
                 });
-                
-                if(response.status !== 200){
-                    console.log(response.status);
-                    throw new Error('Failed request');
-                }
                 console.log(response.status);
+                if(response.status !== 200 && response.status !== 201){
+                    
+                    throw new Error(response.message);
+                }
     
     
-                setResult(response.data);
+                setResult({success: true, data: response.data});
             } catch (error) {
                 setError(error);
+                setResult({success: false, data: null});
             }
 
 
@@ -36,7 +35,7 @@ const usePostRequest = (endpoint, data) => {
        
 
     useEffect(() => {
-        if (data){
+        if (endpoint && data){
             postData(endpoint, data);
         }
     }, [endpoint, data]);

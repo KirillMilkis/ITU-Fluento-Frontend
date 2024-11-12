@@ -5,7 +5,7 @@ import styles from './collectionsMain.styles'
 import { ScrollView } from 'react-native-gesture-handler'
 import { CollectionList } from '../../components'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 
 const CollectionsMain = () => {
   const navigation = useNavigation()
@@ -39,7 +39,7 @@ const CollectionsMain = () => {
                   <Icon name="chevron-forward-outline" size={38} color="black" style={styles.spacing} />
                 </View> 
                 </TouchableOpacity>
-                <CollectionList type = {"created"}/>
+                <CollectionList propertyType = {"liked"}/>
             </View>   
         </ScrollView>  
     </SafeAreaView>
