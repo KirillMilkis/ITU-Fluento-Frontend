@@ -37,7 +37,6 @@ const CollectionList = ({propertyType, refresh}) => {
     // }, [endpoint]);
 
     const fetchData = async () => {
-        setIsLoading(true);
         try {
             const result1 = await fetchRequest(endpoint);
             if (result1.success) {

@@ -13,14 +13,6 @@ const FlashCardList = ({deckId, isCreator}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
 
-  // const {data, isLoading, error, refetch} = useFetch(endpoint);
-
-
-  
-  // useCallback(() => {
-  //   // Refetch the data when the screen comes into focus
-  //   refetch();
-
   const fetchData = async () => {
     try {
       const result = await fetchRequest(endpoint);
@@ -34,10 +26,6 @@ const FlashCardList = ({deckId, isCreator}) => {
     }
   }
 
-  // useEffect(() => {
-  //   fetchData()
-  // });
-
 
   useFocusEffect(
     useCallback(() => {
@@ -50,6 +38,9 @@ const FlashCardList = ({deckId, isCreator}) => {
   return (
     <View>
     <ScrollView>
+              {isLoading ? (
+                  <ActivityIndicator size="large" color="#bbbbb" alignSelf="" />
+                ) : (
             <View style={styles.container}>
             {data.map((cardItem) => (
             <FlashCardListTile
@@ -59,6 +50,8 @@ const FlashCardList = ({deckId, isCreator}) => {
             />
           ))}
             </View>
+          )
+        }
     </ScrollView>
     </View>
   )

@@ -6,7 +6,6 @@ import { useNavigation } from '@react-navigation/native'
 const FlashCardListTile = ({cardItem, isCreator}) => {
     const navigation = useNavigation()
 
-
     if (!cardItem){
         return null;
     }

@@ -13,64 +13,57 @@ import { useFocusEffect } from '@react-navigation/native'
 const CollectionTile = ({deckItem, isCreator, liked}) => {
     const navigation = useNavigation();
 
-  
-    const [postData, setPostData] = useState(null);
     const [likedNow, setLikedNow] = useState(liked);
 
-    const [endpoint, setEndpoint] = useState(null);
-    const [triggerPost1, setTriggerPost1] = useState(false);
 
-
-    const { result: result, error: postError } = usePostRequest(endpoint, triggerPost1 ? postData : null);
-
-        
-
-    const onChangeField = useCallback((name) => (text) => {
-        setLiked(true);
+      const onSubmitLike = useCallback(async () => {
+        try {
+            endpoint = `decks/${deckItem.ID}/like`;
+            postData = {
+                username: "Alice",
+            };
+    
+            const result = await postRequest(endpoint, postData);
+            
+            // Если запрос успешен, обновляем состояние
+            if (result && result.success) {
+              console.log(result.success);
+                deckItem.likeCount++;
+                setLikedNow(!likedNow);
+            }
+        } catch (error) {
+            console.error(error);
+        } finally {
+           
+        }
     });
-
-
-    const onSubmitLike = useCallback(() => {
-        setEndpoint(`decks/${deckItem.ID}/like`);
-        setPostData({
-            username: "Alice",
-        });
-        console.log(postData);
-        setTriggerPost1(true);
-        deckItem.likeCount++;
-        }, []);
-
-
-    const onSubmitUnLike = useCallback(() => {
-        setEndpoint(`decks/${deckItem.ID}/unlike`);
-        setPostData({
-            username: "Alice",
-        });
-        console.log(postData);
-        setTriggerPost1(true);
-        deckItem.likeCount--;
-        }, []);
-
-
-    useEffect(() => {
-        if (result && result.success) {
-            setTriggerPost1(false);
-            setLikedNow(!likedNow);
+    
+    const onSubmitUnLike = useCallback(async () => {
+        try {
+          endpoint = `decks/${deckItem.ID}/unlike`;
+          postData = {
+              username: "Alice",
+          };
+            // Отправляем POST-запрос
+            const result = await postRequest(endpoint, postData);
+            
+            // Если запрос успешен, обновляем состояние
+            if (result && result.success) {
+               console.log(result.success);
+                deckItem.likeCount--;
+                setLikedNow(!likedNow);
+            }
+        } catch (error) {
+            console.error(error);
+        } finally {
+           
         }
-    }, [result, result.success]);
-
-
-    useEffect(() => {
-        if (postError) {
-            console.error(postError);
-            setTriggerPost1(false);
-        }
-    }, [postError]);
+    } );
 
     const handleDelete = async () => {
         try {
-            endpoint1 = `decks/${deckItem.ID}/delete`;
-            const result = await postRequest(endpoint1);
+            endpoint = `decks/${deckItem.ID}/delete`;
+            const result = await postRequest(endpoint);
           } catch (error) {
             console.error(error);
           } finally {

@@ -12,44 +12,44 @@ import { useNavigation } from '@react-navigation/native'
 import { usePostRequest } from '../../api'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useState, useEffect } from 'react'
+import { postRequest } from '../../api'
 
 const NewFlashCardForm = () => {
 
     const { handleSubmit, register, setValue, error } = useForm();
 
+    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
     const navigation = useNavigation();
-    const [postData, setPostData] = useState(null);
     const [triggerPost, setTriggerPost] = useState(false);
 
-    const endpoint = 'decks/create';
-    const { result, error: postError } = usePostRequest(endpoint, triggerPost ? postData : null);
-
-    const onSubmit = useCallback((formData) => {
-        setPostData({
+    const onSubmit = useCallback(async (formData) => {
+      try{
+        let endpoint = 'decks/create';
+        let postData = {
             username: 'Alice',
             deckname: formData.collectionName,
-        });
-        setTriggerPost(true);
+        };
+        let result = postRequest(endpoint, postData);
+        console.log(result.message);
+
+      } catch (error) {
+        console.error("ERROR" + error);
+        Alert.alert(
+          'Creation Failed',
+          'There was an issue creating the collection. Please try again.',
+          [{ text: 'OK' }]
+        );
+      } finally {
+        await delay(100);
+        navigation.navigate("CollectionListScreen", { title: "Your collections", propertyType: "created" });
+      }
+        
     }, []);
 
     const onChangeField = useCallback((name) => (text) => {
         setValue(name, text);
     });
-
-    useEffect(() => {
-        if (result) {
-          navigation.navigate("CollectionListScreen", { title: "Your collections", propertyType: "created" });
-          setTriggerPost(false);
-        }
-    }, [result, navigation]);
-
-    useEffect(() => {
-        if (postError) {
-            console.error(postError);
-            setTriggerPost(false);
-        }
-    }, [postError]);
-    
 
 
   return (
