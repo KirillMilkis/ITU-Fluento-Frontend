@@ -30,9 +30,12 @@ const NewFlashCardForm = () => {
             username: 'Alice',
             deckname: formData.collectionName,
         };
-        let result = postRequest(endpoint, postData);
-        console.log(result.message);
+        let result = await postRequest(endpoint, postData);
 
+        if(!result.success){
+          console.log(result.success)
+          throw new Error("Failed to create collection");
+        }
       } catch (error) {
         console.error("ERROR" + error);
         Alert.alert(

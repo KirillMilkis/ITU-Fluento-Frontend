@@ -12,6 +12,7 @@ import { StyleSheet, Text,
   import { usePostRequest } from '../../api'
   import Icon from 'react-native-vector-icons/Ionicons'
   import { useState, useEffect } from 'react'
+  import { postRequest } from '../../api'
 
   
   const NewFlashCardForm = ({route}) => {
@@ -21,72 +22,67 @@ import { StyleSheet, Text,
       const { handleSubmit, register, setValue, error } = useForm();
   
       const navigation = useNavigation();
-      const [postData, setPostData] = useState(null);
-      const [triggerPost1, setTriggerPost1] = useState(false);
-      const [triggerPost2, setTriggerPost2] = useState(false);
-      const [endpoint, setEndpoint] = useState('');
-
-      const { result: result1, error: postError1 } = usePostRequest(endpoint, triggerPost1 ? postData : null);
-      const { result: result2, error: postError2 } = usePostRequest(endpoint, triggerPost2 ? postData : null);
-
   
       const onChangeField = useCallback((name) => (text) => {
             setValue(name, text);
       });
 
 
-      const onSubmit = useCallback((formData) => {
-        setEndpoint('flashcards/create');
-        setPostData({
-            username: 'Alice',
-            question: formData.question,
-            answer: formData.answer
-        });
-        console.log(postData);
-        setTriggerPost1(true);
+        const onSubmit = useCallback(async(formData) => {
+            let result;
+            try{
+                let endpoint = 'flashcards/create';
+                let postData = {
+                    username: 'Alice',
+                    question: formData.question,
+                    answer: formData.answer
+                };
+
+                result = await postRequest(endpoint, postData);
+                if(!result.success){
+                    console.log(result.success)
+                    throw new Error("Failed to create flash card");
+                  }
+            } catch (error) {
+                console.error("ERROR" + error);
+                Alert.alert(
+                    'Creation Failed',
+                    'There was an issue creating the flash card. Please try again.',
+                    [{ text: 'OK' }]
+                  );
+                return;
+            } finally {
+                handleSecondRequest(result); // Pass the result to the second request
+
+            }
         }, []);
 
         const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-        useEffect(() => {
-            const handleSecondRequest = async () => {
-                await delay(1000); // Add a delay of 1 second
-                setEndpoint(`flashcards/${result1.data.id}/addToDeck`);
-                setPostData({
+        const handleSecondRequest = async (result1) => {
+            try{
+                await delay(500); // Add a delay of 1 second
+                let endpoint = `flashcards/${result1.message.id}/addToDeck`;
+                let postData = {
                     deckID: deckId,
-                });
-                setTriggerPost2(true);
-            };
-    
-            if (result1 && result1.success) {
-                setTriggerPost1(false);
-                handleSecondRequest();
-            }
-        }, [result1, result1.success]);
-
-
-        useEffect(() => {
-            if (result2 && result2.success) {
-                setTriggerPost2(false);
+                };
+              
+                let result = await postRequest(endpoint, postData);
+                if(!result.success){
+                    console.log(result.success)
+                    throw new Error("Failed to add a card to collection");
+                  }
+            } catch (error) {
+                console.error(error);
+                Alert.alert(
+                    'Creation Failed',
+                    'There was an issue creating the flash card. Please try again.',
+                    [{ text: 'OK' }]
+                  );
+            } finally {
                 navigation.goBack("FlashCardListScreen", { refresh: true });
             }
-        }, [result2, result2.success]);
-
-        useEffect(() => {
-            if (postError1) {
-                console.error(postError1);
-                setTriggerPost1(false);
-            }
-        }, [postError1]);
-    
-        useEffect(() => {
-            if (postError2) {
-                console.error(postError2);
-                setTriggerPost2(false);
-            }
-        }, [postError2]);
-      
-  
+        }; 
   
     return (
       <SafeAreaView>
@@ -130,11 +126,6 @@ import { StyleSheet, Text,
                 </TouchableOpacity>
 
         </View>
-        
-
-       
-  
-  
           
       </SafeAreaView>
     )
