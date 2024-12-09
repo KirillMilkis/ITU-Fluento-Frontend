@@ -24,7 +24,7 @@ const useFetch = (endpoint, options = {}) => {
             console.log(response.data);
             setIsLoading(false);
         } catch (error) {
-            setError(error);
+            setError(error);  
         } finally {
             setIsLoading(false);
         }

@@ -56,6 +56,12 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.gray2,
     },
 
+    buttonWrapper: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: 100,
+    },
+
 
 
     spacingTitles: {

@@ -121,11 +121,15 @@ const FlashCardDetails = ({route}) => {
 
             <Text style={styles.textStyle}>Flash Card</Text>
             {isCreator ? (
-
-            <TouchableOpacity onPress={handleDelete}>
-            <Icon name="trash-outline" size={38} color="red" />
-            </TouchableOpacity>
-
+            <View style={styles.buttonWrapper}>
+              <TouchableOpacity onPress={()=>navigation.navigate("EditFlashCardForm", {cardItemId: cardItem.ID})}>
+              <Icon name="create-outline" size={38} color="black" />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={handleDelete}>
+                <Icon name="trash-outline" size={38} color="red" />
+              </TouchableOpacity>
+            </View>
+            
             ) : (
             <TouchableOpacity onPress={()=>{}}>
             <Icon name="heart-outline" size={38} color="transparent" />

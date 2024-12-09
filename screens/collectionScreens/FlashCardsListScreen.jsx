@@ -10,21 +10,8 @@ import Icon from 'react-native-vector-icons/Ionicons'
 const FlashCardsListScreen = ({route}) => {
 
   const {deckItem, isCreator} = route.params;
-
-
-
-
   const navigation = useNavigation();
   
-  // let ownCards;
-
-  // useEffect(() => {
-  //   if(propertyType == "created"){
-  //     ownCards = true;
-  //   } else{
-  //     ownCards = false;
-  //   }
-  // }, [propertyType]);
 
   return (
     <SafeAreaView>
