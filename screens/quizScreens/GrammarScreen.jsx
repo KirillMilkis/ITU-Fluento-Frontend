@@ -5,7 +5,9 @@ import styles from './grammar.styles';
 import { TouchableOpacity } from 'react-native';
 import {Ionicons} from '@expo/vector-icons'
 import startQuiz from '../../api/startQuiz';
-import getQuestion from '../../api/getQuestion';
+
+
+
 import config from '../../config/config';
 
 const GrammarScreen = ({navigation}) => {
@@ -29,24 +31,9 @@ const GrammarScreen = ({navigation}) => {
         fetchGrammar();
     }, []);
 
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
+    const nextQuestion = () => {
+        navigation.navigate('QuestionScreen')
     }
-
-    const fetchQuestion = async () => {
-        try {
-            const result = await getQuestion();;
-            setQuestion(result);
-        } catch (error) {
-            console.error("Failed to fetch question:", error);
-        }
-    }
-
-    useEffect(() => {
-        if (question && Object.keys(question).length > 0) {
-            navigation.push(`${capitalizeFirstLetter(question.type)}Screen`, { question: question, quizTitle: quizTitle});
-        }
-    }, [question]);
 
 
     return (
@@ -69,7 +56,7 @@ const GrammarScreen = ({navigation}) => {
                 <TouchableOpacity onPress={()=>navigation.goBack()}>
                     <Ionicons name="arrow-back" style={[styles.bottomBarIcon]}></Ionicons>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>fetchQuestion()}>
+                <TouchableOpacity onPress={()=>nextQuestion()}>
                     <Ionicons name="arrow-forward" style={[styles.bottomBarIcon]}></Ionicons>
                 </TouchableOpacity>
             </View>
