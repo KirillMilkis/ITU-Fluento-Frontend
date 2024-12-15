@@ -12,6 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { postRequest } from '../../api'
+import config from '../../config/config'
 
 const NewCollectionFormScreen = () => {
 
@@ -39,11 +40,19 @@ const NewCollectionFormScreen = () => {
         );
         return;
       }
+      if (formData.collectionName.length > 25){
+        Alert.alert(
+          'Creation Failed',
+          'Collection name is too long. Please try again.',
+          [{ text: 'OK' }]
+        );
+        return;
+      }
       // Create new collection with the given name
       try{
         let endpoint = 'decks/create';
         let postData = {
-            username: 'Alice',
+            username: `${config.USERNAME}`,
             deckname: formData.collectionName,
         };
         let result = await postRequest(endpoint, postData);

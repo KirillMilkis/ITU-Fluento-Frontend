@@ -11,6 +11,7 @@ import React, { useState, useCallback, useEffect } from 'react'
 import styles from './collectionTile.styles'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { postRequest } from '../../api/index.js'
+import config from '../../config/config'
 
 const CollectionTile = ({deckItem, isCreator, liked, setReload}) => {
 
@@ -29,7 +30,7 @@ const CollectionTile = ({deckItem, isCreator, liked, setReload}) => {
         try {
             endpoint = `decks/${deckItem.ID}/like`;
             postData = {
-                username: "Alice",
+                username: `${config.USERNAME}`,
             };
     
             const result = await postRequest(endpoint, postData);
@@ -39,6 +40,9 @@ const CollectionTile = ({deckItem, isCreator, liked, setReload}) => {
               // Put the like on the frontend to not refetch the data
                 deckItem.likeCount++;
                 setLikedNow(!likedNow);
+            }
+            if(!result.success){
+                throw new Error(result.message);
             }
         } catch (error) {
             console.error(error);
@@ -58,7 +62,7 @@ const CollectionTile = ({deckItem, isCreator, liked, setReload}) => {
         try {
           endpoint = `decks/${deckItem.ID}/unlike`;
           postData = {
-              username: "Alice",
+              username: `${config.USERNAME}`,
           };
             const result = await postRequest(endpoint, postData);
 
@@ -68,6 +72,9 @@ const CollectionTile = ({deckItem, isCreator, liked, setReload}) => {
                 deckItem.likeCount--;
                 setLikedNow(!likedNow);
             }
+            if(!result.success){
+                throw new Error(result.message);
+            } 
         } catch (error) {
             console.error(error);
             Alert.alert(
@@ -135,14 +142,6 @@ const CollectionTile = ({deckItem, isCreator, liked, setReload}) => {
     if (!deckItem) {
         return null; // Render nothing if item is undefined or null
       }
-
-    // Check if the user is the creator of the deck
-    if (deckItem.creator == "Alice"){
-        isCreator = true;
-    } else {   
-        isCreator = false;
-    }
-
 
 
   return (

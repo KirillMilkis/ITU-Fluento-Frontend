@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: SIZES.width - 48,
         paddingHorizonral: 0,
+        height: SIZES.baseHeight * 5,
         zIndex: 999,
     },
 

@@ -14,6 +14,7 @@ import { useState, useRef } from 'react'
 import { postRequest } from '../../api'
 import { fetchRequest } from '../../api'
 import { ScrollView } from 'react-native-gesture-handler'
+import config from '../../config/config'
 
 const FlashCardDetailsScreen = ({route}) => {
 
@@ -50,7 +51,7 @@ const FlashCardDetailsScreen = ({route}) => {
         cardItem.ID ? id = cardItem.ID : id = cardItem.flashcardID;
         const endpoint = `flashcards/${id}/attempt`;
         console.log(score);
-        const postData = { "username": "Alice", "score": score};
+        const postData = { "username": `${config.USERNAME}`, "score": score};
         const result = await postRequest(endpoint, postData);
         if (!result.success) {
             throw new Error(result.message);
@@ -260,6 +261,7 @@ const FlashCardDetailsScreen = ({route}) => {
   return (
     <SafeAreaView style={styles.mainContainer}>
         <View style={styles.topBarContainer}>
+          {/* Top bar with the titile and buttons to edit if the user is the creator of the card. */}
             <TouchableOpacity onPress={() => navigation.goBack("FlashCardListScreen")}>
                 <Icon name="arrow-back-outline" size={38} color="black" />
             </TouchableOpacity>

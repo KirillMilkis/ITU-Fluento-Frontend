@@ -31,7 +31,7 @@ const CollectionsMainScreen = () => {
                       <Text style={styles.textStyle2}>Explore new Collections</Text>
                     </View>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={()=>navigation.navigate("NewCollectionForm")}>
+                  <TouchableOpacity onPress={()=>navigation.navigate("NewCollectionFormScreen")}>
                     <View style ={styles.tileNavigator}>
                       <Icon name="add-outline" size={38} color="black" style={styles.spacing} />
                       <Text style={styles.textStyle2}>Create own collection</Text>

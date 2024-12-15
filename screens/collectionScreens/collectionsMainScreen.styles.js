@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
         gap: 6,        
         flexDirection: 'column',
         justifyContent: 'center',
+        paddingBottom: SIZES.baseHeight * 9, 
         alignItems: 'start',
         paddingTop: 10,
 

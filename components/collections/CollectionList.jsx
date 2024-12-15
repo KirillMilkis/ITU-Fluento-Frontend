@@ -13,6 +13,7 @@ import { useFocusEffect } from '@react-navigation/native'
 import { useCallback } from 'react'
 import { fetchRequest } from '../../api'
 import { Alert } from 'react-native'
+import config from '../../config/config'
 
 
 const CollectionList = ({propertyType, refresh}) => {
@@ -26,12 +27,14 @@ const CollectionList = ({propertyType, refresh}) => {
 
     // Set endpoint based on propertyType, exist different collection list in different parts of the app
     useEffect(() => {
+        console.log(`${config.USERNAME}`);
         if (propertyType === "created") {
-            setEndpoint("decks/getDecks/Alice"); // Fetch decks created by specific user
+            setEndpoint(`decks/getDecks/${config.USERNAME}`); // Fetch decks created by specific user
         } else if (propertyType === "all") {
             setEndpoint("decks/getDecks"); // Fetch all community decks
         } else if (propertyType === "liked") {
-            setEndpoint("decks/getLikedDecks/Alice"); // Fetch liked decks by specific user
+            console.log(`${config.USERNAME}`);
+            setEndpoint(`decks/getLikedDecks/${config.USERNAME}`); // Fetch liked decks by specific user
         }
     }, [propertyType]);
 
@@ -46,8 +49,8 @@ const CollectionList = ({propertyType, refresh}) => {
             if (result1.success) {
                 // If propertyType is "all", skip decks created by specific user and already liked by specific user
                 if (propertyType === "all") {
-                    let filtered = result1.message.filter(item => item.creator !== "Alice");
-                    const result2 = await fetchRequest("decks/getLikedDecks/Alice");
+                    let filtered = result1.message.filter(item => item.creator !== `${config.USERNAME}`);
+                    const result2 = await fetchRequest(`decks/getLikedDecks/${config.USERNAME}`);
                     const likedDataIds = result2.message.map(item => item.ID);
                     filtered = filtered.filter(item => !likedDataIds.includes(item.ID));
                     setFilteredData(filtered);
@@ -80,7 +83,7 @@ const CollectionList = ({propertyType, refresh}) => {
   return (
     <View>
         <ScrollView style={styles.scrollContainer}>
-            <View style={[styles.container, styles.spacing]}>
+            <View style={[styles.container]}>
                 {/* Show loading indicator while fetching data */}
                 {isLoading ? (
                 <ActivityIndicator size="large" color="#bbbbb" alignSelf="" />
@@ -89,7 +92,7 @@ const CollectionList = ({propertyType, refresh}) => {
                     <CollectionTile
                     key={item.ID}
                     deckItem={{ ...item }}
-                    isCreator={item.creator === "Alice"}
+                    isCreator={item.creator === `${config.USERNAME}`}
                     liked={propertyType === "liked"}
                     setReload={setReload}
                     reload={setReload}

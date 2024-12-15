@@ -13,6 +13,7 @@ import { useNavigation } from '@react-navigation/native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { postRequest } from '../../api'
 
+
   
 const EditFlashCardFormScreen = ({route}) => {
 
@@ -28,8 +29,31 @@ const EditFlashCardFormScreen = ({route}) => {
      */
     const onSubmit = useCallback(async(formData) => {
         let result1, result2;
+
+        // Data validation
+        if(formData.question === "" || formData.answer === ""){
+            Alert.alert(
+                'Creation Failed',
+                'Please fill in all the fields',
+                [{ text: 'OK' }]
+                );
+            return;
+        }
+        if(formData.question === flashCardItem.question && formData.answer === flashCardItem.answer){
+            navigation.goBack();
+            return;
+        }
+        if(formData.question.length > 200 || formData.answer.length > 200){
+            Alert.alert(
+                'Creation Failed',
+                'Question and answer must be less than 200 characters',
+                [{ text: 'OK' }]
+                );
+            return;
+        }
         
         try{
+
             // Two Post requests because BE has two different endpoints for updating question and answer
             let endpoint = `flashcards/${flashCardItem.ID}/updateQuestion`;
             let postData = {

@@ -15,6 +15,7 @@ import { postRequest } from '../../api'
 import { useState } from 'react'
 import { Modal } from 'react-native'
 import { useCallback } from 'react'
+import config from '../../config/config'
 
 const FlashCardsListScreen = ({route}) => {
 
@@ -60,7 +61,7 @@ const FlashCardsListScreen = ({route}) => {
   const handleSave = async () => {
     setLoading(true);
     // If name the same that was before, nothing to save
-    if (tempDeckName === deckItem.name) {
+    if (tempDeckName === deckName) {
       setIsEditing(false);
       setLoading(false);
       setTempDeckName(deckName);
@@ -127,7 +128,7 @@ const FlashCardsListScreen = ({route}) => {
     try {
         endpoint = `decks/${deckItem.ID}/like`;
         postData = {
-            username: "Alice",
+            username: `${config.USERNAME}`,
         };
         const result = await postRequest(endpoint, postData);
         
@@ -151,7 +152,7 @@ const onSubmitUnLike = useCallback(async () => {
     try {
       endpoint = `decks/${deckItem.ID}/unlike`;
       postData = {
-          username: "Alice",
+          username: `${config.USERNAME}`,
       };
         const result = await postRequest(endpoint, postData);
         

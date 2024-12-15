@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        height: "7%",
+        maxHeight: SIZES.baseHeight * 7,
         width: SIZES.width - 48,
         paddingHorizonral: 0,
         zIndex: 999,
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 
     tooltip: {
         position: 'absolute',
-        top: -13,
+        top: -12,
         textAlign: 'center',
     },
 

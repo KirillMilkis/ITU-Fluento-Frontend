@@ -1,14 +1,15 @@
 import { Text, View, TouchableOpacity, Alert,} from 'react-native'
-  import React, { useCallback } from 'react'
-  import styles from './flashCardFormScreen.styles'
-  import { SafeAreaView } from 'react-native-safe-area-context'
-  import { FlashCardForm } from '../../components'
-  import { useNavigation } from '@react-navigation/native'
-  import Icon from 'react-native-vector-icons/Ionicons'
-  import { postRequest } from '../../api'
+import React, { useCallback } from 'react'
+import styles from './flashCardFormScreen.styles'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { FlashCardForm } from '../../components'
+import { useNavigation } from '@react-navigation/native'
+import Icon from 'react-native-vector-icons/Ionicons'
+import { postRequest } from '../../api'
+import config from '../../config/config'
 
   
-  const NewFlashCardForm = ({route}) => {
+const NewFlashCardForm = ({route}) => {
 
 
     const { deckId } = route.params;
@@ -24,10 +25,29 @@ import { Text, View, TouchableOpacity, Alert,} from 'react-native'
      */
     const onSubmit = useCallback(async(formData) => {
         let result;
+
+          // Data validation
+          if(formData.question === "" || formData.answer === ""){
+            Alert.alert(
+                'Creation Failed',
+                'Please fill in all the fields',
+                [{ text: 'OK' }]
+                );
+            return;
+        }
+        if(formData.question.length > 200 || formData.answer.length > 200){
+            Alert.alert(
+                'Creation Failed',
+                'Question and answer must be less than 200 characters',
+                [{ text: 'OK' }]
+                );
+            return;
+        }
+
         try{
             let endpoint = 'flashcards/create';
             let postData = {
-                username: 'Alice',
+                username: `${config.USERNAME}`,
                 question: formData.question,
                 answer: formData.answer
             };
@@ -103,4 +123,4 @@ import { Text, View, TouchableOpacity, Alert,} from 'react-native'
     )
   }
   
-  export default NewFlashCardForm
+export default NewFlashCardForm

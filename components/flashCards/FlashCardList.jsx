@@ -1,8 +1,9 @@
-/**
+/*
  * File: FlashCardList.jsx
  * Author: Kirill Kurakov <xkurak03>
  * Date Created: 12.11.2024
  * 
+ * Note: 
  */
 import { View, ScrollView, ActivityIndicator } from 'react-native'
 import React, {useCallback} from 'react'
@@ -13,6 +14,7 @@ import { useState } from 'react';
 import { fetchRequest } from '../../api';
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
+import config from '../../config/config'
 
 const FlashCardList = ({deckId, isCreator, sortByAttemps, isAnswersHidden}) => {
 
@@ -33,7 +35,7 @@ const FlashCardList = ({deckId, isCreator, sortByAttemps, isAnswersHidden}) => {
       // Two different endpoints for sorting by attemps and not
       // FlashCard will be sorted from the most successful for the user to the least
       if(sortByAttemps){
-        endpoint = `decks/${deckId}/Alice`;
+        endpoint = `decks/${deckId}/${config.USERNAME}`;
       } else {
         endpoint = `decks/${deckId}`;
       }
@@ -76,6 +78,7 @@ const FlashCardList = ({deckId, isCreator, sortByAttemps, isAnswersHidden}) => {
             <>
               {data.map((cardItem) => (
                 <FlashCardListTile
+                  key={cardItem.ID || cardItem.flashcardID}
                   cardItem={cardItem}
                   isCreator={isCreator}
                   isAnswerHidden={isAnswersHidden}
