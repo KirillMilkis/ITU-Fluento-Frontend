@@ -7,12 +7,14 @@ import BottomTabNavigator from './navigation/BottomTabNavigator';
 import * as Font from 'expo-font';
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
+import { CreateGrammarScreen, NewQuestionScreen, NewQuizScreen, CreateFillInScreen, CreateMatchPairsScreen, CreateMultipleChoiceScreen, CreateOrderingScreen, CreateTrueFalseScreen } from './screens';
 import { FlashCardsListScreen, FlashCardDetailsScreen, NewCollectionFormScreen, CollectionListScreen, NewFlashCardFormScreen, EditFlashCardFormScreen, ResultsScreen } from './screens';
 import { AllQuizzesScreen, LevelQuizzesScreen, GrammarScreen, MultipleChoiceScreen, TrueFalseScreen} from './screens';
-import { UserProfileScreen, UserSettingsScreen, AvatarChangeScreen } from './screens';
+import { UserProfileScreen, UserSettingsScreen, AvatarChangeScreen, UserQuizzesScreen} from './screens';
 import { StatisticScreen, LeaderboardScreen } from './screens';
 
-// Temporary addition that removes logs appearing on the screen
+
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Warning: ...']);
 LogBox.ignoreAllLogs();
@@ -76,6 +78,46 @@ export default function App() {
           options={{headerShown: false}}
           />
 
+          <Stack.Screen name="CreateGrammarScreen"
+          component={CreateGrammarScreen}
+          options={{headerShown: false}}
+          />
+
+          <Stack.Screen name="NewQuestionScreen"
+          component={NewQuestionScreen}
+          options={{headerShown: false}}
+          />
+
+          <Stack.Screen name="NewQuizScreen"
+          component={NewQuizScreen}
+          options={{headerShown: false}}
+          />
+
+          <Stack.Screen name="CreateFillInScreen"
+          component={CreateFillInScreen}
+          options={{headerShown: false}}
+          />
+
+          <Stack.Screen name="CreateMatchPairsScreen"
+          component={CreateMatchPairsScreen}
+          options={{headerShown: false}}
+          />
+
+          <Stack.Screen name="CreateMultipleChoiceScreen"
+          component={CreateMultipleChoiceScreen}
+          options={{headerShown: false}}
+          />
+
+          <Stack.Screen name="CreateOrderingScreen"
+          component={CreateOrderingScreen}
+          options={{headerShown: false}}
+          />
+
+          <Stack.Screen name="CreateTrueFalseScreen"
+          component={CreateTrueFalseScreen}
+          options={{headerShown: false}}
+          />
+
           <Stack.Screen name="AllQuizzesScreen"
           component={AllQuizzesScreen}
           options={{headerShown: false}}
@@ -99,6 +141,11 @@ export default function App() {
 
           <Stack.Screen name="AvatarChangeScreen"
           component={AvatarChangeScreen}
+          options={{headerShown: false}}
+          />
+
+          <Stack.Screen name="UserQuizzesScreen"
+          component={UserQuizzesScreen}
           options={{headerShown: false}}
           />
 

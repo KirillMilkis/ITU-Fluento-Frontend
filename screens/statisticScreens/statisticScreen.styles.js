@@ -1,3 +1,10 @@
+/*
+ * File: statisticScreen.styles.js
+ * Author: Tomáš Kučera <xkucer0t>
+ * Date Created: 12.11.2024
+ * Note:
+ */
+
 const styles = {
     headerText: {
         fontSize: 28,
