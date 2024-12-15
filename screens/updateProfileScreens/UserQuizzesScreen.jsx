@@ -49,7 +49,7 @@ const UserQuizzesScreen = () => {
     };
 
     return (
-        <View style={{ flex: 1, position: 'relative' }}>
+        <View style={{ flex: 1,}}>
 
 
             <View style={[styles.topBarContainer, { paddingTop: 40 }]}> 
@@ -85,13 +85,18 @@ const UserQuizzesScreen = () => {
                 ) : (
                     <Text>You havent created any quizzes yet.</Text>
                 )}
+
+                
             </ScrollView>
-            <TouchableOpacity 
-                style={styles.floatingButton} 
-                onPress={handleNewQuizClick}
-            >
-                <Icon name="add" size={30} color="white" />
-            </TouchableOpacity>
+
+            <View style={{ position: 'absolute', bottom: 20, right: 20, zIndex: 1 }}>
+                <TouchableOpacity 
+                    style={styles.floatingButton} 
+                    onPress={handleNewQuizClick}
+                >
+                    <Icon name="add" size={30} color="white" />
+                </TouchableOpacity>
+            </View>
             
         </View>
     );

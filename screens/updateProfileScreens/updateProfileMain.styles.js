@@ -214,6 +214,7 @@ const styles = StyleSheet.create({
     },
       
     quizListContainer: {
+
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
@@ -237,20 +238,17 @@ const styles = StyleSheet.create({
         paddingHorizontal: 8,
     },
     floatingButton: {
-        position: 'absolute',
-        bottom: 20,
-        right: 20,
-        backgroundColor: 'green',
         width: 60,
         height: 60,
         borderRadius: 30,
+        backgroundColor: '#f4511e',
         justifyContent: 'center',
         alignItems: 'center',
-        elevation: 5,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 5,
     },
     quizContainerSmall: {
         width: '48%',
