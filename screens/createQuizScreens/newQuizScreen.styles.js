@@ -163,14 +163,14 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginRight: 20,
 
-        // Shadow for Android
-        elevation: 5,
+        // // Shadow for Android
+        // elevation: 5,
 
-        // Shadow for iOS
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
+        // // Shadow for iOS
+        // shadowColor: '#000',
+        // shadowOffset: { width: 0, height: 2 },
+        // shadowOpacity: 0.25,
+        // shadowRadius: 3.84,
     },
     text: {
         fontSize: 22,
