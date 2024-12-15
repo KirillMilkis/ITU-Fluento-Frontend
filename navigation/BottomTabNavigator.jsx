@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Home, Decks, Stats } from '../screens'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { COLORS } from '../constants/theme'
-import CollectionsMain from '../screens/collectionScreens/CollectionsMain';
+import CollectionsMain from '../screens/collectionScreens/CollectionsMainScreen';
 import AllQuizzesScreen from '../screens/quizScreens/AllQuizzesScreen';
 import StatisticScreen from '../screens/statisticScreens/StatisticScreen';
 

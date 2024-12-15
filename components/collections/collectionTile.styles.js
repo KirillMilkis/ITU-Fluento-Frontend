@@ -1,3 +1,9 @@
+/**
+ * File: CollectionTile.styles.jsx
+ * Author: Kirill Kurakov <xkurak03>
+ * Date Created: 12.11.2024
+ * 
+ */
 import { StyleSheet } from "react-native";
 import { COLORS, SIZES } from '../../constants/theme'
 
@@ -5,7 +11,7 @@ const styles = StyleSheet.create({
 
     tileContainer: {
         padding: 15,
-        width: SIZES.baseWidth * 85, // Set width to 100%
+        width: SIZES.baseWidth * 85, 
         flexDirection: 'row',
         height: SIZES.baseHeight * 10,
         borderRadius: 20,

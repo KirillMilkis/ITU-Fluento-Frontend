@@ -1,29 +1,45 @@
-import { StyleSheet, Text, 
-  TextInput, View, TouchableOpacity, 
-  Alert,
-  Button} from 'react-native'
+/**
+ * File: NewCollectionFormScreen.jsx
+ * Author: Kirill Kurakov <xkurak03>
+ * Date Created: 12.11.2024
+ * 
+ */
+import { Text, TextInput, View, TouchableOpacity, Alert,} from 'react-native'
 import React, { useCallback } from 'react'
-import { set, useForm } from 'react-hook-form'
-import { ScrollView } from 'react-native-gesture-handler'
-import styles from './newCollectionForm.styles'
+import { useForm } from 'react-hook-form'
+import styles from './newCollectionFormScreen.styles'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { FlashCardListTile } from '../../components'
 import { useNavigation } from '@react-navigation/native'
-import { usePostRequest } from '../../api'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { useState, useEffect } from 'react'
 import { postRequest } from '../../api'
 
-const NewFlashCardForm = () => {
+const NewCollectionFormScreen = () => {
 
     const { handleSubmit, register, setValue, error } = useForm();
 
-    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms)); // Delay function to simulate loading
 
-    const navigation = useNavigation();
-    const [triggerPost, setTriggerPost] = useState(false);
-
+    const navigation = useNavigation(); 
+    
+    /**
+     * @brief Function to handle form submission
+     * 
+     * @param {Object} formData 
+     * 
+     * @returns {void}
+     */
     const onSubmit = useCallback(async (formData) => {
+      console.log(formData);
+      // Check if collection name is empty, it wil not be created
+      if(formData.collectionName === '' || formData.collectionName === undefined){
+        Alert.alert(
+          'Creation Failed',
+          'Collection name cannot be empty. Please try again.',
+          [{ text: 'OK' }]
+        );
+        return;
+      }
+      // Create new collection with the given name
       try{
         let endpoint = 'decks/create';
         let postData = {
@@ -44,12 +60,14 @@ const NewFlashCardForm = () => {
           [{ text: 'OK' }]
         );
       } finally {
+        // Give the time to the server to create the collection
         await delay(100);
         navigation.navigate("CollectionListScreen", { title: "Your collections", propertyType: "created" });
       }
         
     }, []);
 
+    // Function to set the value of the field in the form
     const onChangeField = useCallback((name) => (text) => {
         setValue(name, text);
     });
@@ -57,19 +75,20 @@ const NewFlashCardForm = () => {
 
   return (
     <SafeAreaView>
+        {/* Top bar with back button */}
         <View style ={styles.topBarContainer}>
         <TouchableOpacity TouchableOpacity onPress={() => navigation.goBack()}>
             <Icon name="arrow-back-outline" size={38} color="black" />
             </TouchableOpacity>
 
             <Text style={styles.titleStyle}>New Collection</Text>
-
+            {/* Transparent button to keep the layout and spacing */}
             <TouchableOpacity onPress={()=>{}}>
             <Icon name="heart-outline" size={38} color="transparent" />
             </TouchableOpacity>
         </View>
         
-        
+        {/* Form to create a new collection */}
         <View style={[styles.formContainer, styles.spacing]}>
           <Text style={[styles.titleStyle2, styles.titleSpacing]}>Collection's name</Text>
 
@@ -91,4 +110,4 @@ const NewFlashCardForm = () => {
   )
 }
 
-export default NewFlashCardForm
+export default NewCollectionFormScreen

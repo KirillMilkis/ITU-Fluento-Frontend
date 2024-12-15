@@ -1,32 +1,12 @@
+/**
+ * File: FlashCardForm.styles.jsx
+ * Author: Kirill Kurakov <xkurak03>
+ * Date Created: 9.12.2024
+ * 
+ */
 import { StyleSheet } from "react-native";
 import { COLORS, SIZES } from '../../constants/theme'
-
 const styles = StyleSheet.create({
-
-    topBarContainer: {
-        marginHorizontal: 20,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width: SIZES.width - 48,
-        // width: '100%',
-        paddingHorizonral: 0,
-        zIndex: 999,
-    },
-
-    titleStyle: {
-        color: COLORS.black,
-        fontSize: SIZES.h2,
-        fontFamily: "Bold",
-
-
-    },
-
-    textStyle: {
-        color: COLORS.black,
-        fontSize: SIZES.h3,
-        fontFamily: "Bold",
-    },
 
     formContainer: {
         alignItems: 'center',
@@ -35,8 +15,6 @@ const styles = StyleSheet.create({
         width: '100%',
         padding: 33,
         gap: 14,
-
-
     },
 
     flashCardContainer: {
@@ -47,8 +25,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-
-
 
     flashCardTop: {
         width: '100%',
@@ -106,19 +82,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.gray2,
     },
 
-    spacing: {
-        marginVertical: 50, // Adds horizontal space between text and icon
-    },
-    spacing2: {
-        marginVertical: 7, // Adds horizontal space between text and icon
-    },
-    titleSpacing: {
-        marginVertical: 14, // Adds horizontal space between text and icon
-    }
-
 
 });
-
-
 
 export default styles;
