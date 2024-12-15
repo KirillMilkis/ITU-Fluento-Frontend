@@ -11,8 +11,6 @@ import LevelQuizzesScreen from "./quizScreens/LevelQuizzesScreen";
 import AllQuizzesScreen from "./quizScreens/AllQuizzesScreen";
 import QuestionScreen from "./quizScreens/QuestionScreen"
 import GrammarScreen from "./quizScreens/GrammarScreen";
-import MultipleChoiceScreen from "./quizScreens/MultipleChoiceScreen";
-import TrueFalseScreen from "./quizScreens/TrueFalseScreen";
 import ResultsScreen from "./quizScreens/ResultsScreen"
 
 import UserProfileScreen from "./updateProfileScreens/UserProfileScreen";
@@ -22,4 +20,4 @@ import AvatarChangeScreen from "./updateProfileScreens/AvatarChangeScreen";
 import StatisticScreen from "./statisticScreens/StatisticScreen";
 import LeaderboardScreen from "./statisticScreens/LeaderboardScreen";
 
-export { Home, Decks, Stats, FlashCardsListScreen, CollectionListScreen, FlashCardDetails, NewFlashCardForm, NewCollectionForm, LevelQuizzesScreen, AllQuizzesScreen, GrammarScreen, QuestionScreen, MultipleChoiceScreen, TrueFalseScreen, ResultsScreen, UserProfileScreen, UserSettingsScreen, AvatarChangeScreen, StatisticScreen, LeaderboardScreen};
+export { Home, Decks, Stats, FlashCardsListScreen, CollectionListScreen, FlashCardDetails, NewFlashCardForm, NewCollectionForm, LevelQuizzesScreen, AllQuizzesScreen, GrammarScreen, QuestionScreen, ResultsScreen, UserProfileScreen, UserSettingsScreen, AvatarChangeScreen, StatisticScreen, LeaderboardScreen};

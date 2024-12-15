@@ -35,11 +35,9 @@ const ResultsScreen = ({navigation}) => {
             <Text style={[styles.secText]}>Grammar Mistakes</Text>
             <Text style={[styles.secScore , {color:results.grammarColor}]}>{Math.floor(parseFloat(results.grammarMistakes))}%</Text>
             <Text style={[styles.message]}>{results.description}</Text>
-            <View style={[styles.bottomBarContainer]}>
-                <TouchableOpacity onPress={()=>navigation.popToTop()}>
-                    <Text style={[styles.bottomBarText]}>Finish Quiz</Text>
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity style={[styles.bottomBarContainer]} onPress={()=>navigation.popToTop()}>
+                <Text style={[styles.bottomBarText]}>Finish Quiz</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 };

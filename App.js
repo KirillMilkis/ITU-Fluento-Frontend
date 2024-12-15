@@ -8,7 +8,7 @@ import * as Font from 'expo-font';
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { FlashCardsListScreen, FlashCardDetails, NewCollectionForm, CollectionListScreen, NewFlashCardForm, ResultsScreen } from './screens';
-import { AllQuizzesScreen, LevelQuizzesScreen, GrammarScreen, QuestionScreen, MultipleChoiceScreen, TrueFalseScreen} from './screens';
+import { AllQuizzesScreen, LevelQuizzesScreen, GrammarScreen, QuestionScreen} from './screens';
 import { UserProfileScreen, UserSettingsScreen, AvatarChangeScreen } from './screens';
 import { StatisticScreen, LeaderboardScreen } from './screens';
 
@@ -114,16 +114,6 @@ export default function App() {
 
           <Stack.Screen name="QuestionScreen"
           component={QuestionScreen}
-          options={{headerShown: false}}
-          />
-
-          <Stack.Screen name="MultipleChoiceScreen"
-          component={MultipleChoiceScreen}
-          options={{headerShown: false}}
-          />
-
-          <Stack.Screen name="TrueFalseScreen"
-          component={TrueFalseScreen}
           options={{headerShown: false}}
           />
 

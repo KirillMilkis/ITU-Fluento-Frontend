@@ -5,7 +5,7 @@ import styles from './grammar.styles';
 import { TouchableOpacity } from 'react-native';
 import {Ionicons} from '@expo/vector-icons'
 import startQuiz from '../../api/startQuiz';
-
+import { getResults } from '../../api';
 
 
 import config from '../../config/config';
@@ -26,21 +26,28 @@ const GrammarScreen = ({navigation}) => {
         }
     };
 
-
     useEffect(() => {
         fetchGrammar();
     }, []);
 
     const nextQuestion = () => {
-        navigation.navigate('QuestionScreen')
+        navigation.navigate('QuestionScreen', {quizTitle: quizTitle})
     }
 
+    const leaveQuiz = async () => {
+        try {
+            const result = await getResults();;
+        } catch (error) {
+            console.error("Failed to quit quiz:", error);
+        }
+        navigation.popToTop()
+    }
 
     return (
         <SafeAreaView style={[styles.container]}>
             <View style={[styles.topBarContainer]}>
                 <Text style={[styles.topBarText]}>{quizTitle}</Text>
-                <TouchableOpacity onPress={()=>navigation.popToTop()}>
+                <TouchableOpacity onPress={()=>leaveQuiz()}>
                     <Ionicons name="close-circle-outline" style={[styles.topBarIcon]}></Ionicons>
                 </TouchableOpacity>
             </View >

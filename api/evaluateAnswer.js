@@ -13,7 +13,6 @@ const evaluateAnswer = async (myAnswer) => {
                 answer: myAnswer
             }),
         });
-
         if (!response.ok) {
             console.log('Error evaluate answer');
             throw new Error('Failed to evaluate answer');

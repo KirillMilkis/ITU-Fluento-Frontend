@@ -1,50 +1,82 @@
-import React, { useEffect, useState } from 'react';
+/*
+File: QuestionScreen.jsx
+Author: Petra Oravová <xoravo01>
+Date Created: 12.11.2024
+Note: */
+import React, { useRef, useEffect, useState} from 'react';
+import { useRoute } from '@react-navigation/native';
 import { SafeAreaView, Text, View, TouchableOpacity } from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import getQuestion from '../../api/getQuestion';
-import { evaluateAnswer } from '../../api';
+import { evaluateAnswer, getResults } from '../../api';
 import styles from './question.styles';
 import MultipleChoice from '../../components/questions/MultipleChoice';
 import TrueFalse from '../../components/questions/TrueFalse';
 import { useNavigation } from '@react-navigation/native';
+import FillInBlank from '../../components/questions/FillInBlank';
+import MatchingQuestions from '../../components/questions/MatchingQuestions';
+import OrderingQuestions from '../../components/questions/OrderingQuestions';
 
 const QuestionScreen = () => {
+    const route = useRoute();
+    const {quizTitle} = route.params;
     const navigation = useNavigation();
     const [question, setQuestion] = useState([]);
     const [hasAnswered, setHasAnswered] = useState(false);
     const [selectedAnswer, setSelectedAnswer] = useState([]);
     const [correctAnswer, setCorrectAnswer] = useState([]);
+    const questionComponentRef = useRef(null);
 
+    // sending answer with bottom bar button
+    const handleBottomBarSubmit = () => {
+        const answer = questionComponentRef.current?.handleSubmit();
+        evaluate(answer);
+    };
+
+    // new question reset
     const resetState = () => {
         setHasAnswered(false);
         setSelectedAnswer([]);
         setCorrectAnswer([]);
+        questionComponentRef.current = null;
     };
 
+    // check if question is last
     function isLast(fraction) {
         return /\b(\d+)\/\1\b/.test(fraction);
     }
 
+    // get next question from api
     const fetchQuestion = async () => {
-        if(hasAnswered){
-            if(isLast(question.counter)){
-                navigation.navigate("ResultsScreen");
+        if(isLast(question.counter)){
+            navigation.navigate("ResultsScreen");
+        }
+        else{
+            try {
+                const result = await getQuestion();;
+                setQuestion(result);
+                resetState();
+                console.log(result);
+            } catch (error) {
+                console.error("Failed to fetch question:", error);
             }
         }
-        try {
-            const result = await getQuestion();;
-            setQuestion(result);
-            resetState();
-            console.log(result);
-        } catch (error) {
-            console.error("Failed to fetch question:", error);
-        }
     }
-
     useEffect(() => {
         fetchQuestion();
     }, []);
 
+    // leave quiz with button in top bar
+    const leaveQuiz = async () => {
+        try {
+            const result = await getResults();;
+        } catch (error) {
+            console.error("Failed to quit quiz:", error);
+        }
+        navigation.popToTop()
+    }
+
+    // send answer to api and get result
     const evaluate = async (answer) => {
         console.log(answer)
         if (hasAnswered) return;
@@ -58,9 +90,9 @@ const QuestionScreen = () => {
             setHasAnswered(false);
             console.error("Failed to evaluate answer:", error);
         }
-        
     }
 
+    // decide which type of question to render
     const renderQuestion = () => {
         switch (question.type) {
             case 'multipleChoice':
@@ -76,10 +108,39 @@ const QuestionScreen = () => {
             case 'trueFalse':
                 return (
                     <TrueFalse
+                        ref={questionComponentRef}
                         question={question}
-                        onSubmitAnswer={evaluate}
                         disabled={hasAnswered}
                         selectedAnswer={selectedAnswer}
+                        correctAnswer={correctAnswer}
+                    />
+                );
+            case 'fillInBlank':
+                return (
+                    <FillInBlank
+                        ref={questionComponentRef} // Ref na komponentu
+                        question={question}
+                        disabled={hasAnswered}
+                        selectedAnswer={selectedAnswer}
+                        correctAnswer={correctAnswer}
+                    />
+                );
+            case 'matchingQuestions':
+                return (
+                    <MatchingQuestions
+                        ref={questionComponentRef}
+                        question={question}
+                        disabled={hasAnswered}
+                        selectedAnswer={selectedAnswer}
+                        correctAnswer={correctAnswer}
+                    />
+                );
+            case 'orderingQuestions':
+                return (
+                    <OrderingQuestions
+                        ref={questionComponentRef}
+                        question={question}
+                        disabled={hasAnswered}
                         correctAnswer={correctAnswer}
                     />
                 );
@@ -91,14 +152,26 @@ const QuestionScreen = () => {
     return (
         <SafeAreaView style={[styles.container]}>
             <View style={[styles.topBarContainer]}>
-                <TouchableOpacity onPress={()=>navigation.popToTop()}>
+                <Text style={[styles.topBarText]}>{quizTitle}</Text>
+                <TouchableOpacity onPress={()=>leaveQuiz()}>
                     <Ionicons name="close-circle-outline" style={[styles.topBarIcon]}></Ionicons>
                 </TouchableOpacity>
             </View>
             {renderQuestion()}
-            <TouchableOpacity onPress={() => fetchQuestion()}>
-                <Text>Next Question</Text>
-            </TouchableOpacity>
+            <View style={[styles.bottomBarContainer]}>
+                <TouchableOpacity onPress={()=> navigation.goBack()}>
+                    <Ionicons name="school" style={[styles.bottomBarIcon]}></Ionicons>
+                </TouchableOpacity>
+                {!hasAnswered ? (
+                    <TouchableOpacity onPress={handleBottomBarSubmit}>
+                        <Ionicons name="checkmark" style={[styles.bottomBarIcon]} />
+                    </TouchableOpacity>
+                ) : (
+                    <TouchableOpacity onPress={() => fetchQuestion()}>
+                        <Ionicons name="arrow-forward" style={[styles.bottomBarIcon]} />
+                    </TouchableOpacity>
+                )}
+            </View>
         </SafeAreaView>
     );
 };

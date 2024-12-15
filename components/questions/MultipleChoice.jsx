@@ -1,116 +1,151 @@
-import React from 'react';
+import React from "react";
+import { View, Text, Image, TouchableOpacity, SafeAreaView, StyleSheet } from "react-native";
 import config from '../../config/config';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Image } from 'react-native';
-import { COLORS, SIZES } from '../../constants/theme'
 
 const MultipleChoice = ({ question, onSubmitAnswer, disabled, selectedAnswer, correctAnswer }) => {
+    function extractCorrectAnswer(input) {
+        // Ověření, že input je neprázdný a typu string
+        if (input) {
+            // Rozdělení vstupu podle slova "is"
+            const parts = input.split("is");
+
+            // Pokud existuje část za "is", vrátíme ji, jinak prázdný řetězec
+            if (parts.length > 1) {
+                return parts[1].trim(); // Odstranění složených závorek a trimování
+            }
+        }
+        return "";
+    }
+
     const getButtonStyle = (optionValue) => {
-        if (!disabled) return styles.option; // Původní styl pro nevybranou možnost
+        if (!correctAnswer.message) return styles.option; // Styl pro nevybranou možnost před odesláním odpovědi
 
-        // Změna barvy po odeslání odpovědi
-        if (optionValue === correctAnswer) {
-            return [styles.option, styles.correct]; // Správná odpověď zeleně
+        // Správná odpověď vybraná uživatelem
+        if (optionValue === selectedAnswer && correctAnswer.isCorrect) {
+            return [styles.option, styles.correct]; // Zelená barva
         }
-        if (optionValue === selectedAnswer && optionValue !== correctAnswer) {
-            return [styles.option, styles.wrong]; // Špatná odpověď červeně
+
+        // Špatná odpověď vybraná uživatelem
+        if (optionValue === selectedAnswer && !correctAnswer.isCorrect) {
+            return [styles.option, styles.wrong]; // Červená barva
         }
-        return styles.optionDisabled; // Ostatní odpovědi šedé
+
+        // Správná odpověď, pokud je uživatelova odpověď špatná
+        if (!correctAnswer.isCorrect && optionValue === extractCorrectAnswer(correctAnswer.message)) {
+            return [styles.option, styles.correct]; // Zelená barva pro správnou odpověď
+        }
+
+        // Ostatní možnosti šedé
+        return [styles.option, styles.optionDisabled];
     };
-
-    console.log("Correct Answer:", correctAnswer.message);
+    
 
     return (
         <SafeAreaView>
             <Text style={[styles.question]}>{question.question}</Text>
             <Image
-                        source={{
-                            uri: `${config.IMAGE_URL}${question.imagePath}`,
-                        }}
-                        style={styles.image}
-                        />
-
+                source={{ uri: `${config.IMAGE_URL}${question.imagePath}` }}
+                style={styles.image}
+            />
             <View style={[styles.optionsContainer1]}>
                 <View style={[styles.optionsContainer]}>
-                    <TouchableOpacity onPress={() => onSubmitAnswer(question.optionA)} disabled={disabled}>
-                        <Text style={[styles.option]}>{question.optionA}</Text>
+                    <TouchableOpacity
+                        onPress={() => onSubmitAnswer(question.optionA)}
+                        disabled={disabled}
+                        style={getButtonStyle(question.optionA)}
+                    >
+                        <Text style={styles.optionText}>{question.optionA}</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => onSubmitAnswer(question.optionB)} disabled={disabled}>
-                        <Text style={[styles.option]}>{question.optionB}</Text>
+                    <TouchableOpacity
+                        onPress={() => onSubmitAnswer(question.optionB)}
+                        disabled={disabled}
+                        style={getButtonStyle(question.optionB)}
+                    >
+                        <Text style={styles.optionText}>{question.optionB}</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={[styles.optionsContainer]}>
-                    <TouchableOpacity onPress={() => onSubmitAnswer(question.optionC)} disabled={disabled}>
-                        <Text style={[styles.option]}>{question.optionC}</Text>
+                    <TouchableOpacity
+                        onPress={() => onSubmitAnswer(question.optionC)}
+                        disabled={disabled}
+                        style={getButtonStyle(question.optionC)}
+                    >
+                        <Text style={styles.optionText}>{question.optionC}</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => onSubmitAnswer(question.optionD)} disabled={disabled}>
-                        <Text style={[styles.option]}>{question.optionD}</Text>
+                    <TouchableOpacity
+                        onPress={() => onSubmitAnswer(question.optionD)}
+                        disabled={disabled}
+                        style={getButtonStyle(question.optionD)}
+                    >
+                        <Text style={styles.optionText}>{question.optionD}</Text>
                     </TouchableOpacity>
-                </View >
+                </View>
             </View>
-            <Text style={[styles.message]}>{correctAnswer.message}</Text>
+            {correctAnswer.message && (
+                <Text style={[
+                    styles.message,
+                    correctAnswer.isCorrect
+                        ? { color: 'green' }
+                        : { color: 'red'}
+                ]}>{correctAnswer.message}</Text>
+            )}
         </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
-    question:{
-        paddingVertical: 45,
+    question: {
+        paddingVertical: 30,
         paddingHorizontal: 15,
         textAlign: "center",
-        fontSize: SIZES.h1,
-        fontWeight: 'bold',
+        fontSize: 24,
+        fontWeight: "bold",
     },
-
     message: {
         paddingHorizontal: 15,
         paddingVertical: 30,
         textAlign: "center",
-        fontSize: SIZES.h1-2,
+        fontSize: 22,
     },
-
     optionsContainer1: {
         flexDirection: "row",
-        justifyContent: "space-evenly"
+        justifyContent: "space-evenly",
     },
-
     optionsContainer: {
-        flexDirection: 'column',
+        flexDirection: "column",
         justifyContent: "space-between",
         width: "50%",
     },
-
     option: {
-        width: '95%',
+        width: "95%",
         height: 80,
-        backgroundColor: 'gray',
+        backgroundColor: "gray",
         borderRadius: 12,
-        textAlign: "center",
-        verticalAlign: "middle",
-        padding: 10,
-        fontSize: SIZES.h2,
+        justifyContent: "center",
+        alignItems: "center",
         alignSelf: "center",
         margin: 5,
     },
+    optionText: {
+        fontSize: 18,
+        color: "#fff",
+        textAlign: "center",
+    },
     optionDisabled: {
-        backgroundColor: '#d3d3d3',
-        padding: 10,
-        borderRadius: 8,
-        marginBottom: 10,
+        backgroundColor: "#d3d3d3",
     },
     correct: {
-        backgroundColor: '#4caf50', // Zelená pro správnou odpověď
+        backgroundColor: "#4caf50", // Zelená pro správnou odpověď
     },
     wrong: {
-        backgroundColor: '#f44336', // Červená pro špatnou odpověď
+        backgroundColor: "#f44336", // Červená pro špatnou odpověď
     },
-
     image: {
         width: 100,
         height: 100,
         marginBottom: 30,
         alignSelf: "center",
     },
-
 });
 
 export default MultipleChoice;
