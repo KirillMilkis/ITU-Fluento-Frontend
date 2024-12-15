@@ -25,6 +25,7 @@ import {
     TrueFalseScreen, 
     NewQuestionScreen, 
     NewQuizScreen, 
+    CreateGrammarScreen,
     CreateFillInScreen, 
     CreateMatchPairsScreen, 
     CreateMultipleChoiceScreen, 
@@ -36,7 +37,8 @@ import {
     UserProfileScreen, 
     UserSettingsScreen, 
     AvatarChangeScreen, 
-    UserQuizzesScreen 
+    UserQuizzesScreen,
+    QuestionScreen
 } from './screens';
 import { StatisticScreen, LeaderboardScreen } from './screens';
 

@@ -49,6 +49,7 @@ export {
     EditFlashCardFormScreen, 
     NewQuestionScreen, 
     NewQuizScreen, 
+    QuestionScreen,
     CreateGrammarScreen, 
     CreateFillInScreen, 
     CreateMatchPairsScreen, 
