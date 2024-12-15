@@ -10,36 +10,41 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { COLORS, SIZES } from '../../constants/theme';
 
 const OrderingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref) => {
-    // Bezpečné zpracování správného pořadí
+    // set correct order
     const correctOrder = correctAnswer?.message
         ? correctAnswer.message.includes("is")
             ? correctAnswer.message.split("is")[1]?.trim()?.split(",") || []
-            : [] // Pokud chybí "is", vrátíme prázdné pole
+            : []
         : [];
 
+    // set data
     const [data, setData] = useState(
         question?.options
             ?.split(", ")
-            ?.map((item, index) => ({ key: `${index}`, label: item })) || [] // Výchozí prázdné pole
+            ?.map((item, index) => ({ key: `${index}`, label: item })) || []
     );
 
+    // handle drag
     const handleDragEnd = ({ data: newData }) => {
         if (!disabled) {
             setData(newData);
         }
     };
 
+    // ref function
     useImperativeHandle(ref, () => ({
         handleSubmit,
     }));
 
+    // send answer to questionScreen
     const handleSubmit = () => {
         if (disabled) return;
         const formattedAnswer = data.map((item) => item.label).join(",");
         return formattedAnswer;
     };
 
-    function formateAnswer(msg) {
+    // format answer for print
+    function formatAnswer(msg) {
         if (msg && !correctAnswer.isCorrect) {
             const parts = msg.split("is");
             const firstPart = parts[0]?.trim();
@@ -51,6 +56,7 @@ const OrderingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
         }
     }
 
+    // manage item color
     const getItemStyle = (label) => {
         const currentIndex = data.findIndex((item) => item.label === label);
         if (disabled) {
@@ -58,14 +64,15 @@ const OrderingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
                 return styles.correctItem;
             }
             if (correctOrder[currentIndex] === label) {
-                return styles.correctItem; // Zelená - správná pozice
+                return styles.correctItem; // green
             } else {
-                return styles.wrongItem; // Červená - špatná pozice
+                return styles.wrongItem; // red
             }
         }
-        return styles.item; // Bez obarvení
+        return styles.item; normal
     };
 
+    // decide result color
     const getMessageStyle = () => {
         return correctAnswer?.isCorrect ? styles.correctMessage : styles.wrongMessage;
     };
@@ -81,13 +88,13 @@ const OrderingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
                 renderItem={({ item, drag }) => (
                     <TouchableOpacity
                         style={[styles.item, getItemStyle(item.label)]}
-                        onPressIn={!disabled ? drag : undefined} // Zakázání přetažení při disabled
+                        onPressIn={!disabled ? drag : undefined} // no drag when disabled
                     >
                         <Text style={styles.itemText}>{item.label}</Text>
                     </TouchableOpacity>
                 )}
             />
-            <Text style={[styles.message, getMessageStyle()]}>{formateAnswer(correctAnswer?.message)}</Text>
+            <Text style={[styles.message, getMessageStyle()]}>{formatAnswer(correctAnswer?.message)}</Text>
         </View>
     );
 });
@@ -129,10 +136,10 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     correctMessage: {
-        color: "#28a745", // Zelená barva pro správnou odpověď
+        color: "#28a745", // green
     },
     wrongMessage: {
-        color: "#dc3545", // Červená barva pro špatnou odpověď
+        color: "#dc3545", // red
     },
 });
 

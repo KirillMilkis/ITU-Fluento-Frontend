@@ -22,6 +22,7 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
         right: useRef({}),
     };
 
+    // helps locate lines
     const measureItem = (ref, side, item) => {
         if (ref) {
             ref.measureInWindow((x, y, width, height) => {
@@ -38,7 +39,7 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
 
         if (selected) {
             if (selected.side !== side) {
-                // Přidat spojení
+                // add connection
                 setConnections((prevConnections) => {
                     const updatedConnections = prevConnections.filter(
                         (conn) => conn.left !== selected.item && conn.right !== item && conn.left !== item && conn.right != selected.item
@@ -50,30 +51,33 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
                     );
                     return updatedConnections;
                 });
-                setSelected(null); // Zrušit výběr
+                setSelected(null); // cancel
             } else {
-                setSelected({ side, item }); // Přepnutí výběru stejné strany
+                setSelected({ side, item }); 
             }
         } else {
             setSelected({ side, item });
         }
     };
 
+    // format connections
     const formatAnswer = () => {
         return connections.map(({ left, right }) => `${left}=${right}`).join(",");
     };
 
-    // Exponování funkce přes ref
+    // ref function
     useImperativeHandle(ref, () => ({
         handleSubmit,
     }));
 
+    // send answer to questionScreen
     const handleSubmit = () => {
         if (disabled) return;
         const answer = formatAnswer();
         return answer;
     };
 
+    // show what was wrong and what was correct
     const handleFeedback = (message) => {
         if (message === "Correct") {
             setFeedback({ correct: connections, wrong: [], missing: [] });
@@ -109,7 +113,7 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
         }
     };
 
-    // Volání handleFeedback na základě API odpovědi
+    // after submit, call handleFeedback
     React.useEffect(() => {
         if (correctAnswer?.message) {
             handleFeedback(correctAnswer.message);
@@ -121,7 +125,7 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
         <View style={styles.container}>
             <Text style={styles.question}>{question.questionsText}</Text>
             <View style={styles.listsContainer}>
-                {/* Levý seznam */}
+                {/* left list */}
                 <View style={styles.column}>
                     {leftList.map((item) => (
                         <TouchableOpacity
@@ -139,9 +143,9 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
                     ))}
                 </View>
 
-                {/* SVG pro čáry */}
+                {/* SVG for lines */}
                 <Svg style={styles.svgContainer}>
-                    {/* Čáry pro propojení */}
+                    {/* Lines for connections */}
                     {connections.map(({ left, right }, index) => {
                         const leftPos = positions.left[left];
                         const rightPos = positions.right[right];
@@ -168,7 +172,7 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
                         );
                     })}
 
-                    {/* Zelen čáry pro chybějící propojení */}
+                    {/* Green lines for missing correct connections */}
                     {feedback.missing.map(({ left, right }, index) => {
                         const leftPos = positions.left[left];
                         const rightPos = positions.right[right];
@@ -189,7 +193,7 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
                     })}
                 </Svg>
 
-                {/* Pravý seznam */}
+                {/* right list */}
                 <View style={styles.column}>
                     {rightList.map((item) => (
                         <TouchableOpacity
