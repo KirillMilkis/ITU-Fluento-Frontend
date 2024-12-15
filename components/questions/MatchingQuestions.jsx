@@ -166,7 +166,7 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
                                 y1={leftPos.y + leftPos.height / 2 - 220}
                                 x2={rightPos.x + rightPos.width / 2 - 70}
                                 y2={rightPos.y + rightPos.height / 2 - 220}
-                                stroke={isCorrect ? "green" : isWrong ? "red" : "blue"}
+                                stroke={isCorrect || correctAnswer.isCorrect ? "green" : isWrong ? "red" : "blue"}
                                 strokeWidth="2"
                             />
                         );
@@ -215,7 +215,7 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
                 </View>
             </View>
             {correctAnswer.message && (
-                <Text style={{ paddingTop:20, fontSize:SIZES.h2, color: correctAnswer.isCorrect ? 'green' : 'red' }}>
+                <Text style={{ paddingTop:10, fontSize:SIZES.h2, textAlign:"center", color: correctAnswer.isCorrect ? 'green' : 'red' }}>
                     {correctAnswer.isCorrect ? 'Correct' : 'Wrong, green lines are correct, red lines are your wrong answers'}
                 </Text>
             )}

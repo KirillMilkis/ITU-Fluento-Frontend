@@ -45,8 +45,11 @@ const TrueFalse = forwardRef(({ question, disabled, correctAnswer }, ref) => {
     const correctAnswers = parseCorrectAnswers(correctAnswer);
 
     // format answer for print
-    const getAnswerStatus = (answer, correctAnswer) => {
-        if (answer === correctAnswer) {
+    const getAnswerStatus = (answer, corrAnswer) => {
+        if(correctAnswer.isCorrect){
+            return { text: 'Correct', color: 'green' };
+        }
+        if (answer === corrAnswer) {
             return { text: 'Correct', color: 'green' };
         }
         return { text: 'Wrong', color: 'red' };
