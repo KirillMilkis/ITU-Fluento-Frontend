@@ -33,9 +33,7 @@ import getUserCreatedDecks from "./userProfile/getUserCreatedDecks";
 import updateUserProfile from "./userProfile/updateUserProfile";
 import getUserProgress from "./userProfile/getUserProgress";
 
-import usePostRequest from "./usePostRequest";
 import postRequest from "./postRequest";
-import useFetch from "./useFetch";
 import fetchRequest from "./fetchRequest";
 
 import getQuestion from "./getQuestion";
@@ -77,9 +75,7 @@ export {
     startQuiz, 
     evaluateAnswer, 
     getResults, 
-    usePostRequest, 
     postRequest, 
     fetchRequest, 
-    useFetch
   };
   

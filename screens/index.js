@@ -58,8 +58,6 @@ export {
     LevelQuizzesScreen, 
     AllQuizzesScreen, 
     GrammarScreen, 
-    MultipleChoiceScreen, 
-    TrueFalseScreen, 
     ResultsScreen, 
     UserProfileScreen, 
     UserSettingsScreen, 
