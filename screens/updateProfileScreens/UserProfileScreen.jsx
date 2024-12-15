@@ -13,14 +13,12 @@ import { getUserInfo } from '../../api';
 import styles from './updateProfileMain.styles';
 import config from '../../config/config';
 import { CollectionTile } from '../../components';
-import { useFetch } from '../../api';
+import CollectionList from '../../components/collections/CollectionList';
+import { fetchRequest } from '../../api';
 
 const UserProfileScreen = ({ route }) => {
     const navigation = useNavigation();
     const [userInfo, setUserInfo] = useState(null);
-
-    let url = `${config.API_URL}decks/getDecks/Alice`;
-    const { data, isLoading, error } = useFetch(url);
 
     const fetchInfo = async () => {
         try {
@@ -31,7 +29,7 @@ const UserProfileScreen = ({ route }) => {
             console.error("Failed to fetch user info:", error);
         }
     };
-
+    
     useEffect(() => {
         fetchInfo();
     }, []);
@@ -39,6 +37,7 @@ const UserProfileScreen = ({ route }) => {
     useFocusEffect(
         useCallback(() => {
             fetchInfo();
+
         }, [userInfo])
     );
 
@@ -92,21 +91,7 @@ const UserProfileScreen = ({ route }) => {
             <Text style={styles.createdCollectionsText}>Created Collections</Text>
     
             <ScrollView>
-                <View style={[styles.container, styles.spacing]}>
-                    {isLoading ? (
-                        <ActivityIndicator size="large" color="#bbbbbb" />
-                    ) : error ? (
-                        <Text>Error: {error.message}</Text>
-                    ) : (
-                        <FlatList
-                            data={data}
-                            renderItem={({ item }) => <CollectionTile item={item} />}
-                            keyExtractor={(item) => item.ID}
-                            vertical
-                            contentContainerStyle={{ gap: 14, alignItems: 'center' }}
-                        />
-                    )}
-                </View>
+            <CollectionList propertyType="created" />
             </ScrollView>
         </SafeAreaView>
     );
