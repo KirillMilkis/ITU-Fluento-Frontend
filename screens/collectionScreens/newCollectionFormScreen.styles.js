@@ -1,3 +1,9 @@
+/**
+ * File: newCollectionFormScreen.styles.jsx
+ * Author: Kirill Kurakov <xkurak03>
+ * Date Created: 4.11.2024
+ * 
+ */
 import { StyleSheet } from "react-native";
 import { COLORS, SIZES } from '../../constants/theme'
 
@@ -9,7 +15,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         width: SIZES.width - 48,
-        // width: '100%',
         paddingHorizonral: 0,
         zIndex: 999,
     },
@@ -67,10 +72,10 @@ const styles = StyleSheet.create({
 
 
     spacing: {
-        marginVertical: 50, // Adds horizontal space between text and icon
+        marginVertical: 50, 
     },
     titleSpacing: {
-        marginVertical: 14, // Adds horizontal space between text and icon
+        marginVertical: 14, 
     }
 
 

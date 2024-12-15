@@ -9,10 +9,10 @@ const fetchRequest = async (endpoint) => {
             },
         });
 
-        if (response.status === 200) {
+        if (response.status === 200 || response.status === 201 || response.status === 204) {
             const responseData = await response.json();
             console.log(responseData);
-            return { success: true, message: responseData };
+            return { success: true, message: responseData};
         } else {
             const errorData = await response.json();
             console.log('Error post request', errorData);

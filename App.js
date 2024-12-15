@@ -7,8 +7,9 @@ import BottomTabNavigator from './navigation/BottomTabNavigator';
 import * as Font from 'expo-font';
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 import { CreateGrammarScreen, NewQuestionScreen, NewQuizScreen, CreateFillInScreen, CreateMatchPairsScreen, CreateMultipleChoiceScreen, CreateOrderingScreen, CreateTrueFalseScreen } from './screens';
-import { FlashCardsListScreen, FlashCardDetails, NewCollectionForm, CollectionListScreen, NewFlashCardForm, ResultsScreen } from './screens';
+import { FlashCardsListScreen, FlashCardDetailsScreen, NewCollectionFormScreen, CollectionListScreen, NewFlashCardFormScreen, EditFlashCardFormScreen, ResultsScreen } from './screens';
 import { AllQuizzesScreen, LevelQuizzesScreen, GrammarScreen, MultipleChoiceScreen, TrueFalseScreen} from './screens';
 import { UserProfileScreen, UserSettingsScreen, AvatarChangeScreen, UserQuizzesScreen} from './screens';
 import { StatisticScreen, LeaderboardScreen } from './screens';
@@ -57,18 +58,23 @@ export default function App() {
           options={{headerShown: false}}
           />
 
-          <Stack.Screen name="FlashCardDetails"
-          component={FlashCardDetails}
+          <Stack.Screen name="FlashCardDetailsScreen"
+          component={FlashCardDetailsScreen}
           options={{headerShown: false}}
           />
 
-          <Stack.Screen name="NewCollectionForm"
-          component={NewCollectionForm}
+          <Stack.Screen name="NewCollectionFormScreen"
+          component={NewCollectionFormScreen}
           options={{headerShown: false}}
           />
 
-          <Stack.Screen name="NewFlashCardForm"
-          component={NewFlashCardForm}
+          <Stack.Screen name="NewFlashCardFormScreen"
+          component={NewFlashCardFormScreen}
+          options={{headerShown: false}}
+          />
+
+          <Stack.Screen name="EditFlashCardFormScreen"
+          component={EditFlashCardFormScreen}
           options={{headerShown: false}}
           />
 

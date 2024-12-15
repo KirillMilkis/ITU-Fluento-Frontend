@@ -10,5 +10,8 @@ import FlashCardListTile from "./flashCards/FlashCardListTile";
 import CollectionList from "./collections/CollectionList";
 import FlashCardList from "./flashCards/FlashCardList";
 import ImagePickerComponent from "./utils/ImagePickerComponent";
+import FlashCardForm from "./flashCards/FlashCardForm";
 
-export { CollectionTile, FlashCardListTile, CollectionList, FlashCardList, ImagePickerComponent};
+export { CollectionTile, FlashCardListTile, CollectionList, FlashCardList, FlashCardForm, ImagePickerComponent};
+
+

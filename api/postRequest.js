@@ -10,7 +10,7 @@ const postRequest = async (endpoint, data) => {
             body: JSON.stringify(data),
         });
 
-        if (response.status === 200) {
+        if (response.status === 200 || response.status === 201 || response.status === 204) {
             const responseData = await response.json();
             console.log(responseData);
             return { success: true, message: responseData };
