@@ -1,64 +1,94 @@
-import { View, Text, ScrollView, ActivityIndicator, FlatList } from 'react-native'
-import React, {useCallback, useEffect} from 'react'
+/*
+ * File: FlashCardList.jsx
+ * Author: Kirill Kurakov <xkurak03>
+ * Date Created: 12.11.2024
+ * 
+ * Note: 
+ */
+import { View, ScrollView, ActivityIndicator } from 'react-native'
+import React, {useCallback} from 'react'
 import FlashCardListTile from './FlashCardListTile';
-import useFetch  from '../../api/useFetch'
 import styles from './flashCardList.styles';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 import { useState } from 'react';
 import { fetchRequest } from '../../api';
+import { useNavigation } from '@react-navigation/native';
+import { Alert } from 'react-native';
+import config from '../../config/config'
 
-const FlashCardList = ({deckId, isCreator}) => {
+const FlashCardList = ({deckId, isCreator, sortByAttemps, isAnswersHidden}) => {
 
-  let endpoint = `decks/${deckId}`;
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState([]);
-
-  // const {data, isLoading, error, refetch} = useFetch(endpoint);
-
-
+  const navigation = useNavigation();
   
-  // useCallback(() => {
-  //   // Refetch the data when the screen comes into focus
-  //   refetch();
+  const [isLoading, setIsLoading] = useState(true); // Loading state for the fetch
+  const [data, setData] = useState([]); // Data to show
+  const [cardIds, setCardIds] = useState([]); // Save card IDs to use it in flash card details screen to navigate between cards 
 
+  /**
+   * @brief Function to fetch flashcards from the server
+   * 
+   * @returns {void}
+   */
   const fetchData = async () => {
     try {
+      let endpoint;
+      // Two different endpoints for sorting by attemps and not
+      // FlashCard will be sorted from the most successful for the user to the least
+      if(sortByAttemps){
+        endpoint = `decks/${deckId}/${config.USERNAME}`;
+      } else {
+        endpoint = `decks/${deckId}`;
+      }
       const result = await fetchRequest(endpoint);
+      console.log(result);
       if (result.success) {
         setData(result.message);
+        setCardIds(result.message.map((item) => sortByAttemps ? item.flashcardID : item.ID));
+        console.log(cardIds);
       }
     } catch (error) {
       console.error(error);
+      Alert.alert(
+        'Fetch Failed',
+        'There was an issue loading the flashcards. Please try again.',
+        [{ text: 'OK' }]
+        );
+        navigation.goBack();
     } finally {
       setIsLoading(false);
     }
   }
 
-  // useEffect(() => {
-  //   fetchData()
-  // });
-
-
+  // Fetch data on the screen focus
   useFocusEffect(
     useCallback(() => {
         fetchData();
-    }, [endpoint])
-);
+    }, [sortByAttemps])
+  );
 
  
-
   return (
     <View>
-    <ScrollView>
+    <ScrollView style={styles.scrollContainer}>
             <View style={styles.container}>
-            {data.map((cardItem) => (
-            <FlashCardListTile
-              key={cardItem.ID}
-              cardItem={cardItem}
-              isCreator={isCreator}
-            />
-          ))}
-            </View>
+              {/* Show loading indicator while fetching data */}
+        {isLoading ? (
+            <ActivityIndicator size="large" color="#bbbbb" alignSelf="" />
+          ) : (
+            <>
+              {data.map((cardItem) => (
+                <FlashCardListTile
+                  key={cardItem.ID || cardItem.flashcardID}
+                  cardItem={cardItem}
+                  isCreator={isCreator}
+                  isAnswerHidden={isAnswersHidden}
+                  cardIds={cardIds}
+                />
+              ))}
+            </>
+          )
+        }
+        </View>
     </ScrollView>
     </View>
   )

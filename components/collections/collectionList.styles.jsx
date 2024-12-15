@@ -1,3 +1,9 @@
+/**
+ * File: CollectionList.styles.jsx
+ * Author: Kirill Kurakov <xkurak03>
+ * Date Created: 5.11.2024
+ * 
+ */
 import { StyleSheet } from "react-native";
 import { COLORS, SIZES } from '../../constants/theme'
 
@@ -7,21 +13,24 @@ const styles = StyleSheet.create({
         gap: 16,        
         flexDirection: 'column',
         spaceBetween: 50,
+        marginTop: 10,
         flex: 1,
         justifyContent: 'center',
+        paddingBottom: SIZES.baseHeight * 12, 
         alignItems: 'center',
         padding: 33,
-        maxHeight: 10000,
         paddingTop: 10,
-
+        height: 'fit-content', 
+        
     },
 
     spacingTitles: {
-        marginVertical: 5, // Adds vertical space between text elements
+        marginVertical: 5, 
     },
     spacing: {
-        marginVertical: 7, // Adds horizontal space between text and icon
+        marginVertical: 7,
     },
+
 })
 
 export default styles;

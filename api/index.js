@@ -18,4 +18,6 @@ import startQuiz from "./startQuiz";
 import evaluateAnswer from "./evaluateAnswer";
 import getResults from "./getResults";
 
-export {  getAllQuizzes, greetUser, getUserInfo, getQuizLevels, getQuizzesByLevel, getUserCreatedDecks, updateUserProfile, getUserProgress, getQuestion, startQuiz, evaluateAnswer, getResults, usePostRequest, postRequest, fetchRequest, useFetch};
+import getRandomUser from "./getRandomUser";
+
+export { getRandomUser, getAllQuizzes, greetUser, getUserInfo, getQuizLevels, getQuizzesByLevel, getUserCreatedDecks, updateUserProfile, getUserProgress, getQuestion, startQuiz, evaluateAnswer, getResults, usePostRequest, postRequest, fetchRequest, useFetch};
