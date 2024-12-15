@@ -7,21 +7,23 @@ import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import { COLORS, SIZES } from '../../constants/theme';
 
-const TrueFalse = forwardRef(({ question, disabled, selectedAnswer, correctAnswer }, ref) => {
+const TrueFalse = forwardRef(({ question, disabled, correctAnswer }, ref) => {
     const [answer1, setAnswer1] = useState(1);
     const [answer2, setAnswer2] = useState(1);
     const [answer3, setAnswer3] = useState(1);
 
-    // Exponování funkce přes ref
+    // ref function
     useImperativeHandle(ref, () => ({
         handleSubmit,
     }));
 
+    // send answer to questionScreen
     const handleSubmit = () => {
-        if (disabled) return null; // Odpověď neodesílat, pokud je disabled
-        return `${answer1},${answer2},${answer3}`; // Vrácení formátované odpovědi
+        if (disabled) return null; 
+        return `${answer1},${answer2},${answer3}`;
     };
 
+    // true <-> false switch
     const toggleAnswer = (answer, setAnswer) => {
         if (answer == 0) {
             setAnswer(1);
@@ -30,17 +32,19 @@ const TrueFalse = forwardRef(({ question, disabled, selectedAnswer, correctAnswe
         }
     };
 
+    //parse correct answers
     const parseCorrectAnswers = correctAnswer => {
-        // Check if correctAnswer.message is defined and is a string
         if (correctAnswer && correctAnswer.message) {
-            const correctAnswers = correctAnswer.message.match(/\d+/g); // Získáme hodnoty jako pole čísel
+            const correctAnswers = correctAnswer.message.match(/\d+/g);
             return correctAnswers ? correctAnswers.map(Number) : [];
         }
-        return []; // Return an empty array if the format is invalid
+        return [];
     };
 
+    // set correct answers
     const correctAnswers = parseCorrectAnswers(correctAnswer);
 
+    // format answer for print
     const getAnswerStatus = (answer, correctAnswer) => {
         if (answer === correctAnswer) {
             return { text: 'Correct', color: 'green' };
@@ -51,6 +55,7 @@ const TrueFalse = forwardRef(({ question, disabled, selectedAnswer, correctAnswe
     return (
         <SafeAreaView>
             <Text style={[styles.question]}>{question.description}</Text>
+
             <View style={[styles.trueFalseContainer]}>
                 <Text style={[styles.trueFalseText]}>{question.q1}</Text>
                 <TouchableOpacity onPress={() => toggleAnswer(answer1, setAnswer1)}>
@@ -64,6 +69,7 @@ const TrueFalse = forwardRef(({ question, disabled, selectedAnswer, correctAnswe
                     {getAnswerStatus(answer1, correctAnswers[0]).text}
                 </Text>
             )}
+
             <View style={[styles.trueFalseContainer]}>
                 <Text style={[styles.trueFalseText]}>{question.q2}</Text>
                 <TouchableOpacity onPress={() => toggleAnswer(answer2, setAnswer2)}>
@@ -77,6 +83,7 @@ const TrueFalse = forwardRef(({ question, disabled, selectedAnswer, correctAnswe
                     {getAnswerStatus(answer2, correctAnswers[1]).text}
                 </Text>
             )}
+
             <View style={[styles.trueFalseContainer]}>
                 <Text style={[styles.trueFalseText]}>{question.q3}</Text>
                 <TouchableOpacity onPress={() => toggleAnswer(answer3, setAnswer3)}>
@@ -90,6 +97,7 @@ const TrueFalse = forwardRef(({ question, disabled, selectedAnswer, correctAnswe
                     {getAnswerStatus(answer3, correctAnswers[2]).text}
                 </Text>
             )}
+
         </SafeAreaView>
     );
 });

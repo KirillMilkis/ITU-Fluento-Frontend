@@ -112,7 +112,6 @@ const QuestionScreen = ({navigation}) => {
                         ref={questionComponentRef}
                         question={question}
                         disabled={hasAnswered}
-                        selectedAnswer={selectedAnswer}
                         correctAnswer={correctAnswer}
                     />
                 );

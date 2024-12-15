@@ -5,10 +5,10 @@ Date Created: 12.12.2024
 Note: */
 import React, {  forwardRef, useImperativeHandle, useState } from 'react';
 import config from '../../config/config';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Image, TextInput, ScrollView} from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput, ScrollView} from 'react-native';
 import { COLORS, SIZES } from '../../constants/theme'
 
-const FillInBlank = forwardRef(({ question, disabled, selectedAnswer, correctAnswer }, ref) => {
+const FillInBlank = forwardRef(({ question, disabled, correctAnswer }, ref) => {
     const [answers, setAnswers] = useState({ a1: "", a2: "", a3: "", a4: "" });
 
     // ref function
@@ -16,11 +16,12 @@ const FillInBlank = forwardRef(({ question, disabled, selectedAnswer, correctAns
         handleSubmit,
     }));
 
+    // handle change of answer
     const handleChange = (key, value) => {
         setAnswers((prev) => ({ ...prev, [key]: value }));
     };
 
-    // formate answer
+    // send answer to questionScreen
     const handleSubmit = () => {
         if (disabled) return null;
         return `${answers.a1},${answers.a2},${answers.a3},${answers.a4}`;
@@ -38,6 +39,7 @@ const FillInBlank = forwardRef(({ question, disabled, selectedAnswer, correctAns
         return isCorrect ? [styles.input, styles.correctInput] : [styles.input, styles.incorrectInput];
     };
 
+    // parse correct answers
     const correctAnswers = correctAnswer?.message
     ? correctAnswer.message.split(" ").slice(-1)[0].split(",")
     : [];
@@ -80,6 +82,7 @@ const FillInBlank = forwardRef(({ question, disabled, selectedAnswer, correctAns
                 </View>
             </View>
 
+
             <View style={styles.rowContainer}>
                 <View style={styles.columnContainer}>
                     <Image source={{ uri: `${config.IMAGE_URL}${question.i3}` }} style={styles.image} />
@@ -113,6 +116,7 @@ const FillInBlank = forwardRef(({ question, disabled, selectedAnswer, correctAns
                     )}
                 </View>
             </View>
+
             {correctAnswer.message && (
                 <Text style={{ paddingTop:20, fontSize:SIZES.h2+6, color: correctAnswer.isCorrect ? 'green' : 'red' }}>
                     {correctAnswer.isCorrect ? 'Correct' : 'Wrong'}

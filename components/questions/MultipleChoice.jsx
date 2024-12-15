@@ -1,42 +1,42 @@
+/*
+File: MultipleChoice.jsx
+Author: Petra Oravová <xoravo01>
+Date Created: 12.12.2024
+Note: */
 import React from "react";
 import { View, Text, Image, TouchableOpacity, SafeAreaView, StyleSheet } from "react-native";
 import config from '../../config/config';
 
 const MultipleChoice = ({ question, onSubmitAnswer, disabled, selectedAnswer, correctAnswer }) => {
-    function extractCorrectAnswer(input) {
-        // Ověření, že input je neprázdný a typu string
-        if (input) {
-            // Rozdělení vstupu podle slova "is"
-            const parts = input.split("is");
 
-            // Pokud existuje část za "is", vrátíme ji, jinak prázdný řetězec
+    // parse correct answer
+    function extractCorrectAnswer(input) {
+        if (input) {
+            const parts = input.split("is");
             if (parts.length > 1) {
-                return parts[1].trim(); // Odstranění složených závorek a trimování
+                return parts[1].trim();
             }
         }
         return "";
     }
 
+    // manage button color
     const getButtonStyle = (optionValue) => {
-        if (!correctAnswer.message) return styles.option; // Styl pro nevybranou možnost před odesláním odpovědi
+        if (!correctAnswer.message) return styles.option; // normal
 
-        // Správná odpověď vybraná uživatelem
         if (optionValue === selectedAnswer && correctAnswer.isCorrect) {
-            return [styles.option, styles.correct]; // Zelená barva
+            return [styles.option, styles.correct]; // green
         }
 
-        // Špatná odpověď vybraná uživatelem
         if (optionValue === selectedAnswer && !correctAnswer.isCorrect) {
-            return [styles.option, styles.wrong]; // Červená barva
+            return [styles.option, styles.wrong]; // red
         }
 
-        // Správná odpověď, pokud je uživatelova odpověď špatná
         if (!correctAnswer.isCorrect && optionValue === extractCorrectAnswer(correctAnswer.message)) {
-            return [styles.option, styles.correct]; // Zelená barva pro správnou odpověď
+            return [styles.option, styles.correct]; // green
         }
 
-        // Ostatní možnosti šedé
-        return [styles.option, styles.optionDisabled];
+        return [styles.option, styles.optionDisabled]; //gray
     };
     
 
@@ -49,6 +49,7 @@ const MultipleChoice = ({ question, onSubmitAnswer, disabled, selectedAnswer, co
             />
             <View style={[styles.optionsContainer1]}>
                 <View style={[styles.optionsContainer]}>
+
                     <TouchableOpacity
                         onPress={() => onSubmitAnswer(question.optionA)}
                         disabled={disabled}
@@ -56,6 +57,7 @@ const MultipleChoice = ({ question, onSubmitAnswer, disabled, selectedAnswer, co
                     >
                         <Text style={styles.optionText}>{question.optionA}</Text>
                     </TouchableOpacity>
+
                     <TouchableOpacity
                         onPress={() => onSubmitAnswer(question.optionB)}
                         disabled={disabled}
@@ -63,8 +65,11 @@ const MultipleChoice = ({ question, onSubmitAnswer, disabled, selectedAnswer, co
                     >
                         <Text style={styles.optionText}>{question.optionB}</Text>
                     </TouchableOpacity>
+
                 </View>
+
                 <View style={[styles.optionsContainer]}>
+
                     <TouchableOpacity
                         onPress={() => onSubmitAnswer(question.optionC)}
                         disabled={disabled}
@@ -72,6 +77,7 @@ const MultipleChoice = ({ question, onSubmitAnswer, disabled, selectedAnswer, co
                     >
                         <Text style={styles.optionText}>{question.optionC}</Text>
                     </TouchableOpacity>
+
                     <TouchableOpacity
                         onPress={() => onSubmitAnswer(question.optionD)}
                         disabled={disabled}
@@ -79,8 +85,10 @@ const MultipleChoice = ({ question, onSubmitAnswer, disabled, selectedAnswer, co
                     >
                         <Text style={styles.optionText}>{question.optionD}</Text>
                     </TouchableOpacity>
+
                 </View>
             </View>
+
             {correctAnswer.message && (
                 <Text style={[
                     styles.message,
@@ -89,6 +97,7 @@ const MultipleChoice = ({ question, onSubmitAnswer, disabled, selectedAnswer, co
                         : { color: 'red'}
                 ]}>{correctAnswer.message}</Text>
             )}
+
         </SafeAreaView>
     );
 };
@@ -98,7 +107,7 @@ const styles = StyleSheet.create({
         paddingVertical: 30,
         paddingHorizontal: 15,
         textAlign: "center",
-        fontSize: 24,
+        fontSize: SIZES.h1,
         fontWeight: "bold",
     },
     message: {
@@ -135,10 +144,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#d3d3d3",
     },
     correct: {
-        backgroundColor: "#4caf50", // Zelená pro správnou odpověď
+        backgroundColor: "#4caf50", // green
     },
     wrong: {
-        backgroundColor: "#f44336", // Červená pro špatnou odpověď
+        backgroundColor: "#f44336", // red
     },
     image: {
         width: 100,
