@@ -42,9 +42,6 @@ import evaluateAnswer from "./evaluateAnswer";
 import getResults from "./getResults";
 import getRandomUser from "./getRandomUser";
 
-import useFetch from "./useFetch";
-import usePostRequest from "./usePostRequest";
-
 export {  
     getGrammars, 
     getQuestionById, 
@@ -80,7 +77,5 @@ export {
     getResults, 
     postRequest, 
     fetchRequest, 
-    useFetch,
-    usePostRequest
   };
   
