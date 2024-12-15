@@ -5,9 +5,9 @@ Date Created: 12.11.2024
 Note: */
 import config from '../config/config';
 
-const evaluateAnswer = async (myAnswer) => {
+const evaluateAnswer = async (myAnswer, quizID, count) => {
     try {
-        const response = await fetch(`${config.API_URL}quizzes/Alice/evaluate`, {
+        const response = await fetch(`${config.API_URL}quizzes/Alice/evaluate/${quizID}/${count}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

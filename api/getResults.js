@@ -5,9 +5,9 @@ Date Created: 12.11.2024
 Note: */
 import config from '../config/config';
 
-const getResults = async (navigation) => {
+const getResults = async (quizID, endedSuccessfully) => {
     try {
-        const response = await fetch(`${config.API_URL}quizzes/Alice/score`, {
+        const response = await fetch(`${config.API_URL}quizzes/Alice/score/${quizID}/${endedSuccessfully}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

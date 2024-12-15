@@ -8,14 +8,17 @@ import { SafeAreaView, Text, View, TouchableOpacity } from 'react-native';
 import { getResults } from '../../api';
 import styles from './results.styles';
 import {Ionicons} from '@expo/vector-icons'
+import { useRoute } from '@react-navigation/native';
 
 const ResultsScreen = ({navigation}) => {
     const [results, setResults] = useState([]);
-
+    const route = useRoute();
+    const {quizID} = route.params;
+    
     // get results from api
     const fetchResults = async () => {
         try {
-            const result = await getResults();;
+            const result = await getResults(quizID, true);
             setResults(result);
         } catch (error) {
             console.error("Failed to get results:", error);
