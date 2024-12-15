@@ -35,7 +35,7 @@ const FillInBlank = forwardRef(({ question, disabled, correctAnswer }, ref) => {
         const index = Object.keys(answers).indexOf(key);
         if (index === -1 || index >= correctAnswers.length) return styles.input;
     
-        const isCorrect = answers[key] === correctAnswers[index];
+        const isCorrect = answers[key].trim() === correctAnswers[index];
         return isCorrect ? [styles.input, styles.correctInput] : [styles.input, styles.incorrectInput];
     };
 
@@ -43,7 +43,6 @@ const FillInBlank = forwardRef(({ question, disabled, correctAnswer }, ref) => {
     const correctAnswers = correctAnswer?.message
     ? correctAnswer.message.split(" ").slice(-1)[0].split(",")
     : [];
-
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
@@ -58,7 +57,7 @@ const FillInBlank = forwardRef(({ question, disabled, correctAnswer }, ref) => {
                         onChangeText={(text) => handleChange("a1", text)}
                         editable={!disabled}
                     />
-                    {!correctAnswer.isCorrect && correctAnswers.length > 0 && answers.a1 !== correctAnswers[0] && (
+                    {!correctAnswer.isCorrect && correctAnswers.length > 0 && answers.a1.trim() !== correctAnswers[0] && (
                         <Text style={styles.correctAnswer}>
                             Correct: {correctAnswers[0]}
                         </Text>
@@ -74,7 +73,7 @@ const FillInBlank = forwardRef(({ question, disabled, correctAnswer }, ref) => {
                         onChangeText={(text) => handleChange("a2", text)}
                         editable={!disabled}
                     />
-                    {!correctAnswer.isCorrect && correctAnswers.length > 0 && answers.a2 !== correctAnswers[1] && (
+                    {!correctAnswer.isCorrect && correctAnswers.length > 0 && answers.a2.trim() !== correctAnswers[1] && (
                         <Text style={styles.correctAnswer}>
                             Correct: {correctAnswers[1]}
                         </Text>
@@ -93,7 +92,7 @@ const FillInBlank = forwardRef(({ question, disabled, correctAnswer }, ref) => {
                         onChangeText={(text) => handleChange("a3", text)}
                         editable={!disabled}
                     />
-                    {!correctAnswer.isCorrect && correctAnswers.length > 0 && answers.a3 !== correctAnswers[2] && (
+                    {!correctAnswer.isCorrect && correctAnswers.length > 0 && answers.a3.trim() !== correctAnswers[2] && (
                         <Text style={styles.correctAnswer}>
                             Correct: {correctAnswers[2]}
                         </Text>
@@ -109,7 +108,7 @@ const FillInBlank = forwardRef(({ question, disabled, correctAnswer }, ref) => {
                         onChangeText={(text) => handleChange("a4", text)}
                         editable={!disabled}
                     />
-                    {!correctAnswer.isCorrect && correctAnswers.length > 0 && answers.a4 !== correctAnswers[3] && (
+                    {!correctAnswer.isCorrect && correctAnswers.length > 0 && answers.a4.trim() !== correctAnswers[3] && (
                         <Text style={styles.correctAnswer}>
                             Correct: {correctAnswers[3]}
                         </Text>
