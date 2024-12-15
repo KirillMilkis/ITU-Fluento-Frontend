@@ -144,7 +144,7 @@ const QuestionScreen = ({navigation}) => {
                     />
                 );
             default:
-                return <Text>Unsupported question type</Text>;
+                return;
         }
     };
 

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         flex: 1,
         justifyContent: 'center',
-        paddingBottom: SIZES.baseHeight * 12, 
+        paddingBottom: SIZES.baseHeight * 20, 
         alignItems: 'center',
         padding: 33,
         paddingTop: 10,

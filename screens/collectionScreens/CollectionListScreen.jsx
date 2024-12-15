@@ -49,8 +49,8 @@ const CollectionListScreen = ({route}) => {
         </View>
         
        
+          <CollectionList propertyType = {propertyType}/>
         
-        <CollectionList propertyType = {propertyType}/>
           
 
     </SafeAreaView>

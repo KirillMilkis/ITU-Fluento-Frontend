@@ -5,7 +5,7 @@
  * Note:
  */
 import React, { useCallback, useState } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { getQuizzesByUser } from '../../api';
@@ -13,6 +13,7 @@ import QuizTile from '../../components/quizzes/QuizTile';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './updateProfileMain.styles';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import config from '../../config/config';
 
 const UserQuizzesScreen = () => {
     const navigation = useNavigation();
@@ -83,10 +84,28 @@ const UserQuizzesScreen = () => {
                         </View>
                     ))
                 ) : (
-                    <Text>You havent created any quizzes yet.</Text>
+                    <Text></Text>
                 )}
+<<<<<<< HEAD
 
                 
+=======
+                <View key={99999} style={styles.quizContainerSmall}>
+                    <View style={styles.quizTileContainer}>
+                        <TouchableOpacity onPress={handleNewQuizClick} style={[styles.quizContainer]}>
+                            <Image 
+                                source={{ uri: `${config.IMAGE_URL}new.png` }}
+                                style={styles.quizImage} 
+                            />
+                        
+                            <Text style={styles.quizTitle}>
+                            Create new quiz
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+>>>>>>> 52a6e362f3ef1bb5b75f727c45480dd67636dfa5
             </ScrollView>
 
             <View style={{ position: 'absolute', bottom: 20, right: 20, zIndex: 1 }}>

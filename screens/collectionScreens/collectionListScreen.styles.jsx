@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'start',
         padding: 33,
+        paddingBottom: SIZES.baseHeight * 12,
         maxHeight: 10000,
         paddingTop: 10,
 
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
         left: -22,
 
     },
-    
+
     spacingTitles: {
         marginVertical: 5, 
     },
