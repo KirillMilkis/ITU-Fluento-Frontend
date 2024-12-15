@@ -1,3 +1,8 @@
+/*
+File: GrammarScreen.jsx
+Author: Petra Oravová <xoravo01>
+Date Created: 10.11.2024
+Note: */
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Text, View, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
@@ -6,17 +11,15 @@ import { TouchableOpacity } from 'react-native';
 import {Ionicons} from '@expo/vector-icons'
 import startQuiz from '../../api/startQuiz';
 import { getResults } from '../../api';
-
-
 import config from '../../config/config';
 
 const GrammarScreen = ({navigation}) => {
     const route = useRoute();
     const {quizID, quizTitle } = route.params;
-
     const [grammar, setGrammar] = useState([]);
     const [question, setQuestion] = useState([]);
 
+    // get grammar from api
     const fetchGrammar = async () => {
         try {
             const result = await startQuiz(quizID);;
@@ -30,10 +33,12 @@ const GrammarScreen = ({navigation}) => {
         fetchGrammar();
     }, []);
 
+    // navigate to question screen
     const nextQuestion = () => {
         navigation.navigate('QuestionScreen', {quizTitle: quizTitle})
     }
 
+    // leave quiz with button in top bar
     const leaveQuiz = async () => {
         try {
             const result = await getResults();;

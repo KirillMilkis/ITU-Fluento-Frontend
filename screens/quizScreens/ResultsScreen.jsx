@@ -1,3 +1,8 @@
+/*
+File: ResultsScreen.jsx
+Author: Petra Oravová <xoravo01>
+Date Created: 12.11.2024
+Note: */
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Text, View, TouchableOpacity } from 'react-native';
 import { getResults } from '../../api';
@@ -7,6 +12,7 @@ import {Ionicons} from '@expo/vector-icons'
 const ResultsScreen = ({navigation}) => {
     const [results, setResults] = useState([]);
 
+    // get results from api
     const fetchResults = async () => {
         try {
             const result = await getResults();;

@@ -1,5 +1,8 @@
-import { View, Text } from 'react-native';
-import React from 'react';
+/*
+File: startQuiz.js
+Author: Petra Oravová <xoravo01>
+Date Created: 10.11.2024
+Note: */
 import config from '../config/config';
 
 const startQuiz = async (quizID) => {
@@ -12,7 +15,6 @@ const startQuiz = async (quizID) => {
         });
 
         if (!response.ok) {
-            console.log('Error fetching grammar');
             throw new Error('Failed to fetch grammar');
         }
 

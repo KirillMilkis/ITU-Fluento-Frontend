@@ -5,7 +5,7 @@ Date Created: 12.12.2024
 Note: */
 import React, {  forwardRef, useImperativeHandle, useState, useRef} from 'react';
 import config from '../../config/config';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Image, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
 import { COLORS, SIZES } from '../../constants/theme'
 import Svg, { Line } from "react-native-svg";
 
@@ -13,11 +13,10 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
     const { leftItems, rightItems } = question;
     const leftList = leftItems.split(", ");
     const rightList = rightItems.split(", ");
-
+    const [feedback, setFeedback] = useState({ correct: [], wrong: [], missing: [] }); // Správné/špatné odpovědi
     const [connections, setConnections] = useState([]); // Pole spojení
     const [selected, setSelected] = useState(null); // Vybraný item
     const [positions, setPositions] = useState({ left: {}, right: {} });
-    const [feedback, setFeedback] = useState({ correct: [], wrong: [], missing: [] }); // Správné/špatné odpovědi
     const refs = {
         left: useRef({}),
         right: useRef({}),
@@ -39,9 +38,10 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
 
         if (selected) {
             if (selected.side !== side) {
+                // Přidat spojení
                 setConnections((prevConnections) => {
                     const updatedConnections = prevConnections.filter(
-                        (conn) => conn.left !== selected.item && conn.right !== item
+                        (conn) => conn.left !== selected.item && conn.right !== item && conn.left !== item && conn.right != selected.item
                     );
                     updatedConnections.push(
                         side === "left"
@@ -57,6 +57,21 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
         } else {
             setSelected({ side, item });
         }
+    };
+
+    const formatAnswer = () => {
+        return connections.map(({ left, right }) => `${left}=${right}`).join(",");
+    };
+
+    // Exponování funkce přes ref
+    useImperativeHandle(ref, () => ({
+        handleSubmit,
+    }));
+
+    const handleSubmit = () => {
+        if (disabled) return;
+        const answer = formatAnswer();
+        return answer;
     };
 
     const handleFeedback = (message) => {
@@ -101,10 +116,12 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
         }
     }, [correctAnswer]);
 
+
     return (
         <View style={styles.container}>
             <Text style={styles.question}>{question.questionsText}</Text>
             <View style={styles.listsContainer}>
+                {/* Levý seznam */}
                 <View style={styles.column}>
                     {leftList.map((item) => (
                         <TouchableOpacity
@@ -122,6 +139,7 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
                     ))}
                 </View>
 
+                {/* SVG pro čáry */}
                 <Svg style={styles.svgContainer}>
                     {/* Čáry pro propojení */}
                     {connections.map(({ left, right }, index) => {
@@ -150,7 +168,7 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
                         );
                     })}
 
-                    {/* Oranžové čáry pro chybějící propojení */}
+                    {/* Zelen čáry pro chybějící propojení */}
                     {feedback.missing.map(({ left, right }, index) => {
                         const leftPos = positions.left[left];
                         const rightPos = positions.right[right];
@@ -160,18 +178,18 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
                         return (
                             <Line
                                 key={`missing-${index}`}
-                                x1={leftPos.x + leftPos.width / 2}
+                                x1={leftPos.x + leftPos.width / 2 + 40}
                                 y1={leftPos.y + leftPos.height / 2 - 220}
-                                x2={rightPos.x + rightPos.width / 2}
+                                x2={rightPos.x + rightPos.width / 2 - 70}
                                 y2={rightPos.y + rightPos.height / 2 - 220}
-                                stroke="orange"
-                                strokeWidth="2"
-                                strokeDasharray="4"
+                                stroke="green"
+                                strokeWidth="5"
                             />
                         );
                     })}
                 </Svg>
 
+                {/* Pravý seznam */}
                 <View style={styles.column}>
                     {rightList.map((item) => (
                         <TouchableOpacity
@@ -192,11 +210,14 @@ const MatchingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref
                     ))}
                 </View>
             </View>
+            {correctAnswer.message && (
+                <Text style={{ paddingTop:20, fontSize:SIZES.h2, color: correctAnswer.isCorrect ? 'green' : 'red' }}>
+                    {correctAnswer.isCorrect ? 'Correct' : 'Wrong, green lines are correct, red lines are your wrong answers'}
+                </Text>
+            )}
         </View>
     );
 });
-
-
 
 const styles = StyleSheet.create({
     question: {

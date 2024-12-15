@@ -1,10 +1,15 @@
+/*
+File: OrderingQuestions.jsx
+Author: Petra Oravová <xoravo01>
+Date Created: 12.12.2024
+Note: */
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import DraggableFlatList from "react-native-draggable-flatlist";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { COLORS, SIZES } from '../../constants/theme';
 
-const OrderingQuestions = forwardRef(({ question, disabled, selectedAnswer, correctAnswer }, ref) => {
+const OrderingQuestions = forwardRef(({ question, disabled, correctAnswer }, ref) => {
     // Bezpečné zpracování správného pořadí
     const correctOrder = correctAnswer?.message
         ? correctAnswer.message.includes("is")
@@ -106,13 +111,13 @@ const styles = StyleSheet.create({
         marginBottom: 8,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#f8f9fa", // Defaultní barva
+        backgroundColor: "#f8f9fa",
     },
     correctItem: {
-        backgroundColor: "#d4edda", // Světle zelená
+        backgroundColor: "#d4edda",
     },
     wrongItem: {
-        backgroundColor: "#f8d7da", // Světle červená
+        backgroundColor: "#f8d7da",
     },
     itemText: {
         fontSize: 16,

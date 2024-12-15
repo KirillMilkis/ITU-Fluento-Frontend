@@ -1,5 +1,8 @@
-import { View, Text } from 'react-native';
-import React from 'react';
+/*
+File: getQuestion.js
+Author: Petra Oravová <xoravo01>
+Date Created: 12.11.2024
+Note: */
 import config from '../config/config';
 
 const getQuestion = async () => {
@@ -12,8 +15,7 @@ const getQuestion = async () => {
         });
 
         if (!response.ok) {
-            console.log('Error fetching question');
-            throw new Error('Failed to fetch question');
+            throw new Error(`Failed to fetch question, status: ${response.status}`);
         }
 
         const data = await response.json();

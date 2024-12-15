@@ -1,5 +1,8 @@
-import { View, Text } from 'react-native';
-import React from 'react';
+/*
+File: getResults.js
+Author: Petra Oravová <xoravo01>
+Date Created: 12.11.2024
+Note: */
 import config from '../config/config';
 
 const getResults = async (navigation) => {
@@ -12,7 +15,6 @@ const getResults = async (navigation) => {
         });
 
         if (!response.ok) {
-            console.log('Error getting results');
             throw new Error('Failed to get results');
         }
 

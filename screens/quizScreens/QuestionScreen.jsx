@@ -12,15 +12,13 @@ import { evaluateAnswer, getResults } from '../../api';
 import styles from './question.styles';
 import MultipleChoice from '../../components/questions/MultipleChoice';
 import TrueFalse from '../../components/questions/TrueFalse';
-import { useNavigation } from '@react-navigation/native';
 import FillInBlank from '../../components/questions/FillInBlank';
 import MatchingQuestions from '../../components/questions/MatchingQuestions';
 import OrderingQuestions from '../../components/questions/OrderingQuestions';
 
-const QuestionScreen = () => {
+const QuestionScreen = ({navigation}) => {
     const route = useRoute();
     const {quizTitle} = route.params;
-    const navigation = useNavigation();
     const [question, setQuestion] = useState([]);
     const [hasAnswered, setHasAnswered] = useState(false);
     const [selectedAnswer, setSelectedAnswer] = useState([]);
@@ -118,10 +116,9 @@ const QuestionScreen = () => {
             case 'fillInBlank':
                 return (
                     <FillInBlank
-                        ref={questionComponentRef} // Ref na komponentu
+                        ref={questionComponentRef}
                         question={question}
                         disabled={hasAnswered}
-                        selectedAnswer={selectedAnswer}
                         correctAnswer={correctAnswer}
                     />
                 );

@@ -1,5 +1,8 @@
-import { View, Text } from 'react-native';
-import React from 'react';
+/*
+File: evaluateAnswer.js
+Author: Petra Oravová <xoravo01>
+Date Created: 12.11.2024
+Note: */
 import config from '../config/config';
 
 const evaluateAnswer = async (myAnswer) => {
@@ -13,8 +16,8 @@ const evaluateAnswer = async (myAnswer) => {
                 answer: myAnswer
             }),
         });
+        console.log(myAnswer)
         if (!response.ok) {
-            console.log('Error evaluate answer');
             throw new Error('Failed to evaluate answer');
         }
         const data = await response.json();
