@@ -8,6 +8,7 @@ import { useRoute } from '@react-navigation/native';
 
 const TrueFalseScreen = ({navigation}) => {
     const route = useRoute();
+    const {quizID} = route.params;
     const {question: qst, quizTitle} = route.params;
     const [outcome, setOutcome] = useState([]);
     const [question, setQuestion] = useState([]);
@@ -53,7 +54,7 @@ const TrueFalseScreen = ({navigation}) => {
 
     const fetchQuestion = async () => {
         if(isLast(qst.counter)){
-            navigation.navigate("ResultsScreen");
+            navigation.navigate("ResultsScreen", quizID);
         }
         else{
             try {

@@ -1,3 +1,8 @@
+/*
+File: GrammarScreen.jsx
+Author: Petra Oravová <xoravo01>
+Date Created: 10.11.2024
+Note: */
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Text, View, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
@@ -5,16 +10,16 @@ import styles from './grammar.styles';
 import { TouchableOpacity } from 'react-native';
 import {Ionicons} from '@expo/vector-icons'
 import startQuiz from '../../api/startQuiz';
-import getQuestion from '../../api/getQuestion';
+import { getResults } from '../../api';
 import config from '../../config/config';
 
 const GrammarScreen = ({navigation}) => {
     const route = useRoute();
     const {quizID, quizTitle } = route.params;
-
     const [grammar, setGrammar] = useState([]);
     const [question, setQuestion] = useState([]);
 
+    // get grammar from api
     const fetchGrammar = async () => {
         try {
             const result = await startQuiz(quizID);;
@@ -24,36 +29,30 @@ const GrammarScreen = ({navigation}) => {
         }
     };
 
-
     useEffect(() => {
         fetchGrammar();
     }, []);
 
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
+    // navigate to question screen
+    const nextQuestion = () => {
+        navigation.navigate('QuestionScreen', {quizTitle: quizTitle, quizID})
     }
 
-    const fetchQuestion = async () => {
+    // leave quiz with button in top bar
+    const leaveQuiz = async () => {
         try {
-            const result = await getQuestion();;
-            setQuestion(result);
+            const result = await getResults(quizID, false);
         } catch (error) {
-            console.error("Failed to fetch question:", error);
+            console.error("Failed to quit quiz:", error);
         }
+        navigation.popToTop()
     }
-
-    useEffect(() => {
-        if (question && Object.keys(question).length > 0) {
-            navigation.push(`${capitalizeFirstLetter(question.type)}Screen`, { question: question, quizTitle: quizTitle});
-        }
-    }, [question]);
-
 
     return (
         <SafeAreaView style={[styles.container]}>
             <View style={[styles.topBarContainer]}>
                 <Text style={[styles.topBarText]}>{quizTitle}</Text>
-                <TouchableOpacity onPress={()=>navigation.popToTop()}>
+                <TouchableOpacity onPress={()=>leaveQuiz()}>
                     <Ionicons name="close-circle-outline" style={[styles.topBarIcon]}></Ionicons>
                 </TouchableOpacity>
             </View >
@@ -69,7 +68,7 @@ const GrammarScreen = ({navigation}) => {
                 <TouchableOpacity onPress={()=>navigation.goBack()}>
                     <Ionicons name="arrow-back" style={[styles.bottomBarIcon]}></Ionicons>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>fetchQuestion()}>
+                <TouchableOpacity onPress={()=>nextQuestion()}>
                     <Ionicons name="arrow-forward" style={[styles.bottomBarIcon]}></Ionicons>
                 </TouchableOpacity>
             </View>
