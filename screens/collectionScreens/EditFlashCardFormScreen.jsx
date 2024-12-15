@@ -30,7 +30,7 @@ const EditFlashCardFormScreen = ({route}) => {
     const onSubmit = useCallback(async(formData) => {
         let result1, result2;
 
-        // Data validation
+        // Question and answer validation
         if(formData.question === "" || formData.answer === ""){
             Alert.alert(
                 'Creation Failed',
@@ -81,6 +81,7 @@ const EditFlashCardFormScreen = ({route}) => {
             return;
         } finally {
             await new Promise(resolve => setTimeout(resolve, 500));
+            // Reload the previous screen to show the updated data, setReloadPrevScreen is a useState from the FlashCardDetailScreen
             setReloadPrevScreen(true);
             navigation.goBack();
         }

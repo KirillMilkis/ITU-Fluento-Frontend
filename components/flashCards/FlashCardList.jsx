@@ -16,6 +16,10 @@ import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
 import config from '../../config/config'
 
+// deckId - ID of the deck to fetch flashcards from
+// isCreator - boolean value to check if the user is the creator of the deck
+// sortByAttemps - boolean value to check if the flashcards should be sorted by by the results of the solved flashcards
+// isAnswersHidden - boolean value to check if the answers on the falshcard tile should be hidden
 const FlashCardList = ({deckId, isCreator, sortByAttemps, isAnswersHidden}) => {
 
   const navigation = useNavigation();

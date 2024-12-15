@@ -1,3 +1,11 @@
+/*
+ * File: postRequest.js
+ * Author: Kirill Kurakov <xkurak03>
+ * Date Created: 11.11.2024
+ * Note:
+ */
+
+
 import config from '../config/config';
 
 const postRequest = async (endpoint, data) => {

@@ -11,7 +11,7 @@ import config from '../../config/config'
   
 const NewFlashCardForm = ({route}) => {
 
-
+    // deckId - the deck that the flashcard will be added to
     const { deckId } = route.params;
     const navigation = useNavigation();
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms)); 

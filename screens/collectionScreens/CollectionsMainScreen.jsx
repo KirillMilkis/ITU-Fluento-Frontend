@@ -24,6 +24,7 @@ const CollectionsMainScreen = () => {
 
           </View>
             <ScrollView>
+              {/* Navigation tiles */}
                 <View style ={styles.tileNavList}>
                   <TouchableOpacity onPress={()=>navigation.navigate("CollectionListScreen", { title: "Community collections", propertyType: "all"})}>
                     <View style ={styles.tileNavigator}>
@@ -38,6 +39,7 @@ const CollectionsMainScreen = () => {
                     </View>
                   </TouchableOpacity>
                 </View>   
+                {/* Saved collections (created and liked) */}
                 <View style={styles.savedCollectionsList}>
                     <Text style={[styles.textStyle3, styles.spacingTitles]}>Saved Collections</Text>
                     <TouchableOpacity onPress={()=>navigation.navigate("CollectionListScreen", { title: "Your collections", propertyType: "created"})}>

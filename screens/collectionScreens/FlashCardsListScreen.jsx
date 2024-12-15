@@ -19,6 +19,9 @@ import config from '../../config/config'
 
 const FlashCardsListScreen = ({route}) => {
 
+  // deckItem - the deck that is being displayed
+  // isCreator - a boolean that tells if the user is the creator of the deck
+  // isLiked - a boolean that tells if the user has liked the deck
   const {deckItem, isCreator, isLiked} = route.params;
 
   const navigation = useNavigation();

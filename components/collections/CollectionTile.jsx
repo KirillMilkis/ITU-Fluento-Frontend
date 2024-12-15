@@ -13,6 +13,10 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { postRequest } from '../../api/index.js'
 import config from '../../config/config'
 
+// deckItem - the deck that is being displayed
+// isCreator - a boolean that tells if the user is the creator of the deck
+// liked - a boolean that tells if the user has liked the deck
+// setReload - a function to set the reload state of the parent component to refetch the data
 const CollectionTile = ({deckItem, isCreator, liked, setReload}) => {
 
     const navigation = useNavigation();

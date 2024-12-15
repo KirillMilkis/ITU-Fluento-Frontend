@@ -9,6 +9,10 @@ import React from 'react'
 import styles from './flashCardListTile.styles'
 import { useNavigation } from '@react-navigation/native'
 
+// cardItem - flashcard object
+// isCreator - boolean if the user is the creator of the flashcard
+// isAnswerHidden - boolean if the answer should be hidden
+// cardIds - array of card ids to navigate between cards in the flashCardDetails screen
 const FlashCardListTile = ({cardItem, isCreator, isAnswerHidden, cardIds}) => {
 
     const navigation = useNavigation()

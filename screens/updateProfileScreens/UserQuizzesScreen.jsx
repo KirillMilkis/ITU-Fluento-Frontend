@@ -49,7 +49,9 @@ const UserQuizzesScreen = () => {
     };
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, position: 'relative' }}>
+
+
             <View style={[styles.topBarContainer, { paddingTop: 40 }]}> 
                 <TouchableOpacity onPress={() => navigation.goBack()} style={[styles.spacing]}>
                     <Icon name="arrow-back-outline" size={38} color="black" />
@@ -57,6 +59,8 @@ const UserQuizzesScreen = () => {
                 <Text style={{ fontSize: 28 }}>Your quizzes</Text>
                 <Icon name="arrow-back-outline" size={38} color="transparent" />
             </View>
+
+
 
             <ScrollView contentContainerStyle={styles.quizListContainer}>
                 {quizzes.length > 0 ? (
@@ -82,13 +86,13 @@ const UserQuizzesScreen = () => {
                     <Text>You havent created any quizzes yet.</Text>
                 )}
             </ScrollView>
-
             <TouchableOpacity 
                 style={styles.floatingButton} 
                 onPress={handleNewQuizClick}
             >
                 <Icon name="add" size={30} color="white" />
             </TouchableOpacity>
+            
         </View>
     );
 };

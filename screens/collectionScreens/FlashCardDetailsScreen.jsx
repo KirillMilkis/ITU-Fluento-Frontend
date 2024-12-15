@@ -30,7 +30,11 @@ const FlashCardDetailsScreen = ({route}) => {
   const [cardInfo, setCardInfo] = useState({ question: '', answer: '' , ID: ''}); // Card info from cardItem var
 
   const navigation = useNavigation()
-
+  
+  // cardItem - Contain all card info to display
+  // isCreator - if the user is the creator of the card
+  // cameFromScreen - the screen from which we came to this screen
+  // cardIds - the list of card IDs to switch between cards directly from this screen
   const {cardItem, isCreator, cameFromScreen, cardIds} = route.params;
 
   const [flipped, setFlipped] = useState(false); // To keep track of the card flip
@@ -184,6 +188,8 @@ const FlashCardDetailsScreen = ({route}) => {
 
   // Effect to fetch(refetch) the card data when it's needed.
     useEffect(() => {
+      // If we come to this screen from the flashcard list screen, we already have the card data.
+      // If we come from the flash card detail or go to the next or prev card, we need to fetch the card data.
       if (cameFromScreen === "FlashCardDetailsScreen") {
         setReload(true);
       }
