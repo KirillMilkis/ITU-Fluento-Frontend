@@ -3,6 +3,7 @@ import { COLORS, SIZES } from '../../constants/theme'
 
 const styles = StyleSheet.create({
     topBarContainer:{
+        flex: 0,
         paddingHorizontal: SIZES.padding,
         paddingVertical: SIZES.small,
         backgroundColor: COLORS.tertiary,
@@ -21,82 +22,11 @@ const styles = StyleSheet.create({
         fontSize: SIZES.xxLarge,
     },
 
-    question:{
-        paddingVertical: 45,
-        paddingHorizontal: 15,
-        textAlign: "center",
-        fontSize: SIZES.h1,
-        fontWeight: 'bold',
-    },
-
-    message: {
-        paddingHorizontal: 15,
-        paddingVertical: 30,
-        textAlign: "center",
-        fontSize: SIZES.h1-2,
-    },
-
-    optionsContainer1: {
-        flexDirection: "row",
-        justifyContent: "space-evenly"
-    },
-
-    optionsContainer: {
-        flexDirection: 'column',
-        justifyContent: "space-between",
-        width: "50%",
-    },
-
-    option: {
-        width: '95%',
-        height: 80,
-        backgroundColor: 'gray',
-        borderRadius: 12,
-        textAlign: "center",
-        verticalAlign: "middle",
-        padding: 10,
-        fontSize: SIZES.h2,
-        alignSelf: "center",
-        margin: 5,
-    },
-
-    trueFalseContainer: {
-        width: "90%",
-        alignSelf: "center",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center"
-    },
-
-    trueFalseText: {
-        fontSize: SIZES.font+2,
-        paddingVertical: 10,
-        width: "70%"
-    },
-
-    trueFalseButton: {
-        borderRadius: 12,
-        marginVertical: 15,
-        paddingVertical: 10,
-        width: 93,
-        textAlign: "center",
-        fontSize: SIZES.h2-2,
-    },
-
-    complete:{
-        borderRadius: 12,
-        width: 130,
-        padding: 8,
-        textAlign: "center",
-        fontSize: SIZES.h2,
-        backgroundColor: COLORS.green,
-        color: COLORS.white,
-    },
-
     container:{
         flex: 1,
     },
     bottomBarContainer:{
+        flex:0,
         position: 'absolute',
         bottom: 0,
         left: 0,
@@ -109,14 +39,18 @@ const styles = StyleSheet.create({
     },
     bottomBarIcon:{
         color: "white",
-        fontSize: 30,
+        fontSize: 35,
+        padding:18,
+        paddingLeft:30,
+        paddingRight:30,
     },
 
-    image: {
-        width: 100,
-        height: 100,
-        marginBottom: 30,
-        alignSelf: "center",
+    nextQButton: {
+        padding: 16,
+        backgroundColor: "#007bff",
+        borderRadius: 4,
+        alignItems: "center",
+        marginTop: 16,
     },
 
 })

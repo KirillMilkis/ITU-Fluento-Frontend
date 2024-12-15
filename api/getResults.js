@@ -1,10 +1,13 @@
-import { View, Text } from 'react-native';
-import React from 'react';
+/*
+File: getResults.js
+Author: Petra Oravová <xoravo01>
+Date Created: 12.11.2024
+Note: */
 import config from '../config/config';
 
-const getResults = async (navigation) => {
+const getResults = async (quizID, endedSuccessfully) => {
     try {
-        const response = await fetch(`${config.API_URL}quizzes/Alice/score`, {
+        const response = await fetch(`${config.API_URL}quizzes/Alice/score/${quizID}/${endedSuccessfully}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -12,7 +15,6 @@ const getResults = async (navigation) => {
         });
 
         if (!response.ok) {
-            console.log('Error getting results');
             throw new Error('Failed to get results');
         }
 

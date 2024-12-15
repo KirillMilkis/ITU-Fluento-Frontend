@@ -1,15 +1,24 @@
+/*
+File: ResultsScreen.jsx
+Author: Petra Oravová <xoravo01>
+Date Created: 12.11.2024
+Note: */
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Text, View, TouchableOpacity } from 'react-native';
 import { getResults } from '../../api';
 import styles from './results.styles';
 import {Ionicons} from '@expo/vector-icons'
+import { useRoute } from '@react-navigation/native';
 
 const ResultsScreen = ({navigation}) => {
     const [results, setResults] = useState([]);
-
+    const route = useRoute();
+    const {quizID} = route.params;
+    
+    // get results from api
     const fetchResults = async () => {
         try {
-            const result = await getResults();;
+            const result = await getResults(quizID, true);
             setResults(result);
         } catch (error) {
             console.error("Failed to get results:", error);
@@ -35,11 +44,9 @@ const ResultsScreen = ({navigation}) => {
             <Text style={[styles.secText]}>Grammar Mistakes</Text>
             <Text style={[styles.secScore , {color:results.grammarColor}]}>{Math.floor(parseFloat(results.grammarMistakes))}%</Text>
             <Text style={[styles.message]}>{results.description}</Text>
-            <View style={[styles.bottomBarContainer]}>
-                <TouchableOpacity onPress={()=>navigation.popToTop()}>
-                    <Text style={[styles.bottomBarText]}>Finish Quiz</Text>
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity style={[styles.bottomBarContainer]} onPress={()=>navigation.popToTop()}>
+                <Text style={[styles.bottomBarText]}>Finish Quiz</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 };

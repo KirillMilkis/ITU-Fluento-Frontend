@@ -1,3 +1,8 @@
+/*
+File: grammar.styles.js
+Author: Petra Oravová <xoravo01>
+Date Created: 11.11.2024
+Note: */
 import { StyleSheet } from "react-native";
 import { COLORS, SIZES } from '../../constants/theme'
 
@@ -43,12 +48,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
-        paddingVertical: 10,
         backgroundColor: COLORS.tabPrimary,
     },
     bottomBarIcon:{
         color: "white",
-        fontSize: 30,
+        fontSize: 35,
+        padding:18,
+        paddingLeft:30,
+        paddingRight:30,
     },
 
     image: {

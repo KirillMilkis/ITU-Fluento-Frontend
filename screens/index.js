@@ -25,9 +25,8 @@ import CreateTrueFalseScreen from "./createQuizScreens/CreateTrueFalseScreen";
 
 import LevelQuizzesScreen from "./quizScreens/LevelQuizzesScreen";
 import AllQuizzesScreen from "./quizScreens/AllQuizzesScreen";
+import QuestionScreen from "./quizScreens/QuestionScreen"
 import GrammarScreen from "./quizScreens/GrammarScreen";
-import MultipleChoiceScreen from "./quizScreens/MultipleChoiceScreen";
-import TrueFalseScreen from "./quizScreens/TrueFalseScreen";
 import ResultsScreen from "./quizScreens/ResultsScreen"
 
 import UserProfileScreen from "./updateProfileScreens/UserProfileScreen";
@@ -38,4 +37,34 @@ import UserQuizzesScreen from "./updateProfileScreens/UserQuizzesScreen";
 import StatisticScreen from "./statisticScreens/StatisticScreen";
 import LeaderboardScreen from "./statisticScreens/LeaderboardScreen";
 
-export { Home, Decks, Stats, FlashCardsListScreen, CollectionListScreen, FlashCardDetailsScreen, NewFlashCardFormScreen, NewCollectionFormScreen, EditFlashCardFormScreen, NewQuestionScreen, NewQuizScreen, CreateGrammarScreen, CreateFillInScreen, CreateMatchPairsScreen, CreateMultipleChoiceScreen, CreateOrderingScreen, CreateTrueFalseScreen, LevelQuizzesScreen, AllQuizzesScreen, GrammarScreen, MultipleChoiceScreen, TrueFalseScreen, ResultsScreen, UserProfileScreen, UserSettingsScreen, AvatarChangeScreen, UserQuizzesScreen, StatisticScreen, LeaderboardScreen};
+export { 
+    Home, 
+    Decks, 
+    Stats, 
+    FlashCardsListScreen, 
+    CollectionListScreen, 
+    FlashCardDetailsScreen, 
+    NewFlashCardFormScreen, 
+    NewCollectionFormScreen, 
+    EditFlashCardFormScreen, 
+    NewQuestionScreen, 
+    NewQuizScreen, 
+    CreateGrammarScreen, 
+    CreateFillInScreen, 
+    CreateMatchPairsScreen, 
+    CreateMultipleChoiceScreen, 
+    CreateOrderingScreen, 
+    CreateTrueFalseScreen, 
+    LevelQuizzesScreen, 
+    AllQuizzesScreen, 
+    GrammarScreen, 
+    MultipleChoiceScreen, 
+    TrueFalseScreen, 
+    ResultsScreen, 
+    UserProfileScreen, 
+    UserSettingsScreen, 
+    AvatarChangeScreen, 
+    UserQuizzesScreen, 
+    StatisticScreen, 
+    LeaderboardScreen 
+};

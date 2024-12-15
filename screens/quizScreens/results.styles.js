@@ -22,9 +22,10 @@ const styles = StyleSheet.create({
     },
 
     mainScore:{
+        fontWeight: "bold",
         fontSize: SIZES.xxLarge*2,
         alignSelf: "center",
-        paddingTop: 50,
+        paddingTop: 40,
     },
 
     secScore:{
@@ -35,14 +36,16 @@ const styles = StyleSheet.create({
 
     message:{
         alignSelf: "center",
-        fontSize: SIZES.h2+6,
+        fontSize: SIZES.h2+2,
         paddingBottom: 50,
-        paddingHorizontal: 15,
+        paddingHorizontal: SIZES.padding,
+        textAlign:"center",
+        color: "gray",
     },
 
     secText:{
         alignSelf: "center",
-        fontSize: SIZES.h2+6,
+        fontSize: SIZES.h2+5,
     },
 
     container:{

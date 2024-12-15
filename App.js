@@ -7,11 +7,37 @@ import BottomTabNavigator from './navigation/BottomTabNavigator';
 import * as Font from 'expo-font';
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { 
+    FlashCardsListScreen, 
+    FlashCardDetailsScreen, 
+    NewCollectionFormScreen, 
+    CollectionListScreen, 
+    NewFlashCardFormScreen, 
+    EditFlashCardFormScreen, 
+    ResultsScreen 
+} from './screens';
 
-import { CreateGrammarScreen, NewQuestionScreen, NewQuizScreen, CreateFillInScreen, CreateMatchPairsScreen, CreateMultipleChoiceScreen, CreateOrderingScreen, CreateTrueFalseScreen } from './screens';
-import { FlashCardsListScreen, FlashCardDetailsScreen, NewCollectionFormScreen, CollectionListScreen, NewFlashCardFormScreen, EditFlashCardFormScreen, ResultsScreen } from './screens';
-import { AllQuizzesScreen, LevelQuizzesScreen, GrammarScreen, MultipleChoiceScreen, TrueFalseScreen} from './screens';
-import { UserProfileScreen, UserSettingsScreen, AvatarChangeScreen, UserQuizzesScreen} from './screens';
+import { 
+    AllQuizzesScreen, 
+    LevelQuizzesScreen, 
+    GrammarScreen, 
+    MultipleChoiceScreen, 
+    TrueFalseScreen, 
+    NewQuestionScreen, 
+    NewQuizScreen, 
+    CreateFillInScreen, 
+    CreateMatchPairsScreen, 
+    CreateMultipleChoiceScreen, 
+    CreateOrderingScreen, 
+    CreateTrueFalseScreen 
+} from './screens';
+
+import { 
+    UserProfileScreen, 
+    UserSettingsScreen, 
+    AvatarChangeScreen, 
+    UserQuizzesScreen 
+} from './screens';
 import { StatisticScreen, LeaderboardScreen } from './screens';
 
 
@@ -164,13 +190,8 @@ export default function App() {
           options={{headerShown: false}}
           />
 
-          <Stack.Screen name="MultipleChoiceScreen"
-          component={MultipleChoiceScreen}
-          options={{headerShown: false}}
-          />
-
-          <Stack.Screen name="TrueFalseScreen"
-          component={TrueFalseScreen}
+          <Stack.Screen name="QuestionScreen"
+          component={QuestionScreen}
           options={{headerShown: false}}
           />
 
