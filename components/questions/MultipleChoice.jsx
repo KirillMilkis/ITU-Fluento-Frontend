@@ -6,6 +6,8 @@ Note: */
 import React from "react";
 import { View, Text, Image, TouchableOpacity, SafeAreaView, StyleSheet } from "react-native";
 import config from '../../config/config';
+import { COLORS, SIZES } from '../../constants/theme';
+
 
 const MultipleChoice = ({ question, onSubmitAnswer, disabled, selectedAnswer, correctAnswer }) => {
 
