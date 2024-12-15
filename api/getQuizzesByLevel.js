@@ -13,7 +13,6 @@ const getQuizzesByLevel = async (level) => {
         });
 
         if (!responce.ok) {
-            console.log('Error fetching quizzes');
             throw new Error('Failed to fetch quizzes');
         }
 

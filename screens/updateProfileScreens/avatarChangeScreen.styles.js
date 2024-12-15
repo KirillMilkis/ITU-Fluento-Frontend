@@ -1,5 +1,12 @@
+/*
+ * File: avatarChangeScreen.styles.js
+ * Author: Tomáš Kučera <xkucer0t>
+ * Date Created: 12.11.2024
+ * Note:
+ */
+
 import { StyleSheet } from "react-native";
-import { COLORS, SIZES } from '../../constants/theme'
+import { COLORS } from '../../constants/theme'
 
 const styles = StyleSheet.create({
     container: {
@@ -41,8 +48,8 @@ const styles = StyleSheet.create({
 
     greenFilter: {
         position: 'absolute',
-        top: -4,  // Expand the filter a bit outside the avatar
-        left: -4, // Same here
+        top: -4,
+        left: -4,
         right: -4, 
         bottom: -4,
         borderRadius: 54,

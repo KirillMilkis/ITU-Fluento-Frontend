@@ -1,3 +1,9 @@
+/*
+ * File: UserProfileScreen.jsx
+ * Author: Tomáš Kučera <xkucer0t>
+ * Date Created: 12.11.2024
+ * Note:
+ */
 import React, { useEffect, useState, useCallback } from 'react';
 import { View, Image, Text, ScrollView, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -20,7 +26,8 @@ const UserProfileScreen = ({ route }) => {
         try {
             const result = await getUserInfo('Alice');
             setUserInfo(result);
-        } catch (error) {
+        }
+        catch (error) {
             console.error("Failed to fetch user info:", error);
         }
     };
@@ -58,17 +65,32 @@ const UserProfileScreen = ({ route }) => {
                             />
                             <Text style={styles.username}>{userInfo.username}</Text>
                         </View>
-                        <Text style={styles.languageLevelText}>Language Level:          {userInfo.languageLevel}</Text>
+                        <Text style={styles.languageLevelText}>Language Level: {userInfo.languageLevel}</Text>
+    
+                        <TouchableOpacity
+                            style={styles.userQuizzesButton}
+                            onPress={() => navigation.navigate("UserQuizzesScreen")}
+                        >
+
+                        </TouchableOpacity>
                     </>
                 ) : (
                     <ActivityIndicator size="large" color="black" />
                 )}
             </View>
+    
+            <TouchableOpacity 
+                    style={styles.button}
+                    onPress={() => navigation.navigate('UserQuizzesScreen', {username: 'Alice'})}
+                >
+                    <Text style={styles.buttonText}>View Your Quizzes</Text>
+                    <Icon name="chevron-forward" size={20} color="#000" />
+                </TouchableOpacity>
 
             <View style={styles.divider} />
-
+    
             <Text style={styles.createdCollectionsText}>Created Collections</Text>
-
+    
             <ScrollView>
                 <View style={[styles.container, styles.spacing]}>
                     {isLoading ? (

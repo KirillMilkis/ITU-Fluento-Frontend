@@ -1,5 +1,11 @@
-import { StyleSheet } from "react-native";
-import { COLORS, SIZES } from '../../constants/theme'
+/*
+ * File: quizMain.styles.js
+ * Author: Tomáš Kučera <xkucer0t>
+ * Date Created: 12.11.2024
+ * Note:
+ */
+import { StyleSheet } from 'react-native';
+import { COLORS, SIZES } from '../../constants/theme';
 
 const styles = StyleSheet.create({
     profileImage: {
@@ -10,7 +16,7 @@ const styles = StyleSheet.create({
     },
 
     courseLevelStyle: {
-        fontWeight: "bold",
+        fontWeight: 'bold',
         fontSize: SIZES.h1,
     },
 
@@ -60,12 +66,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 10,
     },
-      
+
     quizListContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        padding: 10,  
+        padding: 10,
         marginLeft: 10,
         marginRight: 10,
     },
@@ -74,11 +80,11 @@ const styles = StyleSheet.create({
         width: '100%',
         marginBottom: 10,
     },
-      
+
     quizContainerSmall: {
         width: '48%',
         marginBottom: 10,
     },
-})
+});
 
 export default styles;

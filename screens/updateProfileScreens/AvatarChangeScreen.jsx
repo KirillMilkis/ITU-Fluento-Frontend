@@ -1,10 +1,16 @@
+/*
+ * File: AvatarChangeScreen.jsx
+ * Author: Tomáš Kučera <xkucer0t>
+ * Date Created: 12.11.2024
+ * Note:
+ */
 import React, { useState, useEffect } from 'react';
-import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 import config from '../../config/config';
 import { updateUserProfile } from '../../api';
-import styles from './avatarChangeScreen.styles'
+import styles from './avatarChangeScreen.styles';
 
 const AvatarChangeScreen = ({ route, navigation }) => {
     const [selectedAvatar, setSelectedAvatar] = useState(null);
@@ -27,11 +33,10 @@ const AvatarChangeScreen = ({ route, navigation }) => {
 
     const handleSave = async () => {
         try {
-            const result = await updateUserProfile('Alice', null, selectedAvatar, gender, null, null);
-            
+            await updateUserProfile('Alice', null, selectedAvatar, gender, null, null);
             navigation.goBack();
         } catch (error) {
-            console.error("Failed to save avatar:", error);
+            console.error('Failed to save avatar:', error);
         }
     };
 
@@ -41,14 +46,12 @@ const AvatarChangeScreen = ({ route, navigation }) => {
             <TouchableOpacity onPress={() => handleAvatarSelect(id)} style={styles.spacing}>
                 <View style={[styles.imageContainer, isSelected ? styles.selectedImage : '']}>
                     <Image
-                        source={{
-                            uri: `${config.IMAGE_URL}${gender}/${id}.png`
-                        }}
+                        source={{uri: `${config.IMAGE_URL}${gender}/${id}.png`}}
                         style={styles.avatarImage}
                     />
                     {isSelected && (
                         <View style={styles.selectedIcon}>
-                            <Icon name="checkmark-circle" size={32} color="green" />
+                            <Icon name='checkmark-circle' size={32} color='green' />
                         </View>
                     )}
                     {isSelected && <View style={styles.greenFilter}></View>}
@@ -63,17 +66,15 @@ const AvatarChangeScreen = ({ route, navigation }) => {
         <SafeAreaView style={styles.container}>
             <View style={styles.topBarContainer}>
                 <TouchableOpacity onPress={() => navigation.goBack()} style={styles.spacing}>
-                    <Icon name="arrow-back-outline" size={38} color="black" />
+                    <Icon name='arrow-back-outline' size={38} color='black' />
                 </TouchableOpacity>
 
                 <Text style={[{ fontSize: 24 }, styles.topBarText]}>Change avatar</Text>
 
-                <Icon name="settings-outline" size={38} color="transparent" />
+                <Icon name='settings-outline' size={38} color='transparent' />
             </View>
 
-            <View style={styles.avatarGrid}>
-                {avatarIds.map((id) => renderAvatar(id))}
-            </View>
+            <View style={styles.avatarGrid}>{avatarIds.map((id) => renderAvatar(id))}</View>
 
             <View style={styles.genderToggleContainer}>
                 <TouchableOpacity
@@ -98,6 +99,5 @@ const AvatarChangeScreen = ({ route, navigation }) => {
         </SafeAreaView>
     );
 };
-
 
 export default AvatarChangeScreen;
