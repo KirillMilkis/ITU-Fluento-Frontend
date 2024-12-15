@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 33,
-        paddingBottom: 17,
+        paddingBottom: 25,
     },
 
     tileNavList: {
@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
     },
 
     savedCollectionsList: {
-        marginTop: 65,
         gap: 6,        
         flexDirection: 'column',
         justifyContent: 'center',
