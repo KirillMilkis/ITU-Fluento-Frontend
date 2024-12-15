@@ -1,3 +1,10 @@
+/**
+ * File: CollectionListScreen.styles.jsx
+ * Author: Kirill Kurakov <xkurak03>
+ * Date Created: 5.11.2024
+ * 
+ */
+
 import { StyleSheet } from "react-native";
 import { COLORS, SIZES } from '../../constants/theme'
 
@@ -7,11 +14,10 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        // gap: '100%',
         alignItems: 'center',
         width: SIZES.width - 48,
-        // width: '100%',
         paddingHorizonral: 0,
+        height: SIZES.baseHeight * 5,
         zIndex: 999,
     },
 
@@ -19,7 +25,7 @@ const styles = StyleSheet.create({
         color: COLORS.black,
         fontSize: SIZES.h2,
         fontFamily: "Bold",
-        
+        overflow: 'hidden', 
     },
 
     collectionsListContainer: {
@@ -34,12 +40,26 @@ const styles = StyleSheet.create({
         paddingTop: 10,
 
     },
+    titleContainer: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+    },
+    tooltip: {
+        position: 'absolute',
+        textAlign: 'center',
+        bottom: -15,
+        width: '130%',
+        left: -22,
 
+    },
+    
     spacingTitles: {
-        marginVertical: 5, // Adds vertical space between text elements
+        marginVertical: 5, 
     },
     spacing: {
-        marginVertical: 7, // Adds horizontal space between text and icon
+        marginVertical: 7,
     },
 })
 

@@ -1,13 +1,18 @@
+/*
+ * File: LevelQuizzesScreen.jsx
+ * Author: Tomáš Kučera <xkucer0t>
+ * Date Created: 12.11.2024
+ * Note:
+ */
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { getQuizzesByLevel } from '../../api';
 import QuizTile from '../../components/quizzes/QuizTile';
 import styles from './quizMain.styles';
-
-import Icon from 'react-native-vector-icons/Ionicons'
-import { useNavigation } from '@react-navigation/native'
+import Icon from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 
 const LevelQuizzesScreen = () => {
     const navigation = useNavigation();
@@ -16,14 +21,12 @@ const LevelQuizzesScreen = () => {
     const { level } = route.params;
     const [quizzes, setQuizzes] = useState([]);
 
-
     const fetchQuizzesByLevel = async () => {
         try {
             const result = await getQuizzesByLevel(level.split(' ')[0]);
             setQuizzes(result);
-            console.log(result);
         } catch (error) {
-            console.error("Failed to fetch quizzes:", error);
+            console.error('Failed to fetch quizzes:', error);
         }
     };
 
@@ -32,22 +35,19 @@ const LevelQuizzesScreen = () => {
     }, []);
 
     const handleQuizClick = (quizID, quizTitle) => {
-        navigation.navigate('GrammarScreen', { quizID: quizID, quizTitle: quizTitle});
-        console.log(`Quiz with ID ${quizID} clicked`);
+        navigation.navigate('GrammarScreen', { quizID: quizID, quizTitle: quizTitle });
     };
 
     return (
         <View style={{ flex: 1 }}>
-
-            <View style={[styles.topBarContainer, { paddingTop: 40 }]}> 
-
+            <View style={[styles.topBarContainer, { paddingTop: 40 }]}>
                 <TouchableOpacity onPress={() => navigation.goBack()} style={[styles.spacing]}>
-                    <Icon name="arrow-back-outline" size={38} color="black" />
+                    <Icon name='arrow-back-outline' size={38} color='black' />
                 </TouchableOpacity>
 
                 <Text style={[styles.courseLevelStyle]}>{level}</Text>
 
-                <Icon name="arrow-back-outline" size={38} color="transparent" />
+                <Icon name='arrow-back-outline' size={38} color='transparent' />
             </View>
 
             <ScrollView contentContainerStyle={styles.quizListContainer}>

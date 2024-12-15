@@ -1,3 +1,9 @@
+/*
+ * File: updateProfileMain.styles.js
+ * Author: Tomáš Kučera <xkucer0t>
+ * Date Created: 12.11.2024
+ * Note:
+ */
 import { StyleSheet } from "react-native";
 import { COLORS, SIZES } from '../../constants/theme';
 
@@ -176,6 +182,114 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: 'center',
     },
+
+    button: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#E0E0E0',
+        padding: 15,
+        borderRadius: 10,
+        marginBottom: 20,
+        marginTop: 20,
+        justifyContent: 'space-between',
+        width: '80%',
+        alignSelf: 'center',
+    },
+    buttonText: {
+        fontSize: 16,
+    },
+
+    spacingTitles: {
+        marginVertical: 5,
+    },
+    spacing: {
+        marginVertical: 7,
+    },
+
+    topBarContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 10,
+    },
+      
+    quizListContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        padding: 10,  
+        marginLeft: 10,
+        marginRight: 10,
+    },    
+
+    quizContainerLarge: {
+        width: '100%',
+        marginBottom: 10,
+    },
+      
+    topBarContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 16,
+    },
+    spacing: {
+        paddingHorizontal: 8,
+    },
+    floatingButton: {
+        position: 'absolute',
+        bottom: 20,
+        right: 20,
+        backgroundColor: 'green',
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 5,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+    },
+    quizContainerSmall: {
+        width: '48%',
+        marginBottom: 10,
+    },
+    
+    quizTileContainer: {
+        position: 'relative',
+        flex: 1,
+        flexDirection: 'column',
+        marginBottom: 10,
+        overflow: 'visible',
+    },
+    
+    quizTile: {
+        flex: 1,
+        zIndex: -1,
+        width: '100%',
+        backgroundColor: 'white',
+    },
+    
+    editButton: {
+        position: 'absolute',
+        top: -240,
+        right: -10,
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 100,
+        elevation: 5,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+    }
+    
 });
 
 export default styles;

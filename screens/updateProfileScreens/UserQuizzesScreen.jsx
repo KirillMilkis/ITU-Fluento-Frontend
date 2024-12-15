@@ -1,0 +1,96 @@
+/*
+ * File: UserQuizzesScreen.jsx
+ * Author: Tomáš Kučera <xkucer0t>
+ * Date Created: 12.11.2024
+ * Note:
+ */
+import React, { useCallback, useState } from 'react';
+import { View, Text, ScrollView } from 'react-native';
+import { useRoute } from '@react-navigation/native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { getQuizzesByUser } from '../../api';
+import QuizTile from '../../components/quizzes/QuizTile';
+import Icon from 'react-native-vector-icons/Ionicons';
+import styles from './updateProfileMain.styles';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+
+const UserQuizzesScreen = () => {
+    const navigation = useNavigation();
+    const route = useRoute();
+
+    const [quizzes, setQuizzes] = useState([]);
+
+    const fetchQuizzesByLevel = async () => {
+        try {
+            const result = await getQuizzesByUser('Alice');
+            setQuizzes(result);
+        }
+        catch (error) {
+            console.error("Failed to fetch quizzes:", error);
+        }
+    };
+
+    useFocusEffect(
+        useCallback(() => {
+            fetchQuizzesByLevel();
+        }, [])
+    );
+
+    const handleQuizClick = (quizID, quizTitle) => {
+        navigation.navigate('GrammarScreen', { quizID: quizID, quizTitle: quizTitle });
+    };
+
+    const handleNewQuizClick = () => {
+        navigation.navigate('NewQuizScreen');
+    };
+
+    const handleEditQuizClick = (quizId) => {
+        navigation.navigate('NewQuizScreen', { quizId: quizId });
+    };
+
+    return (
+        <View style={{ flex: 1 }}>
+            <View style={[styles.topBarContainer, { paddingTop: 40 }]}> 
+                <TouchableOpacity onPress={() => navigation.goBack()} style={[styles.spacing]}>
+                    <Icon name="arrow-back-outline" size={38} color="black" />
+                </TouchableOpacity>
+                <Text style={{ fontSize: 28 }}>Your quizzes</Text>
+                <Icon name="arrow-back-outline" size={38} color="transparent" />
+            </View>
+
+            <ScrollView contentContainerStyle={styles.quizListContainer}>
+                {quizzes.length > 0 ? (
+                    quizzes.map((quiz, index) => (
+                        <View key={quiz.ID} style={styles.quizContainerSmall}>
+                            <View style={styles.quizTileContainer}>
+                                <QuizTile
+                                    quiz={quiz}
+                                    index={index}
+                                    style={styles.quizTile}
+                                    onClick={handleQuizClick}
+                                />
+                                <TouchableOpacity
+                                    onPress={() => handleEditQuizClick(quiz.ID)}
+                                    style={styles.editButton}
+                                >
+                                    <Icon name="create-outline" size={24} color="white" />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    ))
+                ) : (
+                    <Text>You havent created any quizzes yet.</Text>
+                )}
+            </ScrollView>
+
+            <TouchableOpacity 
+                style={styles.floatingButton} 
+                onPress={handleNewQuizClick}
+            >
+                <Icon name="add" size={30} color="white" />
+            </TouchableOpacity>
+        </View>
+    );
+};
+
+export default UserQuizzesScreen;

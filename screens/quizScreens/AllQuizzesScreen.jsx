@@ -1,7 +1,12 @@
+/*
+ * File: AllQuizzesScreen.jsx
+ * Author: Tomáš Kučera <xkucer0t>
+ * Date Created: 12.11.2024
+ * Note:
+ */
 import React, { useEffect, useState, useCallback } from 'react';
 import { View, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { getAllQuizzes, greetUser, getUserInfo, getQuizLevels } from '../../api';
 import QuizTile from '../../components/quizzes/QuizTile';
@@ -19,8 +24,9 @@ const AllQuizzesScreen = ({ route }) => {
         try {
             const result = await getAllQuizzes('Alice');
             setQuizzes(result);
-        } catch (error) {
-            console.error("Failed to fetch quizzes:", error);
+        }
+        catch (error) {
+            console.error('Failed to fetch quizzes:', error);
         }
     };
 
@@ -28,8 +34,9 @@ const AllQuizzesScreen = ({ route }) => {
         try {
             const response = await greetUser('Alice');
             setGreeting(response.message);
-        } catch (error) {
-            console.error("Failed to fetch greeting:", error);
+        }
+        catch (error) {
+            console.error('Failed to fetch greeting:', error);
         }
     };
 
@@ -37,8 +44,9 @@ const AllQuizzesScreen = ({ route }) => {
         try {
             const result = await getUserInfo('Alice');
             setUserInfo(result);
-        } catch (error) {
-            console.error("Failed to fetch user info:", error);
+        }
+        catch (error) {
+            console.error('Failed to fetch user info:', error);
         }
     };
 
@@ -46,9 +54,9 @@ const AllQuizzesScreen = ({ route }) => {
         try {
             const result = await getQuizLevels();
             setQuizLevels(result);
-            console.log(result);
-        } catch (error) {
-            console.error("Failed to fetch user info:", error);
+        }
+        catch (error) {
+            console.error('Failed to fetch user info:', error);
         }
     };
 
@@ -62,12 +70,11 @@ const AllQuizzesScreen = ({ route }) => {
     useFocusEffect(
         useCallback(() => {
             fetchInfo();
-        }, [userInfo])
+        }, [userInfo]),
     );
 
     const handleQuizClick = (quizID, quizTitle) => {
-        navigation.navigate('GrammarScreen', { quizID: quizID, quizTitle: quizTitle});
-        console.log(`Quiz with ID ${quizID} clicked`);
+        navigation.navigate('GrammarScreen', { quizID: quizID, quizTitle: quizTitle });
     };
 
     const handleLanguageLevelClick = (level) => {
@@ -75,20 +82,21 @@ const AllQuizzesScreen = ({ route }) => {
     };
 
     const handleAvatarClick = () => {
-        navigation.navigate('UserProfileScreen', {username: 'Alice'});
+        navigation.navigate('UserProfileScreen', { username: 'Alice' });
     };
 
     return (
         <SafeAreaView>
             <View style={styles.topBarContainer}>
                 <Text style={styles.greetingStyle}>{greeting}</Text>
-                <TouchableOpacity onPress={() => handleAvatarClick()} style={[styles.spacing]}>
+                <TouchableOpacity
+                    onPress={() => handleAvatarClick()}
+                    style={[styles.spacing]}
+                >
                     {userInfo && (
                         <Image
-                        source={{
-                            uri: `${config.IMAGE_URL}${userInfo.gender}/${userInfo.profileImage}`,
-                        }}
-                        style={styles.profileImage}
+                            source={{uri: `${config.IMAGE_URL}${userInfo.gender}/${userInfo.profileImage}`}}
+                            style={styles.profileImage}
                         />
                     )}
                 </TouchableOpacity>

@@ -1,3 +1,9 @@
+/*
+ * File: StatisticScreen.jsx
+ * Author: Tomáš Kučera <xkucer0t>
+ * Date Created: 12.11.2024
+ * Note:
+ */
 import React, { useEffect, useState, useCallback } from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -15,7 +21,7 @@ const StatisticScreen = ({ route }) => {
             const result = await getUserProgress('Alice');
             setProgress(result);
         } catch (error) {
-            console.error("Failed to fetch quizzes:", error);
+            console.error('Failed to fetch quizzes:', error);
         }
     };
 
@@ -26,7 +32,7 @@ const StatisticScreen = ({ route }) => {
     useFocusEffect(
         useCallback(() => {
             fetchProgress();
-        }, [progress])
+        }, [progress]),
     );
 
     if (!progress) {
@@ -56,12 +62,12 @@ const StatisticScreen = ({ route }) => {
             <ScrollView contentContainerStyle={{ padding: 20 }}>
                 <Text style={styles.headerText}>Statistic</Text>
 
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={styles.leaderboardButton}
-                    onPress={() => navigation.navigate('LeaderboardScreen', {username: 'Alice'})}
+                    onPress={() => navigation.navigate('LeaderboardScreen', { username: 'Alice' })}
                 >
                     <Text style={styles.leaderboardText}>Leaderboard</Text>
-                    <Icon name="chevron-forward" size={20} color="#000" />
+                    <Icon name='chevron-forward' size={20} color='#000' />
                 </TouchableOpacity>
 
                 <View style={styles.card}>
@@ -71,10 +77,7 @@ const StatisticScreen = ({ route }) => {
                             const completed = progress.quizzesCompleted[day];
                             const goal = progress.dailyGoal;
                             return (
-                                <View 
-                                    key={day} 
-                                    style={[styles.dayBox, getDayBoxStyle(completed, goal)]}
-                                >
+                                <View key={day} style={[styles.dayBox, getDayBoxStyle(completed, goal)]}>
                                     <Text style={styles.dayText}>{day}</Text>
                                     <Text style={styles.dayQuizzes}>
                                         {completed}/{progress.dailyGoal}
@@ -85,13 +88,11 @@ const StatisticScreen = ({ route }) => {
                     </View>
 
                     <View style={styles.todayProgressContainer}>
-                        <Icon name="sunny-outline" size={20} color="#000" />
+                        <Icon name='sunny-outline' size={20} color='#000' />
                         <Text style={styles.todayText}>Today</Text>
                     </View>
                     <View style={[styles.progressBar, todayStyle]}>
-                        <View 
-                            style={[styles.progress, { width: `${todayPercentage}%` }]} 
-                        />
+                        <View style={[styles.progress, { width: `${todayPercentage}%` }]} />
                     </View>
                     <Text style={styles.progressText}>
                         {lastValue}/{progress.dailyGoal}
@@ -101,9 +102,15 @@ const StatisticScreen = ({ route }) => {
                 <View style={styles.card}>
                     <Text style={styles.cardTitle}>Correctness</Text>
                     <View style={styles.correctnessChart}>
-                        <View style={[styles.chartSegment, { backgroundColor: '#4CAF50', flex: progress.correctPercentage / 100 }]} />
-                        <View style={[styles.chartSegment, { backgroundColor: '#E57373', flex: progress.grammarPercentage / 100 }]} />
-                        <View style={[styles.chartSegment, { backgroundColor: '#64B5F6', flex: progress.vocabularyPercentage / 100 }]} />
+                        <View
+                            style={[styles.chartSegment, { backgroundColor: '#4CAF50', flex: progress.correctPercentage / 100 }]}
+                        />
+                        <View
+                            style={[styles.chartSegment, { backgroundColor: '#E57373', flex: progress.grammarPercentage / 100 }]}
+                        />
+                        <View
+                            style={[styles.chartSegment, { backgroundColor: '#64B5F6', flex: progress.vocabularyPercentage / 100 }]}
+                        />
                     </View>
 
                     <View style={styles.legend}>

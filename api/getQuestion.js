@@ -12,7 +12,7 @@ const getQuestion = async (quizID, count) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-        });
+        );
 
         if (!response.ok) {
             throw new Error(`Failed to fetch question, status: ${response.status}`);
@@ -20,10 +20,11 @@ const getQuestion = async (quizID, count) => {
 
         const data = await response.json();
         return data;
-    } catch (error) {
+    }
+    catch (error) {
         console.error(error);
         throw error;
     }
-}
+};
 
 export default getQuestion;

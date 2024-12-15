@@ -1,9 +1,19 @@
-import { View, Text } from 'react-native';
-import React from 'react';
+/*
+ * File: updateUserProfile.js
+ * Author: Tomáš Kučera <xkucer0t>
+ * Date Created: 12.11.2024
+ * Note:
+ */
 import config from '../../config/config';
 
-const updateUserProfile = async (username, newUsername, profileImage, gender, languageLevel, dailyGoal) => {
-
+const updateUserProfile = async (
+    username,
+    newUsername,
+    profileImage,
+    gender,
+    languageLevel,
+    dailyGoal,
+) => {
     try {
         const response = await fetch(`${config.API_URL}user/${username}`, {
             method: 'PUT',
@@ -20,19 +30,18 @@ const updateUserProfile = async (username, newUsername, profileImage, gender, la
             }),
         });
 
-        if (response.status === 200) {
+        if (response.ok) {
             const data = await response.json();
-            console.log(data);
             return { success: true, message: data };
         } else {
             const errorData = await response.json();
-            console.log('Error updating user information:', errorData);
             return { success: false, message: errorData.message };
         }
-    } catch (error) {
+    }
+    catch (error) {
         console.error('Request failed:', error);
         return { success: false, message: error.message };
     }
-}
+};
 
 export default updateUserProfile;
