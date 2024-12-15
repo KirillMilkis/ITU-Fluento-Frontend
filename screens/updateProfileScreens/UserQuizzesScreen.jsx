@@ -86,10 +86,6 @@ const UserQuizzesScreen = () => {
                 ) : (
                     <Text></Text>
                 )}
-<<<<<<< HEAD
-
-                
-=======
                 <View key={99999} style={styles.quizContainerSmall}>
                     <View style={styles.quizTileContainer}>
                         <TouchableOpacity onPress={handleNewQuizClick} style={[styles.quizContainer]}>
@@ -105,7 +101,6 @@ const UserQuizzesScreen = () => {
                     </View>
                 </View>
 
->>>>>>> 52a6e362f3ef1bb5b75f727c45480dd67636dfa5
             </ScrollView>
 
             <View style={{ position: 'absolute', bottom: 20, right: 20, zIndex: 1 }}>
