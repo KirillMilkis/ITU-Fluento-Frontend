@@ -35,13 +35,13 @@ const GrammarScreen = ({navigation}) => {
 
     // navigate to question screen
     const nextQuestion = () => {
-        navigation.navigate('QuestionScreen', {quizTitle: quizTitle})
+        navigation.navigate('QuestionScreen', {quizTitle: quizTitle, quizID})
     }
 
     // leave quiz with button in top bar
     const leaveQuiz = async () => {
         try {
-            const result = await getResults();;
+            const result = await getResults(quizID, false);
         } catch (error) {
             console.error("Failed to quit quiz:", error);
         }

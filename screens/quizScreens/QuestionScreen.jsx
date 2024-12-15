@@ -19,10 +19,12 @@ import OrderingQuestions from '../../components/questions/OrderingQuestions';
 const QuestionScreen = ({navigation}) => {
     const route = useRoute();
     const {quizTitle} = route.params;
+    const {quizID} = route.params;
     const [question, setQuestion] = useState([]);
     const [hasAnswered, setHasAnswered] = useState(false);
     const [selectedAnswer, setSelectedAnswer] = useState([]);
     const [correctAnswer, setCorrectAnswer] = useState([]);
+    const [count, setCount] = useState(0);
     const questionComponentRef = useRef(null);
 
     // sending answer with bottom bar button
@@ -47,11 +49,11 @@ const QuestionScreen = ({navigation}) => {
     // get next question from api
     const fetchQuestion = async () => {
         if(isLast(question.counter)){
-            navigation.navigate("ResultsScreen");
+            navigation.navigate("ResultsScreen", {quizID});
         }
         else{
             try {
-                const result = await getQuestion();;
+                const result = await getQuestion(quizID, count);
                 setQuestion(result);
                 resetState();
                 console.log(result);
@@ -67,7 +69,7 @@ const QuestionScreen = ({navigation}) => {
     // leave quiz with button in top bar
     const leaveQuiz = async () => {
         try {
-            const result = await getResults();;
+            const result = await getResults(quizID, false);
         } catch (error) {
             console.error("Failed to quit quiz:", error);
         }
@@ -81,7 +83,8 @@ const QuestionScreen = ({navigation}) => {
         setSelectedAnswer(answer); 
         try {
             setHasAnswered(true);
-            const result = await evaluateAnswer(answer);;
+            const result = await evaluateAnswer(answer, quizID, count);
+            setCount(count + 1);
             setCorrectAnswer(result);
             console.log(result);
         } catch (error) {
