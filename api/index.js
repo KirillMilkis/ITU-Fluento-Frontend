@@ -44,4 +44,42 @@ import evaluateAnswer from "./evaluateAnswer";
 import getResults from "./getResults";
 import getRandomUser from "./getRandomUser";
 
-export {  getGrammars, getQuestionById, deleteQuestion, createFillInBlank, updateFillInBlank, createMatchPairs, updateMatchPairs, createWordOrdering, updateWordOrdering, addGrammar, createMultipleChoice, updateMultipleChoice, createTrueFalse, updateTrueFalse, getAllQuizzes, greetUser, getUserInfo, getQuizLevels, getQuizzesByLevel, getQuizzesByUser, createQuiz, getQuizById, updateQuiz, uploadFile, getUserCreatedDecks, updateUserProfile, getRandomUser, getAllQuizzes, greetUser, getUserInfo, getQuizLevels, getQuizzesByLevel, getUserCreatedDecks, updateUserProfile, getUserProgress, getQuestion, startQuiz, evaluateAnswer, getResults, usePostRequest, postRequest, fetchRequest, useFetch};
+export {  
+    getGrammars, 
+    getQuestionById, 
+    deleteQuestion, 
+    createFillInBlank, 
+    updateFillInBlank, 
+    createMatchPairs, 
+    updateMatchPairs, 
+    createWordOrdering, 
+    updateWordOrdering, 
+    addGrammar, 
+    createMultipleChoice, 
+    updateMultipleChoice, 
+    createTrueFalse, 
+    updateTrueFalse, 
+    getAllQuizzes, 
+    getUserInfo, 
+    getQuizLevels, 
+    getQuizzesByLevel, 
+    getQuizzesByUser, 
+    createQuiz, 
+    getQuizById, 
+    updateQuiz, 
+    uploadFile, 
+    getUserCreatedDecks, 
+    updateUserProfile, 
+    getRandomUser, 
+    greetUser, 
+    getUserProgress, 
+    getQuestion, 
+    startQuiz, 
+    evaluateAnswer, 
+    getResults, 
+    usePostRequest, 
+    postRequest, 
+    fetchRequest, 
+    useFetch
+  };
+  

@@ -17,3 +17,4 @@ export default {
     IMAGE_URL,
     UPLOAD_URL,
     USERNAME,
+}
