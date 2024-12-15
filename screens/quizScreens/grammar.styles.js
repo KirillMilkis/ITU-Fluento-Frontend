@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 
     textStyle:{
         paddingHorizontal: SIZES.padding,
-        fontSize: SIZES.font,
+        fontSize: SIZES.body2-3,
     },
 
     titleStyle:{
@@ -59,8 +59,9 @@ const styles = StyleSheet.create({
     },
 
     image: {
-        width: 120,
-        height: 120,
+        margin:50,
+        width: 200,
+        height: 200,
         marginBottom: 30,
         alignSelf: "center",
     },
